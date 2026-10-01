@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "seed": 20260929,
+  "model": "calibrated_top1_with_deterministic_scope_override",
+  "score_feature": "top1_score",
+  "reranker_score_threshold": 0.032802149653,
+  "scope_override": "refuse scope-risk queries unless a safe policy clause makes partial_answer possible",
+  "calibration_constraint": "answerable_accuracy >= 0.90, then maximize refusal_f1",
+  "selection_note": "Selected the calibrated Top1 rule because it met the calibration constraint with perfect calibration metrics; the logistic model is retained only as a diagnostic feature audit.",
+  "diagnostic_logistic": {
+    "feature_order": [
+      "top1_score",
+      "top2_score",
+      "top3_score",
+      "score_mean",
+      "top1_margin",
+      "valid_context_count",
+      "distinct_document_count",
+      "distinct_category_count",
+      "query_context_bigram_overlap",
+      "scope_risk"
+    ],
+    "scaler_mean": [
+      0.43997954323,
+      0.220669420912,
+      0.035456878741,
+      0.286636590783,
+      0.219310122318,
+      2.516666666667,
+      2.516666666667,
+      1.866666666667,
+      0.248145969798,
+      0.2
+    ],
+    "scaler_scale": [
+      0.425448659128,
+      0.352832790795,
+      0.138106589838,
+      0.32741759073,
+      0.31680425577,
+      0.53202965665,
+      0.53202965665,
+      0.694422221867,
+      0.139559484251,
+      0.4
+    ],
+    "coefficient": [
+      1.329644967333,
+      0.558852242492,
+      0.242579364094,
+      0.976606098312,
+      1.163223868987,
+      0.168772947529,
+      0.168772947529,
+      -0.307916392467,
+      -0.120801667367,
+      -1.009783201753
+    ],
+    "intercept": 1.058373412759
+  },
+  "calibration_ids_sha256": "c08d0627d8dc4014bb65070dae82c7bc5cf348bba1d61d05bdf22e79d74279b3",
+  "holdout_ids_sha256": "e1c14117219ae4b544aa0e70d54ee039df551104e7f2ee124516663eaafa15ac"
+}

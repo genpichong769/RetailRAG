@@ -1,0 +1,1227 @@
+{
+  "status": "PASS",
+  "evaluated_at": "2026-09-30T21:40:15",
+  "model": "qwen3.7-plus",
+  "sample_count": 30,
+  "without_query_rewrite": {
+    "hit_at_1": 0.3,
+    "hit_at_3": 0.4,
+    "mrr": 0.35
+  },
+  "with_query_rewrite": {
+    "hit_at_1": 0.766667,
+    "hit_at_3": 1.0,
+    "mrr": 0.872222
+  },
+  "gain": {
+    "hit_at_1": 0.466667,
+    "hit_at_3": 0.6,
+    "mrr": 0.522222
+  },
+  "rewrite_success_rate": 1.0,
+  "rewrite_error_rate": 0.0,
+  "rewrite_improved": 20,
+  "rewrite_unchanged": 8,
+  "rewrite_degraded": 2,
+  "rewrite_latency_ms": {
+    "mean": 10571.826133,
+    "median": 9955.376,
+    "p95": 15272.56275,
+    "p99": 16229.34819
+  },
+  "usage": {
+    "prompt_tokens": 3666,
+    "completion_tokens": 17469,
+    "total_tokens": 21135
+  },
+  "enable_recommendation": true,
+  "results": [
+    {
+      "id": "multiturn_001",
+      "question": "如果是活动商品呢？",
+      "history": [
+        {
+          "question": "普通商品怎么退？",
+          "answer": "按常规退换货政策核验。"
+        }
+      ],
+      "rewritten_query": "活动商品怎么退？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 6661.761,
+      "expected_documents": [
+        "promo_partial_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "giftcard_product",
+          "full_reduction",
+          "raincheck",
+          "member_day_campaign",
+          "spring_member_day"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "gift_rules",
+          "promo_partial_return",
+          "birthday_points"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_002",
+      "question": "用了优惠券怎么办？",
+      "history": [
+        {
+          "question": "活动商品退货怎么处理？",
+          "answer": "需重算优惠。"
+        }
+      ],
+      "rewritten_query": "活动商品退货时用了优惠券怎么办？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 8608.491,
+      "expected_documents": [
+        "promo_partial_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "promotion_stacking",
+          "coupon_rules",
+          "spring_member_day",
+          "new_customer_offer"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "promo_partial_return",
+          "coupon_rules",
+          "spring_member_day",
+          "birthday_points"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_003",
+      "question": "那重复账户呢？",
+      "history": [
+        {
+          "question": "会员换手机号怎么办？",
+          "answer": "先核验身份。"
+        }
+      ],
+      "rewritten_query": "会员换手机号时遇到重复账户怎么办？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9663.843,
+      "expected_documents": [
+        "account_registration"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "account_registration",
+          "new_customer_offer",
+          "silver_benefits",
+          "gold_service"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "account_registration",
+          "new_customer_offer",
+          "member_adjustment",
+          "coupon_fault"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "multiturn_004",
+      "question": "温度超限呢？",
+      "history": [
+        {
+          "question": "冷藏商品到货怎么验？",
+          "answer": "检查温度与包装。"
+        }
+      ],
+      "rewritten_query": "冷藏商品到货验收时温度超限怎么处理？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 7401.979,
+      "expected_documents": [
+        "cold_chain"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "cold_chain",
+          "cold_cabinet",
+          "receiving_inspection",
+          "cold_sensor"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "cold_chain",
+          "receiving_inspection",
+          "cold_cabinet"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "multiturn_005",
+      "question": "还是查不到呢？",
+      "history": [
+        {
+          "question": "POS 支付状态不明怎么办？",
+          "answer": "先查交易状态。"
+        }
+      ],
+      "rewritten_query": "POS 支付状态不明，查不到交易状态怎么办？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 6665.195,
+      "expected_documents": [
+        "pos_troubleshooting"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "no_receipt",
+          "pos_troubleshooting",
+          "clearance_return",
+          "autumn_member_day"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "pos_troubleshooting",
+          "scanner_troubleshooting",
+          "no_receipt",
+          "opening_checklist",
+          "refund_channels"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_006",
+      "question": "超过门槛后呢？",
+      "history": [
+        {
+          "question": "盘点有差异怎么办？",
+          "answer": "复盘并登记。"
+        }
+      ],
+      "rewritten_query": "盘点有差异超过门槛后怎么办？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 8056.264,
+      "expected_documents": [
+        "inventory_variance"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "member_levels",
+          "promotion_stacking",
+          "approval_boundary",
+          "account_registration",
+          "member_adjustment"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "inventory_variance",
+          "daily_inventory",
+          "monthly_inventory",
+          "cash_handover",
+          "promotion_stacking"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_007",
+      "question": "打印机也打不对呢？",
+      "history": [
+        {
+          "question": "价签错了怎么处理？",
+          "answer": "暂停错误展示并核验。"
+        }
+      ],
+      "rewritten_query": "价签打印机打不对价签怎么处理？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9992.838,
+      "expected_documents": [
+        "label_printer"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "display_price",
+          "label_printer",
+          "receipt_printer",
+          "label_blank"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "display_price",
+          "label_blank",
+          "label_printer"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      "rewrite_outcome": "DEGRADED"
+    },
+    {
+      "id": "multiturn_008",
+      "question": "高价值商品呢？",
+      "history": [
+        {
+          "question": "顾客没有小票能退吗？",
+          "answer": "可以尝试查找订单。"
+        }
+      ],
+      "rewritten_query": "顾客没有小票能退高价值商品吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 10813.177,
+      "expected_documents": [
+        "after_sales_update"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "serial_trace",
+          "special_goods",
+          "daily_inventory"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "no_receipt",
+          "after_sales_update",
+          "special_goods",
+          "birthday_points"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_009",
+      "question": "已经发到公开群了呢？",
+      "history": [
+        {
+          "question": "顾客信息能发工作群吗？",
+          "answer": "应最小化处理。"
+        }
+      ],
+      "rewritten_query": "顾客信息已经发到公开群了怎么办？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 13689.991,
+      "expected_documents": [
+        "incident_escalation"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "autumn_member_day",
+          "clearance_return",
+          "pos_network",
+          "receipt_printer",
+          "emergency_power"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "privacy_security",
+          "customer_complaint",
+          "incident_escalation",
+          "receipt_printer",
+          "emergency_power"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.3333333333333333
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "multiturn_010",
+      "question": "春季那次有什么不同？",
+      "history": [
+        {
+          "question": "会员日按哪个活动执行？",
+          "answer": "按当前有效通知执行。"
+        }
+      ],
+      "rewritten_query": "春季会员日有什么不同？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9819.936,
+      "expected_documents": [
+        "spring_member_day"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "spring_member_day",
+          "member_day_campaign",
+          "autumn_member_day",
+          "inventory_variance",
+          "member_day_birthday"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "member_day_campaign",
+          "spring_member_day",
+          "member_day_birthday",
+          "member_levels"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "rewrite_outcome": "DEGRADED"
+    },
+    {
+      "id": "scale_multiturn_331",
+      "question": "那没花掉的能留到下个月吗？",
+      "history": [
+        {
+          "question": "我想问银卡免标准配送的权益。",
+          "answer": "每月一次，仅限本人。"
+        }
+      ],
+      "rewritten_query": "银卡免标准配送的权益没花掉能留到下个月吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9004.683,
+      "expected_documents": [
+        "silver_benefits"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "raincheck",
+          "member_points_version_v2_2026",
+          "member_levels",
+          "points_rules",
+          "cash_handover"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "silver_benefits",
+          "member_points_version_v2_2026",
+          "gold_service"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_332",
+      "question": "如果两点才取消呢？",
+      "history": [
+        {
+          "question": "我有金卡，约了明天下午三点导购。",
+          "answer": "取消需至少提前两小时。"
+        }
+      ],
+      "rewritten_query": "如果金卡用户预约了明天下午三点的导购，在下午两点才取消预约会怎样？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 16466.304,
+      "expected_documents": [
+        "gold_service"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "gold_service",
+          "pickup_notice_current",
+          "member_levels",
+          "points_rules",
+          "member_adjustment"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "gold_service",
+          "pickup_notice_current",
+          "member_points_version_v2_2026"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "scale_multiturn_333",
+      "question": "运费那部分也跟着翻吗？",
+      "history": [
+        {
+          "question": "我是金卡，生日这个月下单。",
+          "answer": "生日活动按金卡基础积分2倍。"
+        }
+      ],
+      "rewritten_query": "金卡生日月下单时，运费部分的积分也跟着翻倍（2倍）吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 15649.215,
+      "expected_documents": [
+        "birthday_points"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "birthday_points",
+          "points_rules",
+          "full_reduction",
+          "opening_cash",
+          "closing_cash"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "birthday_points",
+          "silver_benefits",
+          "member_points_version_v2_2026",
+          "points_rules",
+          "member_levels"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "scale_multiturn_334",
+      "question": "这两张能放同一笔一起扣吗？",
+      "history": [
+        {
+          "question": "我账户里有生日券和新人券。",
+          "answer": "两张都是订单券。"
+        }
+      ],
+      "rewritten_query": "生日券和新人券能在同一笔订单中一起抵扣吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9730.846,
+      "expected_documents": [
+        "birthday_coupon"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "coupon_fault",
+          "invoice_return",
+          "member_day_birthday",
+          "account_registration",
+          "points_rules"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "birthday_coupon",
+          "member_day_birthday",
+          "birthday_points"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_335",
+      "question": "那一件还享95折不？",
+      "history": [
+        {
+          "question": "想买会员日的秒杀商品。",
+          "answer": "秒杀有单独排除标识。"
+        }
+      ],
+      "rewritten_query": "会员日的秒杀商品还享95折吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9079.319,
+      "expected_documents": [
+        "flash_sale"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "member_day_campaign",
+          "autumn_member_day",
+          "points_rules"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "autumn_member_day",
+          "flash_sale",
+          "member_day_campaign",
+          "spring_member_day",
+          "member_day_birthday"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_336",
+      "question": "朋友拿我的截图去就行吗？",
+      "history": [
+        {
+          "question": "上次赠品没货登记了延期领取。",
+          "answer": "以系统到货通知起算领取期。"
+        }
+      ],
+      "rewritten_query": "朋友拿我的系统到货通知截图去领取赠品就行吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 11994.913,
+      "expected_documents": [
+        "raincheck"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "clearance_return",
+          "autumn_member_day",
+          "pos_network",
+          "allergen_label",
+          "opening_cash"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "raincheck",
+          "gift_rules",
+          "spring_member_day",
+          "allergen_label"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_337",
+      "question": "天数从换到这家店再算吗？",
+      "history": [
+        {
+          "question": "商品在直营A店买的，来直营B店申请退。",
+          "answer": "支持联查的直营门店可以受理。"
+        }
+      ],
+      "rewritten_query": "商品在直营A店购买，在直营B店申请退货时，退换货天数是从换到直营B店重新计算吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 13127.08,
+      "expected_documents": [
+        "cross_store_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "cross_store_return",
+          "birthday_points",
+          "member_adjustment",
+          "account_registration",
+          "member_levels"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "cross_store_return",
+          "return_exchange",
+          "invoice_return",
+          "birthday_points"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "scale_multiturn_338",
+      "question": "能给我退成现钞不？",
+      "history": [
+        {
+          "question": "我网购自营订单带了门店售后码。",
+          "answer": "可到支持门店核验受理。"
+        }
+      ],
+      "rewritten_query": "网购自营订单带门店售后码能退成现钞吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9917.914,
+      "expected_documents": [
+        "online_store_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "no_receipt",
+          "refund_channels",
+          "cash_handover",
+          "birthday_points"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "online_store_return",
+          "refund_channels",
+          "no_receipt",
+          "clearance_return",
+          "birthday_points"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_339",
+      "question": "只留下另外两件行吗？",
+      "history": [
+        {
+          "question": "我买了固定三件套。",
+          "answer": "固定套装和自由凑单规则不同。"
+        }
+      ],
+      "rewritten_query": "固定三件套只留下另外两件行吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 7109.897,
+      "expected_documents": [
+        "bundle_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "incident_records",
+          "account_registration",
+          "raincheck",
+          "closing_cash",
+          "opening_cash"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "bundle_return",
+          "bundle_campaign",
+          "daily_inventory",
+          "points_rules",
+          "member_levels"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_340",
+      "question": "那个裂口用胶带封住还能卖吗？",
+      "history": [
+        {
+          "question": "外箱破了，食品袋子的封口也裂了。",
+          "answer": "需要检查销售包装。"
+        }
+      ],
+      "rewritten_query": "食品袋子的封口裂口用胶带封住还能卖吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9377.634,
+      "expected_documents": [
+        "packaging_damage"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "packaging_damage",
+          "closing_cash",
+          "label_blank"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "packaging_damage",
+          "closing_cash",
+          "food_fresh",
+          "special_goods"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "scale_multiturn_341",
+      "question": "再发就算多开了一张吗？",
+      "history": [
+        {
+          "question": "公司抬头电子发票发过我但找不到。",
+          "answer": "可以申请重发原文件。"
+        }
+      ],
+      "rewritten_query": "申请重发公司抬头的电子发票原文件，算不算多开了一张发票？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 9144.541,
+      "expected_documents": [
+        "invoice_return"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "account_registration",
+          "opening_cash",
+          "new_customer_offer",
+          "coupon_rules"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "invoice_return",
+          "opening_cash",
+          "pickup_notice_current",
+          "after_sales_update"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_342",
+      "question": "能拿昨晚营业款先补吗？",
+      "history": [
+        {
+          "question": "早班备用金袋上的号和登记对不上。",
+          "answer": "需核查封签。"
+        }
+      ],
+      "rewritten_query": "早班备用金袋上的号和登记对不上，能拿昨晚营业款先补备用金吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 13465.682,
+      "expected_documents": [
+        "opening_cash"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "approval_boundary",
+          "cash_handover",
+          "member_adjustment",
+          "spring_member_day",
+          "member_day_campaign"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "opening_cash",
+          "cash_handover",
+          "gold_service",
+          "account_registration"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_343",
+      "question": "旧袋号还要记吗？",
+      "history": [
+        {
+          "question": "营业款封袋后临时要再开封。",
+          "answer": "要有人见证并记录。"
+        }
+      ],
+      "rewritten_query": "营业款封袋后临时要再开封，有人见证并记录时，还要记录旧袋号吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 14812.21,
+      "expected_documents": [
+        "closing_cash"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "closing_cash",
+          "account_registration",
+          "invoice_return",
+          "label_blank",
+          "after_sales_update"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "closing_cash",
+          "opening_cash",
+          "packaging_damage",
+          "giftcard_product",
+          "cold_sensor"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    },
+    {
+      "id": "scale_multiturn_344",
+      "question": "我收的再由我最终审批可以吗？",
+      "history": [
+        {
+          "question": "调拨单十箱实际来了九箱。",
+          "answer": "需记录收货差异。"
+        }
+      ],
+      "rewritten_query": "我记录的收货差异再由我最终审批可以吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 12834.986,
+      "expected_documents": [
+        "transfer_receipt"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "cross_store_return",
+          "allergen_label",
+          "opening_cash",
+          "closing_cash",
+          "pos_network"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "transfer_receipt",
+          "daily_inventory",
+          "cross_store_return",
+          "allergen_label",
+          "pos_network"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_345",
+      "question": "先放外面的普通架可以不？",
+      "history": [
+        {
+          "question": "顾客还没来取冷藏自提商品。",
+          "answer": "待提期间需要保持温区。"
+        }
+      ],
+      "rewritten_query": "顾客还没来取的冷藏自提商品可以先放在外面的普通架上吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 11102.962,
+      "expected_documents": [
+        "online_pickup"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "cold_chain",
+          "online_pickup",
+          "incident_records",
+          "opening_checklist",
+          "scanner_troubleshooting"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "online_pickup",
+          "cold_chain",
+          "receiving_inspection",
+          "cold_cabinet"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_346",
+      "question": "补打一张会不会又扣钱？",
+      "history": [
+        {
+          "question": "小票打印出来全是白纸。",
+          "answer": "先排查热敏纸方向和类型。"
+        }
+      ],
+      "rewritten_query": "补打小票会不会又扣钱？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 10099.548,
+      "expected_documents": [
+        "receipt_printer"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "coupon_rules",
+          "birthday_points",
+          "new_customer_offer",
+          "account_registration",
+          "points_rules"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "receipt_printer",
+          "points_rules",
+          "no_receipt",
+          "after_sales_update",
+          "coupon_rules"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_347",
+      "question": "先贴上去营业，晚点测行吗？",
+      "history": [
+        {
+          "question": "价签机文字正常但条码读不出来。",
+          "answer": "需检验打印质量。"
+        }
+      ],
+      "rewritten_query": "价签机文字正常但条码读不出来，先贴上去营业，晚点测行吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 10844.542,
+      "expected_documents": [
+        "label_blank"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "notice_scope",
+          "autumn_member_day",
+          "shelf_life",
+          "pickup_notice_current",
+          "member_day_campaign"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "scanner_troubleshooting",
+          "label_blank",
+          "label_printer",
+          "display_price",
+          "receipt_printer"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 1,
+        "reciprocal_rank": 0.5
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_348",
+      "question": "那几笔全点重新扣款可以吗？",
+      "history": [
+        {
+          "question": "POS断网刚恢复，有几笔付款状态未知。",
+          "answer": "先查询原流水。"
+        }
+      ],
+      "rewritten_query": "POS断网刚恢复后，付款状态未知的几笔付款全点重新扣款可以吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 7919.76,
+      "expected_documents": [
+        "pos_network"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "pos_troubleshooting",
+          "full_reduction",
+          "coupon_rules",
+          "points_rules",
+          "account_registration"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "pos_network",
+          "pos_troubleshooting",
+          "scanner_troubleshooting",
+          "coupon_rules"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_349",
+      "question": "消音后这些货就能继续卖吗？",
+      "history": [
+        {
+          "question": "冷柜面板看起来正常，校验表却超温。",
+          "answer": "按实测信号处理风险。"
+        }
+      ],
+      "rewritten_query": "冷柜超温报警消音后，冷柜内的商品还能继续卖吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 12742.766,
+      "expected_documents": [
+        "cold_sensor"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "clearance_return",
+          "shelf_life",
+          "special_goods",
+          "receipt_printer",
+          "label_blank"
+        ],
+        "hit_at_1": 0,
+        "hit_at_3": 0,
+        "reciprocal_rank": 0.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "cold_sensor",
+          "cold_cabinet",
+          "cold_chain"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "IMPROVED"
+    },
+    {
+      "id": "scale_multiturn_350",
+      "question": "我们C003也照九折做行吗？",
+      "history": [
+        {
+          "question": "秋季会员日试点只列A001和B002。",
+          "answer": "有效期九月至十一月。"
+        }
+      ],
+      "rewritten_query": "C003可以参与秋季会员日试点的九折活动吗？",
+      "rewrite_error": null,
+      "rewrite_latency_ms": 11356.507,
+      "expected_documents": [
+        "autumn_member_day"
+      ],
+      "without_rewrite": {
+        "retrieved_documents": [
+          "autumn_member_day",
+          "coupon_fault",
+          "points_rules"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "with_rewrite": {
+        "retrieved_documents": [
+          "autumn_member_day",
+          "member_day_campaign"
+        ],
+        "hit_at_1": 1,
+        "hit_at_3": 1,
+        "reciprocal_rank": 1.0
+      },
+      "rewrite_outcome": "UNCHANGED"
+    }
+  ]
+}

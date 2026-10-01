@@ -1,0 +1,130 @@
+{
+  "status": "COMPLETED",
+  "model": "qwen3.7-plus",
+  "faq_gate_ms": {
+    "count": 480,
+    "mean": 0.098608,
+    "median": 0.08815,
+    "p95": 0.133635,
+    "p99": 0.170518
+  },
+  "query_rewrite_ms": {
+    "mean": 10571.826133,
+    "median": 9955.376,
+    "p95": 15272.56275,
+    "p99": 16229.34819
+  },
+  "generation_80": {
+    "llm_first_token_ms": {
+      "count": 64,
+      "mean": 12835.323781,
+      "median": 10830.8315,
+      "p95": 25191.52785,
+      "p99": 35555.81167
+    },
+    "llm_total_ms": {
+      "count": 64,
+      "mean": 14907.481437,
+      "median": 12325.478,
+      "p95": 28705.04805,
+      "p99": 40503.85019
+    },
+    "judge_ms": {
+      "count": 80,
+      "mean": 20768.53205,
+      "median": 20101.085,
+      "p95": 30754.76645,
+      "p99": 34523.55143
+    },
+    "full_case_ms": {
+      "count": 80,
+      "mean": 68251.475,
+      "median": 72049.0,
+      "p95": 112807.0,
+      "p99": 129548.43
+    }
+  },
+  "full_rag_350": {
+    "faq": {
+      "count": 350,
+      "mean": 766.33466,
+      "median": 788.241,
+      "p95": 1602.04815,
+      "p99": 1775.87949
+    },
+    "query_rewrite": {
+      "count": 285,
+      "mean": 1334.581747,
+      "median": 0.003,
+      "p95": 11718.817,
+      "p99": 20325.09736
+    },
+    "query_classifier": {
+      "count": 285,
+      "mean": 104.529109,
+      "median": 93.462,
+      "p95": 189.6718,
+      "p99": 234.5242
+    },
+    "strategy_selector": {
+      "count": 285,
+      "mean": 6898.75327,
+      "median": 4716.58,
+      "p95": 18734.721,
+      "p99": 33286.78796
+    },
+    "embedding": {
+      "count": 283,
+      "mean": 454.970053,
+      "median": 423.159,
+      "p95": 603.1289,
+      "p99": 1217.32088
+    },
+    "milvus": {
+      "count": 283,
+      "mean": 5.832597,
+      "median": 5.462,
+      "p95": 7.2787,
+      "p99": 16.02858
+    },
+    "reranker": {
+      "count": 283,
+      "mean": 4308.185682,
+      "median": 4030.405,
+      "p95": 6057.3079,
+      "p99": 11352.97802
+    },
+    "evidence_gate": {
+      "count": 285,
+      "mean": 0.535782,
+      "median": 0.494,
+      "p95": 0.8146,
+      "p99": 1.0148
+    },
+    "llm_first_token": {
+      "count": 222,
+      "mean": 14304.402185,
+      "median": 12963.99,
+      "p95": 25412.14855,
+      "p99": 35091.06241
+    },
+    "llm_total": {
+      "count": 222,
+      "mean": 16973.329982,
+      "median": 15268.104,
+      "p95": 31992.1277,
+      "p99": 39330.19656
+    },
+    "full_rag": {
+      "count": 350,
+      "mean": 26685.525714,
+      "median": 24130.0,
+      "p95": 59988.35,
+      "p99": 76049.11
+    }
+  },
+  "notes": [
+    "Full-RAG component latency uses the production reranker without the evaluation pair cache.",
+    "P99 is reported because all component distributions retain per-case observations."
+  ]
+}

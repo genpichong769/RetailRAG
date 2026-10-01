@@ -4,8 +4,8 @@ from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader
 from langchain.text_splitter import MarkdownTextSplitter
 from datetime import datetime
-from rag_qa.edu_text_spliter import AliTextSplitter, ChineseRecursiveTextSplitter
-from rag_qa.edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
+from rag_qa.text_splitters import AliTextSplitter, ChineseRecursiveTextSplitter
+from rag_qa.document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
 from base import logger, Config
 
 conf = Config()
@@ -36,7 +36,7 @@ def load_documents_from_directory(directory_path):
     documents = []
     # 获取支持的文件扩展名集合
     supported_extensions = document_loaders.keys()
-    # 从目录名提取学科类别（如 "ai_data" -> "ai"）
+    # 从目录名提取零售知识类别（如 "membership_data" -> "membership"）
     source = os.path.basename(directory_path).replace("_data", "")
 
     # 遍历指定目录及其子目录
@@ -62,10 +62,12 @@ def load_documents_from_directory(directory_path):
                     loaded_docs = loader.load()
                     # 遍历加载的每个文档
                     for doc in loaded_docs:
-                        # 为文档添加学科类别元数据
+                        # 为文档添加零售知识类别元数据
                         doc.metadata["source"] = source
+                        doc.metadata["category"] = source
                         # 为文档添加文件路径元数据
                         doc.metadata["file_path"] = file_path
+                        doc.metadata["document_name"] = os.path.splitext(file)[0]
                         # 为文档添加当前时间戳元数据
                         doc.metadata["timestamp"] = datetime.now().isoformat()
                     # 将加载的文档添加到总列表中
@@ -148,7 +150,7 @@ def process_documents(directory_path, parent_chunk_size=conf.PARENT_CHUNK_SIZE,
 
 if __name__ == '__main__':
     chunks = process_documents(
-        os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "ai_data"),
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "membership_data"),
         conf.PARENT_CHUNK_SIZE,
         conf.CHILD_CHUNK_SIZE,
         conf.CHUNK_OVERLAP,

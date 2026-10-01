@@ -1,11 +1,5 @@
-# FAQ source data
+# RetailRAG FAQ 数据
 
-本目录用于存放导入 MySQL 的本地 FAQ 数据。原始 FAQ CSV 含内部地址与课程数据，因此不进入 Git。
+`retail_faq.csv` 是冻结的 200 条演示 FAQ，字段固定为：`知识类别`、`问题`、`答案`。文件哈希记录在根目录 `RETAILRAG_SCALE_DATA_AUDIT.json`。
 
-CSV 至少需要以下三列：
-
-```text
-学科名称,问题,答案
-```
-
-`MySQLClient.create_table()` 会创建 `jpkb` 表，`MySQLClient.insert_data(csv_path)` 会导入上述列。请仅使用有权公开或处理的数据。
+执行 `python -m mysql_qa.init_faq` 会显式创建表、替换 FAQ 数据并清理当前 RetailRAG 命名空间下的 Redis 缓存。项目不会在服务启动时自动初始化 MySQL。

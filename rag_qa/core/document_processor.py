@@ -1,9 +1,12 @@
 # 这个脚本讲义的代码架构图没有体现，需要进行补充
+import hashlib
 import os
+from datetime import date, datetime
+
+import yaml
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders.markdown import UnstructuredMarkdownLoader  # NLTK
 from langchain.text_splitter import MarkdownTextSplitter
-from datetime import datetime
 # ========================================
 # import sys
 # # 获取当前文件所在目录的绝对路径
@@ -17,11 +20,61 @@ from datetime import datetime
 # project_root = os.path.dirname(rag_qa_path)
 # sys.path.insert(0, project_root)
 # ========================================
-from rag_qa.edu_document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
-from rag_qa.edu_text_spliter import ChineseRecursiveTextSplitter
+from rag_qa.document_loaders import OCRPDFLoader, OCRDOCLoader, OCRPPTLoader, OCRIMGLoader
+from rag_qa.text_splitters import ChineseRecursiveTextSplitter
 from base import logger, Config
 
 conf = Config()
+
+VALID_DOCUMENT_STATUSES = {"active", "expired", "superseded"}
+
+
+def _normalise_date(value, fallback):
+    if isinstance(value, datetime):
+        return value.date().isoformat()
+    if isinstance(value, date):
+        return value.isoformat()
+    text = str(value or "").strip()
+    return text or fallback
+
+
+def _load_version_metadata(file_path, source, document_name):
+    """Read optional YAML front matter and return deterministic version metadata."""
+    metadata = {
+        "version": "1.0",
+        "effective_date": "2000-01-01",
+        "expire_date": "9999-12-31",
+        "status": "active",
+        "version_group": document_name,
+    }
+    if os.path.splitext(file_path)[1].lower() == ".md":
+        try:
+            with open(file_path, "r", encoding="utf-8") as handle:
+                text = handle.read()
+            if text.startswith("---"):
+                parts = text.split("---", 2)
+                if len(parts) == 3:
+                    parsed = yaml.safe_load(parts[1]) or {}
+                    if isinstance(parsed, dict):
+                        metadata.update({key: parsed[key] for key in metadata if key in parsed})
+        except (OSError, UnicodeError, yaml.YAMLError) as exc:
+            logger.warning("读取版本元数据失败，使用默认值 (%s): %s", file_path, exc)
+
+    metadata["version"] = str(metadata.get("version") or "1.0")
+    metadata["effective_date"] = _normalise_date(
+        metadata.get("effective_date"), "2000-01-01"
+    )
+    metadata["expire_date"] = _normalise_date(metadata.get("expire_date"), "9999-12-31")
+    metadata["version_group"] = str(metadata.get("version_group") or document_name)
+    status = str(metadata.get("status") or "active").lower()
+    if status not in VALID_DOCUMENT_STATUSES:
+        logger.warning("文档 %s 的 status=%s 无效，按 expired 处理", file_path, status)
+        status = "expired"
+    metadata["status"] = status
+    metadata["source"] = source
+    metadata["category"] = source
+    metadata["document_name"] = document_name
+    return metadata
 # 定义支持的文件类型及其对应的加载器字典
 document_loaders = {
     # 文本文件使用 TextLoader
@@ -50,7 +103,7 @@ def load_documents_from_directory(directory_path):
     # 获取支持的文件扩展名集合
     supported_extensions = document_loaders.keys()
     # print(f'supported_extensions--》{supported_extensions}')
-    # 从目录名提取学科类别（如 "ai_data" -> "ai"）
+    # 从目录名提取零售知识类别（如 "membership_data" -> "membership"）
     # print(f'1---》{os.path.basename(directory_path)}')
     source = os.path.basename(directory_path).replace("_data", "")
     # print(f'source-->{source}')
@@ -83,8 +136,10 @@ def load_documents_from_directory(directory_path):
                     # print(f'loaded_docs--》{loaded_docs}')
                     # print(f'loaded_docs--》{len(loaded_docs)}')
                     for doc in loaded_docs:
-                        # 为文档添加学科类别元数据
-                        doc.metadata["source"] = source
+                        document_name = os.path.splitext(file)[0]
+                        doc.metadata.update(
+                            _load_version_metadata(file_path, source, document_name)
+                        )
                         # 为文档添加文件路径元数据
                         doc.metadata["file_path"] = file_path
                         # 为文档添加当前时间戳元数据
@@ -143,8 +198,16 @@ def process_documents(directory_path, parent_chunk_size=conf.PARENT_CHUNK_SIZE,
         # print(f'parent_docs--》{len(parent_docs)}')
         # 遍历每个父块，带上索引 j
         for j, parent_doc in enumerate(parent_docs):
-            # 为父块生成唯一 ID，格式为 "doc_i_parent_j"
-            parent_id = f"doc_{i}_parent_{j}"
+            # 稳定 ID 不依赖目录枚举顺序，新增文档不会改变旧块 ID。
+            document_identity = "|".join(
+                [
+                    str(doc.metadata.get("source", "unknown")),
+                    str(doc.metadata.get("document_name", "unknown")),
+                    str(doc.metadata.get("version", "1.0")),
+                ]
+            )
+            document_hash = hashlib.sha1(document_identity.encode("utf-8")).hexdigest()[:16]
+            parent_id = f"doc_{document_hash}_parent_{j}"
             # # 将父块 ID 添加到元数据
             # parent_doc.metadata["parent_id"] = parent_id
             # # 将父块内容存储到元数据
@@ -174,7 +237,7 @@ def process_documents(directory_path, parent_chunk_size=conf.PARENT_CHUNK_SIZE,
 
 
 if __name__ == '__main__':
-    directory_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "ai_data")
+    directory_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "membership_data")
     # documents = load_documents_from_directory(directory_path)
     # print(documents)
     child_chunks = process_documents(directory_path)

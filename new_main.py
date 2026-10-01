@@ -6,6 +6,7 @@ from rag_qa import VectorStore, RAGSystem
 from base import logger, Config
 # 导入OpenAI客户端，用于DashScope API
 from openai import OpenAI
+import httpx
 # 导入时间库，记录处理时间
 import time
 # 导入UUID生成唯一会话ID
@@ -26,15 +27,22 @@ class IntegratedQASystem:
         self.redis_client = RedisClient()
         # 初始化BM25搜索
         self.bm25_search = BM25Search(self.redis_client, self.mysql_client)
-        try:
-            # 初始化OpenAI客户端，连接DashScope API
-            self.client = OpenAI(api_key=self.config.DASHSCOPE_API_KEY,
-                                 base_url=self.config.DASHSCOPE_BASE_URL)
-        except Exception as e:
-            self.logger.error(f"OpenAI客户端初始化失败: {e}")
-            raise
+        # 没有 API Key 时仍允许 FAQ、模型和检索层独立初始化；生成阶段明确阻断。
+        self.client = None
+        if self.config.DASHSCOPE_API_KEY:
+            try:
+                self.client = OpenAI(api_key=self.config.DASHSCOPE_API_KEY,
+                                     base_url=self.config.DASHSCOPE_BASE_URL,
+                                     http_client=httpx.Client(trust_env=False, timeout=30))
+            except Exception as e:
+                self.logger.error(f"OpenAI客户端初始化失败: {e}")
+                raise
+        else:
+            self.logger.warning("DASHSCOPE_API_KEY 未配置，LLM 生成阶段不可用")
         # 初始化向量存储
         self.vector_store = VectorStore()
+        # 复用同一 BGE-M3；FAQ 只做 52 条内存向量匹配，不进入完整 RAG。
+        self.bm25_search.set_embedding_function(self.vector_store.embedding_function)
         # 初始化RAG系统
         self.rag_system = RAGSystem(self.vector_store, self.call_dashscope)
         # 初始化对话历史表
@@ -62,11 +70,14 @@ class IntegratedQASystem:
     # 调用模型
     def call_dashscope(self, prompt):
         """调用DashScope API生成答案（流式输出）"""
+        if self.client is None:
+            yield "抱歉，当前未配置语言模型 API Key，生成阶段暂不可用。"
+            return
         try:
             completion = self.client.chat.completions.create(
                 model=self.config.LLM_MODEL,
                 messages=[
-                    {"role": "system", "content": "你是一个有用的助手。"},
+                    {"role": "system", "content": "你是 Nova Retail 智能知识助手。"},
                     {"role": "user", "content": prompt},
                 ],
                 timeout=30,
@@ -85,7 +96,8 @@ class IntegratedQASystem:
             return collected_content
         except Exception as e:
             self.logger.error(f"LLM调用失败: {e}")
-            return f"错误：LLM调用失败 - {e}"
+            yield "抱歉，语言模型暂时不可用，请稍后重试或联系人工支持。"
+            return
 
     def _fetch_recent_history(self, session_id: str) -> list:
         """获取最近5轮对话历史"""
@@ -162,7 +174,9 @@ class IntegratedQASystem:
         history = self.get_session_history(session_id) if session_id else []
 
         # 首先尝试MySQL精确查询
-        answer, need_rag = self.bm25_search.search(query, threshold=0.85)
+        answer, need_rag = self.bm25_search.search(
+            query, threshold=self.config.FAQ_MATCH_THRESHOLD
+        )
 
         if answer:
             # MySQL找到精确答案，直接返回
@@ -204,9 +218,9 @@ class IntegratedQASystem:
 def main():
     qa_system = IntegratedQASystem()
     session_id = str(uuid.uuid4())
-    print("\n欢迎使用集成问答系统！")
+    print("\n欢迎使用 RetailRAG 零售内部知识问答演示系统！")
     print(f"会话ID: {session_id}")
-    print(f"支持的学科类别：{qa_system.config.VALID_SOURCES}")
+    print(f"支持的知识类别：{qa_system.config.VALID_SOURCES}")
     print("输入查询进行问答，输入 'exit' 退出。")
 
     try:
@@ -217,9 +231,9 @@ def main():
                 print("再见！")
                 break
             source_filter = input(
-                f"请输入学科类别 ({'/'.join(qa_system.config.VALID_SOURCES)}) (直接回车默认不过滤): ").strip()
+                f"请输入知识类别 ({'/'.join(qa_system.config.VALID_SOURCES)}) (直接回车默认不过滤): ").strip()
             if source_filter and source_filter not in qa_system.config.VALID_SOURCES:
-                logger.warning(f"无效的学科类别 '{source_filter}'，将不过滤")
+                logger.warning(f"无效的知识类别 '{source_filter}'，将不过滤")
                 source_filter = None
 
             print("\n答案: ", end="", flush=True)  # 开始打印答案

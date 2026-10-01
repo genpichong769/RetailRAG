@@ -10,7 +10,7 @@ def setup_logging(log_file=Config().LOG_FILE):
     # 创建日志目录
     os.makedirs(os.path.dirname(log_file), exist_ok=True)
     # 获取日志器
-    logger = logging.getLogger("EduRAG")
+    logger = logging.getLogger("RetailRAG")
     # 设置日志级别
     logger.setLevel(logging.INFO)
     # 避免重复添加处理器

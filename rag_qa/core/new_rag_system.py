@@ -1,284 +1,442 @@
-from .prompts import RAGPrompts
-#   导入 time 模块，用于计算时间
+"""RetailRAG retrieval orchestration and grounded answer generation."""
+
+import json
+import math
+import re
 import time
-from base import logger, Config
-from .query_classifier import QueryClassifier  # 导入查询分类器
-from .strategy_selector import StrategySelector  # 导入策略选择器
+from pathlib import Path
+
+from base import Config, logger
+from base.query_analysis import analyze_query
+from .prompts import RAGPrompts
+from .query_classifier import QueryClassifier
+from .strategy_selector import StrategySelector
 
 conf = Config()
 
 
-#   定义 RAGSystem 类，封装 RAG 系统的核心逻辑
 class RAGSystem:
-    #   初始化方法，设置 RAG 系统的基本参数
     def __init__(self, vector_store, llm):
-        #   设置向量数据库对象
         self.vector_store = vector_store
-        #   设置大语言模型调用函数
         self.llm = llm
-        #   获取 RAG 提示模板
         self.rag_prompt = RAGPrompts.rag_prompt()
-        #   初始化查询分类器
-        self.query_classifier = QueryClassifier(
-            conf.bert_intent_cls
-        )
-        #   初始化策略选择器
+        self.query_classifier = QueryClassifier(conf.bert_intent_cls)
         self.strategy_selector = StrategySelector()
-        # 最大 128K 字符
         self.max_prompt_length = 4096
+        self.last_retrieval_trace = None
+        self.last_generation_trace = None
+        self._active_retrieval_queries = []
+        self.evidence_gate_config = self._load_evidence_gate_config()
 
-    #   定义私有方法，使用假设文档进行检索（HyDE）
-    def _retrieve_with_hyde(self, query):
-        logger.info(f"使用 HyDE 策略进行检索 (查询: '{query}')")
-        #   获取假设问题生成的 Prompt 模板
-        hyde_prompt_template = RAGPrompts.hyde_prompt()  # 使用 template 后缀区分
-        #   调用大语言模型生成假设答案
+    def rewrite_query(self, query, history):
+        """Resolve short follow-ups into one standalone retrieval query."""
+        if not conf.QUERY_REWRITE_ENABLED or not history:
+            return query
+        history_text = "\n".join(
+            f"Q: {item['question']}\nA: {item['answer']}"
+            for item in history[-3:]
+            if isinstance(item, dict) and item.get("question") and item.get("answer")
+        )
+        if not history_text:
+            return query
         try:
-            hypo_answer = self.llm(hyde_prompt_template.format(query=query))
-            hypo_answer = "".join(hypo_answer)
-            logger.info(f"HyDE 生成的假设答案: '{hypo_answer}'")
-            #   使用假设答案进行检索，并返回检索结果
-            #   注意：HyDE 通常只用于生成检索向量，不一定需要 rerank 这一步，但这里复用了
-            return self.vector_store.hybrid_search_with_rerank(
-                hypo_answer, k=conf.RETRIEVAL_K  # 使用 K 而非 M
-            )
-        except Exception as e:
-            logger.error(f"HyDE 策略执行失败: {e}")
-            return []
-
-    #   定义私有方法，使用子查询进行检索
-    def _retrieve_with_subqueries(self, query):
-        logger.info(f"使用子查询策略进行检索 (查询: '{query}')")
-        #   获取子查询生成的 Prompt 模板
-        subquery_prompt_template = RAGPrompts.subquery_prompt()  # 使用 template 后缀区分
-        try:
-            #   调用大语言模型生成子查询列表
-            subqueries_text = self.llm(subquery_prompt_template.format(query=query))
-            subqueries_text = "".join(subqueries_text)
-            subqueries = [q.strip() for q in subqueries_text.split("\n") if q.strip()]
-            logger.info(f"生成的子查询: {subqueries}")
-            if not subqueries:
-                logger.warning("未能生成有效的子查询")
-                return []
-
-            #   初始化空列表，用于存储所有子查询的检索结果
-            all_docs = []
-            #   遍历每个子查询
-            for sub_q in subqueries:
-                #   使用子查询进行检索，并将结果添加到列表中
-                #   这里对每个子查询都执行了 hybrid search + rerank，开销可能较大
-                docs = self.vector_store.hybrid_search_with_rerank(
-                    sub_q, k=conf.RETRIEVAL_K  # 使用 K
+            rewritten = self._llm_text(
+                RAGPrompts.query_rewrite_prompt().format(
+                    history=history_text[:2400], question=query
                 )
-                all_docs.extend(docs)
-                logger.info(f"子查询 '{sub_q}' 检索到 {len(docs)} 个文档")
+            ).strip().strip('"“”')
+            return rewritten if 2 <= len(rewritten) <= 300 else query
+        except Exception as exc:
+            logger.error("多轮查询改写失败，回退原问题: %s", exc)
+            return query
 
-            #   对所有检索结果进行去重 (基于对象内存地址，如果 Document 内容相同但对象不同则无法去重)
-            #   更可靠的去重方式是基于文档内容或 ID
-            unique_docs_dict = {doc.page_content: doc for doc in all_docs}  # 基于内容去重
-            unique_docs = list(unique_docs_dict.values())
-
-            logger.info(f"所有子查询共检索到 {len(all_docs)} 个文档, 去重后剩 {len(unique_docs)} 个")
-            #   返回去重后的文档，限制数量 (是否需要在此处限制? retrieve_and_merge 末尾会限制)
-            # return unique_docs[: Config.CANDIDATE_M]
-            return unique_docs  # 返回所有唯一文档，让 retrieve_and_merge 处理数量
-
-        except Exception as e:
-            logger.error(f"子查询策略执行失败: {e}")
-            return []
-
-    #   定义私有方法，使用回溯问题进行检索
-    def _retrieve_with_backtracking(self, query):
-        logger.info(f"使用回溯问题策略进行检索 (查询: '{query}')")
-        #   获取回溯问题生成的 Prompt 模板
-        backtrack_prompt_template = RAGPrompts.backtracking_prompt()  # 使用 template 后缀区分
+    @staticmethod
+    def _load_evidence_gate_config():
+        path = Path(__file__).resolve().parents[2] / "RETAILRAG_PHASE6_EVIDENCE_GATE_CONFIG.json"
         try:
-            #   调用大语言模型生成回溯问题
-            simplified_query = self.llm(backtrack_prompt_template.format(query=query))
-            simplified_query = "".join(simplified_query)
-            logger.info(f"生成的回溯问题: '{simplified_query}'")
-            #   使用回溯问题进行检索，并返回检索结果
-            return self.vector_store.hybrid_search_with_rerank(
-                simplified_query, k=conf.RETRIEVAL_K  # 使用 K
-            )
-        except Exception as e:
-            logger.error(f"回溯问题策略执行失败: {e}")
-            return []
+            return json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            logger.warning("PHASE 6 证据门配置不可用，回退旧阈值: %s", exc)
+            return None
 
-    #   定义方法，检索并合并相关文档
-    def retrieve_and_merge(self, query, source_filter=None, strategy=None):  # 新增 strategy 参数
-        # 如果未指定检索策略，则使用策略选择器选择
-        if not strategy:
-            strategy = self.strategy_selector.select_strategy(query)
+    @staticmethod
+    def _text_bigrams(text):
+        compact = re.sub(r"\W+", "", str(text).lower())
+        return {compact[index : index + 2] for index in range(max(0, len(compact) - 1))}
 
-        #   根据检索策略选择不同的检索方式
-        ranked_sub_chunks = []  # 初始化
-        if strategy == "回溯问题检索":
-            ranked_sub_chunks = self._retrieve_with_backtracking(query)
-        elif strategy == "子查询检索":
-            ranked_sub_chunks = self._retrieve_with_subqueries(query)  # 返回的是唯一文档列表
-            # 注意：子查询返回的是已 rerank 过的父文档或子块列表，后续合并逻辑可能需要调整
-            # 当前实现中，子查询返回的是初步检索（可能已rerank）的块，再进行合并
-        elif strategy == "假设问题检索":
-            ranked_sub_chunks = self._retrieve_with_hyde(query)
-        else:  # 默认或“直接检索”
-            logger.info(f"使用直接检索策略 (查询: '{query}')")
-            ranked_sub_chunks = self.vector_store.hybrid_search_with_rerank(
-                query, k=conf.RETRIEVAL_K, source_filter=source_filter
-            )  # 注意 hybrid_search_with_rerank 返回的是 rerank 后的父文档
+    @classmethod
+    def _evidence_features(cls, query, valid):
+        scores = sorted(
+            [float(doc.metadata.get("reranker_score", 0.0)) for doc in valid], reverse=True
+        )[:3]
+        padded = scores + [0.0] * (3 - len(scores))
+        query_terms = cls._text_bigrams(query)
+        context_terms = cls._text_bigrams(" ".join(doc.page_content for doc in valid))
+        analysis = analyze_query(query)
+        return {
+            "top1_score": padded[0],
+            "top2_score": padded[1],
+            "top3_score": padded[2],
+            "score_mean": sum(scores) / max(len(scores), 1),
+            "top1_margin": padded[0] - padded[1],
+            "valid_context_count": float(len(valid)),
+            "distinct_document_count": float(
+                len({doc.metadata.get("document_name") for doc in valid})
+            ),
+            "distinct_category_count": float(
+                len({doc.metadata.get("category") or doc.metadata.get("source") for doc in valid})
+            ),
+            "query_context_bigram_overlap": len(query_terms & context_terms)
+            / max(len(query_terms), 1),
+            "scope_risk": float(analysis["scope_risk"]),
+        }, analysis
 
-        logger.info(f"策略 '{strategy}' 检索到 {len(ranked_sub_chunks)} 个候选文档 (可能已是父文档)")
-        final_context_docs = ranked_sub_chunks[:conf.CANDIDATE_M]
-        logger.info(f"最终选取 {len(final_context_docs)} 个文档作为上下文")
-        return final_context_docs
-
-    # #   定义方法，生成答案
-    # def generate_answer(self, query, source_filter=None):
-    #     #   记录查询开始时间
-    #     start_time = time.time()
-    #     logger.info(f"开始处理查询: '{query}', 学科过滤: {source_filter}")
-    #
-    #     #   判断查询类型
-    #     query_category = self.query_classifier.predict_category(query)
-    #     logger.info(f"查询分类结果：{query_category} (查询: '{query}')")
-    #
-    #     #   如果查询属于“通用知识”类别，则直接使用 LLM 回答
-    #     if query_category == "通用知识":
-    #         logger.info("查询为通用知识，直接调用 LLM")
-    #         prompt_input = self.rag_prompt.format(
-    #             context="", question=query, phone=conf.CUSTOMER_SERVICE_PHONE
-    #         )  #   不使用上下文
-    #         try:
-    #             answer = self.llm(prompt_input)
-    #         except Exception as e:
-    #             logger.error(f"直接调用 LLM 失败: {e}")
-    #             answer = f"抱歉，处理您的通用知识问题时出错。请联系人工客服：{conf.CUSTOMER_SERVICE_PHONE}"
-    #         processing_time = time.time() - start_time
-    #         logger.info(
-    #             f"通用知识查询处理完成 (耗时: {processing_time:.2f}s, 查询: '{query}')"
-    #         )
-    #         return answer
-    #
-    #     #   否则，进行 RAG 检索并生成答案
-    #     logger.info("查询为专业咨询，执行 RAG 流程")
-    #     #   选择检索策略
-    #     strategy = self.strategy_selector.select_strategy(query)
-    #
-    #     #   检索相关文档
-    #     context_docs = self.retrieve_and_merge(
-    #         query, source_filter=source_filter, strategy=strategy
-    #     )  #   传递 strategy
-    #
-    #     #   准备上下文
-    #     if context_docs:
-    #         context = "\n\n".join([doc.page_content for doc in context_docs]) # 使用换行符分隔文档
-    #         logger.info(f"构建上下文完成，包含 {len(context_docs)} 个文档块")
-    #         # logger.debug(f"上下文内容:\n{context[:500]}...") # Debug 日志可以打印部分上下文
-    #     else:
-    #         context = ""
-    #         logger.info("未检索到相关文档，上下文为空")
-    #
-    #     #   构造 Prompt，调用大语言模型生成答案
-    #     prompt_input = self.rag_prompt.format(
-    #         context=context, question=query, phone=conf.CUSTOMER_SERVICE_PHONE
-    #     )
-    #     # logger.debug(f"最终生成的 Prompt:\n{prompt_input}") # Debug 日志
-    #
-    #     try:
-    #         answer = self.llm(prompt_input)
-    #     except Exception as e:
-    #         logger.error(f"调用 LLM 生成最终答案失败: {e}")
-    #         answer = f"抱歉，处理您的专业咨询问题时出错。请联系人工客服：{conf.CUSTOMER_SERVICE_PHONE}"
-    #
-    #
-    #     #   记录查询处理完成的日志
-    #     processing_time = time.time() - start_time
-    #     logger.info(f"查询处理完成 (耗时: {processing_time:.2f}s, 查询: '{query}')")
-    #     return answer
-
-    # 添加完历史消息后，定义方法，生成答案
-    # 修改 rag_system.py 中的 generate_answer 方法
-    def generate_answer(self, query, source_filter=None, history=None):
-        """生成答案，支持对话历史，限制提示长度，并支持流式输出"""
-        start_time = time.time()
-        logger.info(f"开始处理查询: '{query}', 学科过滤: {source_filter}")
-
-        # 验证历史格式
-        if history is not None and not isinstance(history, list):
-            logger.warning(f"无效的历史格式: {type(history)}，忽略历史")
-            history = []
-        elif history:
-            history = history[-5:]  # 限制最多5轮
-            for h in history:
-                if not (isinstance(h, dict) and "question" in h and "answer" in h):
-                    logger.warning(f"无效的历史条目: {h}，忽略历史")
-                    history = []
-                    break
-
-        # 构造历史上下文
-        history_context = ""
-        if history:
-            history_context = "\n".join(
-                [f"Q: {h['question']}\nA: {h['answer']}" for h in history]
-            )
-            logger.info(f"使用对话历史: {history_context[:100]}...")
-
-        # 判断查询类型，通用知识还是专业知识
-        query_category = self.query_classifier.predict_category(query)
-        logger.info(f"查询分类结果: {query_category} (查询: '{query}')")
-
-        # 准备上下文
-        try:
-            if query_category == "通用知识":
-                logger.info("查询为通用知识，直接调用 LLM")
-                context = ""
+    def _evidence_decision(self, query=None, documents=None):
+        # Backward-compatible class call: RAGSystem._evidence_decision(documents).
+        if not isinstance(self, RAGSystem):
+            documents = self
+            query = "" if query is None else query
+            config = RAGSystem._load_evidence_gate_config()
+        else:
+            if documents is None:
+                documents = query
+                query = ""
+            config = self.evidence_gate_config
+        valid = [
+            doc
+            for doc in documents
+            if str(doc.metadata.get("status", "active")).lower() == "active"
+            and doc.metadata.get("source")
+            and doc.metadata.get("document_name")
+        ]
+        features, analysis = RAGSystem._evidence_features(query, valid)
+        top_score = features["top1_score"] if valid else float("-inf")
+        reasons = []
+        if not valid:
+            reasons.append("no_valid_context")
+        probability = None
+        probability_threshold = None
+        if valid and config:
+            if config.get("model") == "calibrated_top1_with_deterministic_scope_override":
+                probability_threshold = config["reranker_score_threshold"]
+                accepted = features[config["score_feature"]] >= probability_threshold
             else:
-                logger.info("查询为专业咨询，执行 RAG 流程")
-                strategy = self.strategy_selector.select_strategy(query)  # 根据用户的query选择检索策略
-                # 根据检索策略，返回检索上下文
-                context_docs = self.retrieve_and_merge(
-                    query, source_filter=source_filter, strategy=strategy
-                )
-                context = "\n\n".join([doc.page_content for doc in context_docs]) if context_docs else ""
-                logger.info(f"构建上下文完成，包含 {len(context_docs)} 个文档块")
+                ordered = [features[name] for name in config["feature_order"]]
+                standardized = [
+                    (value - mean) / scale
+                    for value, mean, scale in zip(
+                        ordered, config["scaler_mean"], config["scaler_scale"]
+                    )
+                ]
+                logit = sum(
+                    value * coefficient
+                    for value, coefficient in zip(standardized, config["coefficient"])
+                ) + config["intercept"]
+                probability = 1.0 / (1.0 + math.exp(-max(-40.0, min(40.0, logit))))
+                probability_threshold = config["answer_probability_threshold"]
+                accepted = probability >= probability_threshold
+            if not accepted:
+                reasons.append("calibrated_insufficient_evidence")
+        else:
+            accepted = bool(valid) and top_score >= conf.EVIDENCE_RERANKER_THRESHOLD
+            probability_threshold = conf.EVIDENCE_RERANKER_THRESHOLD
+            if valid and not accepted:
+                reasons.append("low_reranker_score")
 
-            # 构造提示
-            prompt_input = self.rag_prompt.format(
-                context=context,
-                history=history_context,
-                question=query,
-                phone=conf.CUSTOMER_SERVICE_PHONE
+        mode = "answer" if accepted else "refuse"
+        if analysis["scope_risk"]:
+            if analysis["partial_possible"] and valid and accepted:
+                mode = "partial"
+                reasons.append("scope_limited_partial_answer")
+            else:
+                accepted = False
+                mode = "refuse"
+                reasons.append("knowledge_scope_risk")
+        return {
+            "accepted": accepted,
+            "mode": mode,
+            "top_reranker_score": None if top_score == float("-inf") else top_score,
+            "threshold": probability_threshold,
+            "answer_probability": probability,
+            "valid_context_count": len(valid),
+            "features": features,
+            "query_analysis": analysis,
+            "reasons": reasons,
+        }
+
+    def _llm_text(self, prompt):
+        value = self.llm(prompt)
+        return "".join(value) if not isinstance(value, str) else value
+
+    def _retrieve_with_hyde(self, query, source_filter=None, context_limit=None):
+        try:
+            hypothetical = self._llm_text(RAGPrompts.hyde_prompt().format(query=query))
+            self._active_retrieval_queries.append(hypothetical)
+            return self.vector_store.hybrid_search_with_rerank(
+                hypothetical,
+                k=conf.RETRIEVAL_K,
+                source_filter=source_filter,
+                limit=context_limit,
             )
+        except Exception as exc:
+            logger.error("HyDE 策略失败: %s", exc)
+            return []
 
-            # 截断提示（若超长）
-            if len(prompt_input) > self.max_prompt_length:
-                logger.warning(f"提示长度 {len(prompt_input)} 超过 {self.max_prompt_length}，进行截断")
-                # 保留问题和近期历史，截断上下文或早期历史
-                prompt_input = prompt_input[:self.max_prompt_length]
-                logger.info(f"截断后提示长度: {len(prompt_input)}")
+    def _retrieve_with_subqueries(self, query, source_filter=None, context_limit=None):
+        try:
+            text = self._llm_text(RAGPrompts.subquery_prompt().format(query=query))
+            subqueries = [line.strip(" -0123456789.、") for line in text.splitlines() if line.strip()][:3]
+            self._active_retrieval_queries.extend(subqueries)
+            documents = []
+            for subquery in subqueries:
+                documents.extend(
+                    self.vector_store.hybrid_search_with_rerank(
+                        subquery,
+                        k=conf.RETRIEVAL_K,
+                        source_filter=source_filter,
+                        limit=context_limit,
+                    )
+                )
+            best_by_content = {}
+            for doc in documents:
+                previous = best_by_content.get(doc.page_content)
+                score = float(doc.metadata.get("reranker_score", float("-inf")))
+                previous_score = (
+                    float(previous.metadata.get("reranker_score", float("-inf")))
+                    if previous is not None
+                    else float("-inf")
+                )
+                if previous is None or score > previous_score:
+                    best_by_content[doc.page_content] = doc
+            return sorted(
+                best_by_content.values(),
+                key=lambda doc: float(doc.metadata.get("reranker_score", float("-inf"))),
+                reverse=True,
+            )
+        except Exception as exc:
+            logger.error("子查询策略失败: %s", exc)
+            return []
 
-            processing_time = time.time() - start_time
-            logger.info(f"检索时间 (耗时: {processing_time:.2f}s, 查询: '{query}')")
-            start_time = time.time()
+    def _retrieve_with_backtracking(self, query, source_filter=None, context_limit=None):
+        try:
+            simplified = self._llm_text(RAGPrompts.backtracking_prompt().format(query=query))
+            self._active_retrieval_queries.append(simplified)
+            return self.vector_store.hybrid_search_with_rerank(
+                simplified,
+                k=conf.RETRIEVAL_K,
+                source_filter=source_filter,
+                limit=context_limit,
+            )
+        except Exception as exc:
+            logger.error("回溯问题策略失败: %s", exc)
+            return []
 
-            # 调用 LLM（流式输出）
-            try:
-                # 使用 generator 获取流式输出
-                for token in self.llm(prompt_input):
-                    yield token  # 直接将每个 token 传递给调用者
+    def retrieve_and_merge(self, query, source_filter=None, strategy=None):
+        retrieval_started = time.perf_counter()
+        strategy = strategy or self.strategy_selector.select_strategy(query)
+        query_analysis = analyze_query(query)
+        context_budget = 3 if (
+            query_analysis["context_complex"] or strategy == "子查询检索"
+        ) else conf.CANDIDATE_M
+        self._active_retrieval_queries = []
+        if strategy == "回溯问题检索":
+            documents = self._retrieve_with_backtracking(query, source_filter, context_budget)
+        elif strategy == "子查询检索":
+            documents = self._retrieve_with_subqueries(query, source_filter, context_budget)
+        elif strategy == "假设问题检索":
+            documents = self._retrieve_with_hyde(query, source_filter, context_budget)
+        else:
+            self._active_retrieval_queries.append(query)
+            documents = self.vector_store.hybrid_search_with_rerank(
+                query,
+                k=conf.RETRIEVAL_K,
+                source_filter=source_filter,
+                limit=context_budget,
+            )
+        logger.info("策略 %s 返回 %d 个候选文档", strategy, len(documents))
+        ranked = sorted(
+            documents,
+            key=lambda doc: float(doc.metadata.get("reranker_score", float("-inf"))),
+            reverse=True,
+        )
+        final_documents = ranked[: min(conf.CANDIDATE_M, context_budget)]
+        diversity_applied = False
+        if context_budget > conf.CANDIDATE_M and len(ranked) > conf.CANDIDATE_M:
+            top_score = float(ranked[0].metadata.get("reranker_score", 0.0))
+            relevance_floor = max(conf.EVIDENCE_RERANKER_THRESHOLD, max(top_score, 0.0) * 0.02)
+            selected_names = {
+                doc.metadata.get("document_name") for doc in final_documents
+            }
+            selected_categories = {
+                doc.metadata.get("category") or doc.metadata.get("source")
+                for doc in final_documents
+            }
+            eligible = [
+                doc for doc in ranked[conf.CANDIDATE_M :]
+                if float(doc.metadata.get("reranker_score", float("-inf"))) >= relevance_floor
+                and doc.metadata.get("document_name") not in selected_names
+            ]
+            best_extra_score = (
+                float(eligible[0].metadata.get("reranker_score", float("-inf")))
+                if eligible
+                else float("-inf")
+            )
+            diverse = [
+                doc for doc in eligible
+                if float(doc.metadata.get("reranker_score", float("-inf")))
+                >= best_extra_score * 0.8
+                and (doc.metadata.get("category") or doc.metadata.get("source"))
+                not in selected_categories
+            ]
+            if diverse or eligible:
+                final_documents.append((diverse or eligible)[0])
+                diversity_applied = bool(diverse)
+        self.last_retrieval_trace = {
+            "original_query": query,
+            "strategy": strategy,
+            "retrieval_queries": list(self._active_retrieval_queries),
+            "query_analysis": query_analysis,
+            "selected_context_budget": context_budget,
+            "candidate_pool_count": len(ranked),
+            "selected_context_count": len(final_documents),
+            "diversity_applied": diversity_applied,
+            "context_character_count": sum(len(doc.page_content) for doc in final_documents),
+            "context_token_proxy": round(
+                sum(len(doc.page_content) for doc in final_documents) / 1.8
+            ),
+            "latency_ms": round((time.perf_counter() - retrieval_started) * 1000, 3),
+            "documents": [
+                {
+                    "source": doc.metadata.get("source"),
+                    "category": doc.metadata.get("category"),
+                    "document_name": doc.metadata.get("document_name"),
+                    "milvus_score": doc.metadata.get("milvus_score"),
+                    "reranker_score": doc.metadata.get("reranker_score"),
+                }
+                for doc in final_documents
+            ],
+        }
+        return final_documents
 
-                # 记录处理时间
-                processing_time = time.time() - start_time
-                logger.info(f"LLM查询处理完成 (耗时: {processing_time:.2f}s, 查询: '{query}')")
-            except Exception as e:
-                logger.error(f"调用 LLM 失败: {e}")
-                yield f"抱歉，处理您的问题时出错。请联系人工客服：{conf.CUSTOMER_SERVICE_PHONE}"
+    @staticmethod
+    def _format_context(documents):
+        blocks = []
+        for doc in documents:
+            source = doc.metadata.get("source", "unknown")
+            category = doc.metadata.get("category", source)
+            source_label = conf.SOURCE_LABELS.get(category, category)
+            name = doc.metadata.get("document_name", "未命名文档")
+            blocks.append(f"[来源文档：《{name}》｜知识类别：{source_label}]\n{doc.page_content}")
+        return "\n\n".join(blocks)
 
-        except Exception as e:
-            logger.error(f"答案生成失败: {e}")
-            yield f"抱歉，处理您的问题时出错。请联系人工客服：{conf.CUSTOMER_SERVICE_PHONE}"
+    def generate_answer(self, query, source_filter=None, history=None):
+        started_at = time.time()
+        history = history[-5:] if isinstance(history, list) else []
+        valid_history = [
+            item
+            for item in history
+            if isinstance(item, dict) and "question" in item and "answer" in item
+        ]
+        history_context = "\n".join(
+            f"Q: {item['question']}\nA: {item['answer']}" for item in valid_history
+        )
+        rewritten_query = self.rewrite_query(query, valid_history)
 
-# query 意图识别 使用bert 分类
-# 改进：
-# 1. 用LLM做意图识别，考虑最近几轮历史问答
-# 2. 最近几轮的query 拼接([CLS]current_query[SEP] history_query[SEP] ) 使用多轮对话数据训练Bert
+        classification = self.query_classifier.predict_details(query)
+        query_category = classification["routed_prediction"]
+        context_docs = []
+        strategy = None
+        if query_category == "internal":
+            strategy = self.strategy_selector.select_strategy(rewritten_query)
+            context_docs = self.retrieve_and_merge(rewritten_query, source_filter, strategy)
+        context = self._format_context(context_docs)
+
+        evidence = self._evidence_decision(rewritten_query, context_docs) if query_category == "internal" else {
+            "accepted": True,
+            "mode": "answer",
+            "top_reranker_score": None,
+            "threshold": None,
+            "valid_context_count": 0,
+            "reasons": [],
+        }
+        if query_category == "internal" and not evidence["accepted"]:
+            refusal = (
+                "当前知识库信息不足，暂时无法可靠回答该内部问题。"
+                f"请联系{conf.CUSTOMER_SERVICE_PHONE}核实。"
+            )
+            self.last_generation_trace = {
+                "question": query,
+                "rewritten_query": rewritten_query,
+                "classification": classification,
+                "strategy": strategy,
+                "retrieval_trace": self.last_retrieval_trace,
+                "retrieved_sources": [],
+                "evidence_decision": evidence,
+                "final_context": context,
+                "prompt": None,
+                "answer": refusal,
+                "references": [],
+                "llm_called": False,
+                "total_latency_ms": round((time.time() - started_at) * 1000, 3),
+            }
+            logger.info("代码级证据门拒答: %s", evidence)
+            yield refusal
+            return
+
+        if evidence.get("mode") == "partial":
+            context = (
+                "[回答范围指令] 仅回答下列证据能确认的政策部分；对实时、账户、人员、"
+                "交易记录或其他未提供的部分必须明确说明无法确认。\n\n" + context
+            )
+        prompt_input = self.rag_prompt.format(
+            query_category=query_category,
+            context=context or "（无可用检索证据）",
+            history=history_context or "（无）",
+            question=query,
+            phone=conf.CUSTOMER_SERVICE_PHONE,
+        )
+        if len(prompt_input) > self.max_prompt_length:
+            prompt_input = prompt_input[: self.max_prompt_length]
+            logger.warning("提示超过 %d 字符，已截断", self.max_prompt_length)
+
+        logger.info(
+            "RAG 提示已构建，类别=%s，文档数=%d，耗时=%.2fs",
+            query_category,
+            len(context_docs),
+            time.time() - started_at,
+        )
+        collected_tokens = []
+        try:
+            for token in self.llm(prompt_input):
+                collected_tokens.append(token)
+                yield token
+        except Exception as exc:
+            logger.error("LLM 调用失败: %s", exc)
+            fallback = f"抱歉，当前无法生成回答，请联系人工支持：{conf.CUSTOMER_SERVICE_PHONE}"
+            collected_tokens.append(fallback)
+            yield fallback
+        finally:
+            self.last_generation_trace = {
+                "question": query,
+                "rewritten_query": rewritten_query,
+                "classification": classification,
+                "strategy": strategy,
+                "retrieval_trace": self.last_retrieval_trace if query_category == "internal" else None,
+                "retrieved_sources": [
+                    {
+                        "source": doc.metadata.get("source"),
+                        "category": doc.metadata.get("category"),
+                        "document_name": doc.metadata.get("document_name"),
+                        "milvus_score": doc.metadata.get("milvus_score"),
+                        "reranker_score": doc.metadata.get("reranker_score"),
+                    }
+                    for doc in context_docs
+                ],
+                "final_context": context,
+                "evidence_decision": evidence,
+                "prompt": prompt_input,
+                "answer": "".join(collected_tokens),
+                "references": [doc.metadata.get("document_name") for doc in context_docs],
+                "llm_called": True,
+                "total_latency_ms": round((time.time() - started_at) * 1000, 3),
+            }

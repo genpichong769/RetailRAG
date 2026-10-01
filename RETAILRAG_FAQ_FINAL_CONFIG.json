@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "method": "dense_only",
+  "threshold": 0.84,
+  "lexical_weight": null,
+  "dense_weight": null,
+  "metrics": {
+    "threshold": 0.84,
+    "exact_accuracy": 1.0,
+    "paraphrase_recall": 0.75641,
+    "precision": 0.965909,
+    "recall": 0.817308,
+    "f1": 0.885417,
+    "false_accept_rate": 0.013889,
+    "false_reject_rate": 0.158654,
+    "true_positive": 170,
+    "false_positive": 6,
+    "false_negative": 38,
+    "accepted": 176,
+    "method": "dense_only",
+    "lexical_weight": null
+  },
+  "faq_count": 52,
+  "evaluation_sample_count": 280
+}

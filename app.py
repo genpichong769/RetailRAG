@@ -11,12 +11,16 @@ import uuid
 from typing import Optional, List, Dict, Any
 import time
 import re
+from pathlib import Path
 
 # 导入现有的系统
 from new_main import IntegratedQASystem
 
 # 创建应用实例
-app = FastAPI(title="问答系统API", description="集成MySQL和RAG的智能问答系统")
+app = FastAPI(
+    title="RetailRAG API",
+    description="Nova Retail 连锁零售内部知识问答演示系统",
+)
 
 # 配置CORS，允许前端访问
 app.add_middleware(
@@ -27,8 +31,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 创建静态文件目录
-os.makedirs("static", exist_ok=True)
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
+STATIC_DIR.mkdir(exist_ok=True)
 
 # 创建全局QA系统实例
 qa_system = IntegratedQASystem()
@@ -37,19 +42,19 @@ qa_system = IntegratedQASystem()
 GREETING_PATTERNS = [
     {
         "pattern": r"^(你好|您好|hi|hello)",
-        "response": "你好！我是黑马程序员，专注于为学生答疑解惑，很高兴为你服务！"
+        "response": "你好！我是 Nova Retail 智能知识助手，可以协助查询会员、促销、售后和门店运营等演示知识。"
     },
     {
         "pattern": r"^(你是谁|您是谁|你叫什么|你的名字|who are you)",
-        "response": "我是黑马程序员，你的智能学习助手，致力于提供 IT 教育相关的解答！"
+        "response": "我是 Nova Retail 智能知识助手。本系统使用虚构的零售演示数据，不代表真实企业承诺。"
     },
     {
         "pattern": r"^(在吗|在不在|有人吗)",
-        "response": "我在！我是黑马程序员，随时为你解答问题！"
+        "response": "我在，可以帮你查询 Nova Retail 演示知识库。"
     },
     {
         "pattern": r"^(干嘛呢|你在干嘛|做什么)",
-        "response": "我正在待命，随时为你解答 IT 学习相关的问题！有什么我可以帮你的？"
+        "response": "我正在待命，可以协助查询会员、促销、售后、门店操作和设备流程。"
     }
 ]
 
@@ -70,13 +75,13 @@ class QueryResponse(BaseModel):
 
 
 # 添加静态文件服务
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 
 
 # 根路径重定向到index.html
 @app.get("/")
 async def read_root():
-    return FileResponse("static/index.html")
+    return FileResponse(str(STATIC_DIR / "index.html"))
 
 
 # 创建新会话
@@ -142,7 +147,9 @@ async def query(request: QueryRequest):
         }
 
     # 判断是否需要流式处理（基于 need_rag）
-    answer, need_rag = qa_system.bm25_search.search(request.query, threshold=0.85)
+    answer, need_rag = qa_system.bm25_search.search(
+        request.query, threshold=qa_system.config.FAQ_MATCH_THRESHOLD
+    )
     if need_rag:
         # 需要 RAG 和 LLM 处理，返回流式响应提示
         return {
@@ -152,7 +159,7 @@ async def query(request: QueryRequest):
             "processing_time": time.time() - start_time
         }
 
-    # 非流式查询，直接返回 BM25 检索的答案
+    # 非流式查询，直接返回轻量 FAQ 检索的答案
     return {
         "answer": answer,
         "is_streaming": False,
@@ -259,10 +266,13 @@ async def health_check():
     return {"status": "healthy"}
 
 
-# 获取有效的学科类别
+# 获取有效的零售知识类别
 @app.get("/api/sources")
 async def get_sources():
-    return {"sources": qa_system.config.VALID_SOURCES}
+    return {
+        "sources": qa_system.config.VALID_SOURCES,
+        "labels": qa_system.config.SOURCE_LABELS,
+    }
 
 
 if __name__ == "__main__":

@@ -1,0 +1,100 @@
+{"query": "值班时发生高价值商品序列号需要找谁审批？", "label": "internal"}
+{"query": "能用简单的话说明云计算吗？", "label": "general"}
+{"query": "云计算通常指什么？", "label": "general"}
+{"query": "请举例介绍大语言模型。", "label": "general"}
+{"query": "Nova Retail 的月度全盘怎么处理？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，积分抵扣具体怎么做？", "label": "internal"}
+{"query": "请概括云计算的要点。", "label": "general"}
+{"query": "内部规定里积分抵扣的口径是什么？", "label": "internal"}
+{"query": "请概括大语言模型的要点。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，收银交接具体怎么做？", "label": "internal"}
+{"query": "请举例介绍操作系统进程。", "label": "general"}
+{"query": "POS 或后台出现积分抵扣时有什么 SOP？", "label": "internal"}
+{"query": "我想了解云计算的基本原理。", "label": "general"}
+{"query": "门店遇到收银交接应该走什么流程？", "label": "internal"}
+{"query": "给我科普一下Python 列表。", "label": "general"}
+{"query": "POS 或后台出现POS 日结失败时有什么 SOP？", "label": "internal"}
+{"query": "月度全盘有哪些例外和升级条件？", "label": "internal"}
+{"query": "Nova Retail 的POS 日结失败怎么处理？", "label": "internal"}
+{"query": "请解释一下操作系统进程。", "label": "general"}
+{"query": "关于大语言模型有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍Python 列表。", "label": "general"}
+{"query": "POS 日结失败有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店遇到月度全盘应该走什么流程？", "label": "internal"}
+{"query": "什么是操作系统进程？", "label": "general"}
+{"query": "顾客问到高价值商品序列号时员工怎么解释？", "label": "internal"}
+{"query": "Nova Retail 的收银交接怎么处理？", "label": "internal"}
+{"query": "请举例介绍时间管理。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，月度全盘具体怎么做？", "label": "internal"}
+{"query": "如何理解大语言模型？", "label": "general"}
+{"query": "门店遇到积分抵扣应该走什么流程？", "label": "internal"}
+{"query": "我想了解操作系统进程的基本原理。", "label": "general"}
+{"query": "请概括Python 列表的要点。", "label": "general"}
+{"query": "顾客问到收银交接时员工怎么解释？", "label": "internal"}
+{"query": "门店员工处理收银交接要保留哪些凭证？", "label": "internal"}
+{"query": "时间管理通常指什么？", "label": "general"}
+{"query": "值班时发生收银交接需要找谁审批？", "label": "internal"}
+{"query": "Nova Retail 的高价值商品序列号怎么处理？", "label": "internal"}
+{"query": "我想了解时间管理的基本原理。", "label": "general"}
+{"query": "能用简单的话说明时间管理吗？", "label": "general"}
+{"query": "请解释一下大语言模型。", "label": "general"}
+{"query": "关于Python 列表有哪些公开常识？", "label": "general"}
+{"query": "什么是Python 列表？", "label": "general"}
+{"query": "大语言模型通常指什么？", "label": "general"}
+{"query": "如何理解Python 列表？", "label": "general"}
+{"query": "门店员工处理月度全盘要保留哪些凭证？", "label": "internal"}
+{"query": "给我科普一下大语言模型。", "label": "general"}
+{"query": "给我科普一下时间管理。", "label": "general"}
+{"query": "能用简单的话说明操作系统进程吗？", "label": "general"}
+{"query": "操作系统进程通常指什么？", "label": "general"}
+{"query": "门店遇到高价值商品序列号应该走什么流程？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，POS 日结失败具体怎么做？", "label": "internal"}
+{"query": "什么是云计算？", "label": "general"}
+{"query": "值班时发生POS 日结失败需要找谁审批？", "label": "internal"}
+{"query": "请概括时间管理的要点。", "label": "general"}
+{"query": "门店员工处理POS 日结失败要保留哪些凭证？", "label": "internal"}
+{"query": "给我科普一下云计算。", "label": "general"}
+{"query": "收银交接有哪些例外和升级条件？", "label": "internal"}
+{"query": "如何理解时间管理？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，高价值商品序列号具体怎么做？", "label": "internal"}
+{"query": "关于时间管理有哪些公开常识？", "label": "general"}
+{"query": "内部规定里收银交接的口径是什么？", "label": "internal"}
+{"query": "门店员工处理高价值商品序列号要保留哪些凭证？", "label": "internal"}
+{"query": "门店员工处理积分抵扣要保留哪些凭证？", "label": "internal"}
+{"query": "顾客问到月度全盘时员工怎么解释？", "label": "internal"}
+{"query": "请查询知识库里的积分抵扣规则。", "label": "internal"}
+{"query": "POS 或后台出现收银交接时有什么 SOP？", "label": "internal"}
+{"query": "请概括操作系统进程的要点。", "label": "general"}
+{"query": "如何理解操作系统进程？", "label": "general"}
+{"query": "什么是大语言模型？", "label": "general"}
+{"query": "顾客问到积分抵扣时员工怎么解释？", "label": "internal"}
+{"query": "我想了解Python 列表的基本原理。", "label": "general"}
+{"query": "请查询知识库里的月度全盘规则。", "label": "internal"}
+{"query": "关于操作系统进程有哪些公开常识？", "label": "general"}
+{"query": "关于云计算有哪些公开常识？", "label": "general"}
+{"query": "请解释一下时间管理。", "label": "general"}
+{"query": "请查询知识库里的高价值商品序列号规则。", "label": "internal"}
+{"query": "积分抵扣有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下操作系统进程。", "label": "general"}
+{"query": "POS 或后台出现高价值商品序列号时有什么 SOP？", "label": "internal"}
+{"query": "内部规定里POS 日结失败的口径是什么？", "label": "internal"}
+{"query": "门店遇到POS 日结失败应该走什么流程？", "label": "internal"}
+{"query": "能用简单的话说明大语言模型吗？", "label": "general"}
+{"query": "顾客问到POS 日结失败时员工怎么解释？", "label": "internal"}
+{"query": "Python 列表通常指什么？", "label": "general"}
+{"query": "什么是时间管理？", "label": "general"}
+{"query": "能用简单的话说明Python 列表吗？", "label": "general"}
+{"query": "POS 或后台出现月度全盘时有什么 SOP？", "label": "internal"}
+{"query": "请解释一下云计算。", "label": "general"}
+{"query": "Nova Retail 的积分抵扣怎么处理？", "label": "internal"}
+{"query": "内部规定里月度全盘的口径是什么？", "label": "internal"}
+{"query": "请查询知识库里的POS 日结失败规则。", "label": "internal"}
+{"query": "请解释一下Python 列表。", "label": "general"}
+{"query": "高价值商品序列号有哪些例外和升级条件？", "label": "internal"}
+{"query": "请查询知识库里的收银交接规则。", "label": "internal"}
+{"query": "内部规定里高价值商品序列号的口径是什么？", "label": "internal"}
+{"query": "值班时发生积分抵扣需要找谁审批？", "label": "internal"}
+{"query": "如何理解云计算？", "label": "general"}
+{"query": "值班时发生月度全盘需要找谁审批？", "label": "internal"}
+{"query": "请举例介绍云计算。", "label": "general"}
+{"query": "我想了解大语言模型的基本原理。", "label": "general"}

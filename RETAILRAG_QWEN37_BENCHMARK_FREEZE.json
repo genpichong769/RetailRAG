@@ -1,0 +1,49 @@
+{
+  "evaluated_at": "2026-09-30T20:52:10",
+  "status": "PASS",
+  "benchmark_hash_check": "PASS",
+  "counts": {
+    "faq": 200,
+    "documents": 80,
+    "faq_evaluation": 480,
+    "retrieval_evaluation": 235,
+    "rag_evaluation": 350,
+    "generation_evaluation": 80,
+    "multiturn_evaluation": 30
+  },
+  "expected_counts": {
+    "faq": 200,
+    "documents": 80,
+    "faq_evaluation": 480,
+    "retrieval_evaluation": 235,
+    "rag_evaluation": 350,
+    "generation_evaluation": 80,
+    "multiturn_evaluation": 30
+  },
+  "verified_file_count": 84,
+  "document_file_count": 80,
+  "mismatches": [],
+  "parameters": {
+    "parent_chunk_size": 1200,
+    "child_chunk_size": 300,
+    "chunk_overlap": 50,
+    "retrieval_k": 3,
+    "candidate_m": 2,
+    "faq_match_threshold": 0.84,
+    "evidence_reranker_threshold": 0.020635,
+    "query_rewrite_enabled": true,
+    "llm_model": "qwen3.7-plus"
+  },
+  "expected_parameters": {
+    "parent_chunk_size": 1200,
+    "child_chunk_size": 300,
+    "chunk_overlap": 50,
+    "retrieval_k": 3,
+    "candidate_m": 2,
+    "faq_match_threshold": 0.84,
+    "evidence_reranker_threshold": 0.020635,
+    "query_rewrite_enabled": true,
+    "llm_model": "qwen3.7-plus"
+  },
+  "source_freeze_audit": "RETAILRAG_SCALE_DATA_AUDIT.json"
+}

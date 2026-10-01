@@ -1,0 +1,50 @@
+{
+  "trained_at_utc": "2026-09-23T08:09:47.037140+00:00",
+  "base_model": "E:\\EduRAG智慧回答项目\\RetailRAG\\rag_qa\\core\\bert_query_classifier",
+  "output_dir": "E:\\EduRAG智慧回答项目\\RetailRAG\\rag_qa\\models\\retail-query-classifier",
+  "seed": 20260923,
+  "epochs": 1.0,
+  "batch_size": 16,
+  "train_size": 800,
+  "validation_size": 100,
+  "test_size": 100,
+  "data_sha256": {
+    "train": "355daf8bbc91a62e9ced095711b1d50dab9f4f80c3446e17b5027c35f345ddf6",
+    "validation": "cd622c4b567c750a9b5969cd29c5a929ab05c42d90e8784c9991e5fc4e54a79b",
+    "test": "2bd54d356885492638c3fde107fe959601ea91e668d2ec4a949b42533d8116c2"
+  },
+  "validation_metrics": {
+    "accuracy": 1.0,
+    "internal_precision": 1.0,
+    "internal_recall": 1.0,
+    "internal_f1": 1.0,
+    "confusion_matrix": [
+      [
+        50,
+        0
+      ],
+      [
+        0,
+        50
+      ]
+    ],
+    "internal_to_general": 0
+  },
+  "test_metrics": {
+    "accuracy": 1.0,
+    "internal_precision": 1.0,
+    "internal_recall": 1.0,
+    "internal_f1": 1.0,
+    "confusion_matrix": [
+      [
+        50,
+        0
+      ],
+      [
+        0,
+        50
+      ]
+    ],
+    "internal_to_general": 0
+  }
+}

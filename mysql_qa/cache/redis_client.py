@@ -1,107 +1,85 @@
-# 导入 Redis 客户端
-import redis
-# 导入 JSON 处理
+"""Redis cache helpers for RetailRAG FAQ retrieval."""
+
 import json
-# 导入配置和日志
+
+import redis
+
 from base import Config, logger
 
 
 class RedisClient:
+    """Store FAQ indexes and answers as JSON with a bounded lifetime."""
+
     def __init__(self):
-        # 初始化日志
         self.logger = logger
+        self.config = Config()
+        self.namespace = self.config.FAQ_CACHE_NAMESPACE
+        self.ttl = self.config.FAQ_CACHE_TTL
         try:
-            # 连接 Redis
             self.client = redis.StrictRedis(
-                host=Config().REDIS_HOST,
-                port=Config().REDIS_PORT,
-                password=Config().REDIS_PASSWORD,
-                db=Config().REDIS_DB,
-                decode_responses=True
+                host=self.config.REDIS_HOST,
+                port=self.config.REDIS_PORT,
+                password=self.config.REDIS_PASSWORD,
+                db=self.config.REDIS_DB,
+                decode_responses=True,
+                socket_connect_timeout=5,
+                socket_timeout=10,
             )
-            # 记录连接成功
-            self.logger.info("Redis 连接成功")
-        except redis.RedisError as e:
-            # 记录连接失败
-            self.logger.error(f"Redis 连接失败: {e}")
+            self.logger.info("Redis 客户端初始化完成")
+        except redis.RedisError as exc:
+            self.logger.error("Redis 连接失败: %s", exc)
             raise
 
-    def set_data(self, key, value):
-        # 存储数据到 Redis
+    def faq_key(self, suffix):
+        return f"{self.namespace}:{suffix}"
+
+    def set_data(self, key, value, ttl=None):
+        """Serialize *value* once and store it with the FAQ TTL."""
         try:
-            # 存储 JSON 数据
-            self.client.set(key, json.dumps(value, ensure_ascii=False))  # 使用 json.dumps() 将数据转换为 JSON 格式
-            # 记录存储成功
-            self.logger.info(f"存储数据到 Redis: {key}")
-        except redis.RedisError as e:
-            # 记录存储失败
-            self.logger.error(f"Redis 存储失败: {e}")
+            self.client.set(
+                key,
+                json.dumps(value, ensure_ascii=False),
+                ex=self.ttl if ttl is None else ttl,
+            )
+            self.logger.info("写入 Redis 缓存: %s", key)
+        except redis.RedisError as exc:
+            self.logger.error("Redis 存储失败: %s", exc)
 
     def get_data(self, key):
-        # 从 Redis 获取数据
+        """Return deserialized JSON; tolerate invalid legacy values as misses."""
         try:
-            # 获取数据
-            data = self.client.get(key)
-            # 返回解析后的 JSON 数据或 None
-            return json.loads(data) if data else None
-        except redis.RedisError as e:
-            # 记录获取失败
-            self.logger.error(f"Redis 获取失败: {e}")
-            # 返回 None
+            raw = self.client.get(key)
+            if raw is None:
+                return None
+            return json.loads(raw)
+        except (redis.RedisError, json.JSONDecodeError, TypeError) as exc:
+            self.logger.warning("Redis 缓存读取失败，按未命中处理 (%s): %s", key, exc)
             return None
 
-    def get_answer(self, query):
-        # 获取查询的缓存答案
-        try:
-            # 从 Redis 获取答案
-            answer = self.client.get(f"answer:{query}")
-            if answer:
-                # 记录获取成功
-                self.logger.info(f"从 Redis 获取答案: {query}")
-                # 返回答案
-                return answer
-            # 返回 None
-            return None
-        except redis.RedisError as e:
-            # 记录查询失败
-            self.logger.error(f"Redis 查询失败: {e}")
-            # 返回 None
-            return None
+    def answer_key(self, query, variant=None):
+        variant = variant or self.config.FAQ_ALGORITHM_VERSION
+        return self.faq_key(f"answer:{variant}:{query}")
 
+    def set_answer(self, query, answer, variant=None):
+        self.set_data(self.answer_key(query, variant), answer)
 
-import logging
+    def get_answer(self, query, variant=None):
+        answer = self.get_data(self.answer_key(query, variant))
+        if answer is not None:
+            self.logger.info("命中 Redis FAQ 答案缓存")
+        return answer
 
-# 配置日志
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-
-def main():
-    # 初始化 Redis 客户端
-    redis_client = RedisClient()
-    # 示例数据
-    key = "user:1"
-    value = {"name": "Alice", "age": 25}
-    # 存储数据
-    redis_client.set_data(key, value)
-    # 获取数据
-    result = redis_client.get_data(key)
-    if result:
-        logger.info(f"查询结果: {result}")
-    else:
-        logger.info("未找到数据")
-    # 示例查询缓存
-    query = "test_query"
-    answer = redis_client.get_answer(query)
-    if answer:
-        logger.info(f"缓存答案: {answer}")
-    else:
-        logger.info("未找到缓存答案")
+    def clear_faq_cache(self):
+        """Delete only keys owned by the current RetailRAG FAQ namespace."""
+        pattern = self.faq_key("*")
+        keys = list(self.client.scan_iter(match=pattern, count=200))
+        if keys:
+            self.client.delete(*keys)
+        self.logger.info("已清理 %d 个 FAQ 缓存键 (%s)", len(keys), pattern)
+        return len(keys)
 
 
 if __name__ == "__main__":
-    main()
-
-# if __name__ == '__main__':
-#     redcli = RedisClient()
-#     print(redcli)
+    client = RedisClient()
+    client.set_answer("会员日是哪天？", "以当期内部活动通知为准。")
+    print(client.get_answer("会员日是哪天？"))

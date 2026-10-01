@@ -1,9 +1,9 @@
 # 导入 MySQL 客户端
-from db.mysql_client import MySQLClient
+from mysql_qa.db.mysql_client import MySQLClient
 # 导入 Redis 客户端
-from cache.redis_client import RedisClient
+from mysql_qa.cache.redis_client import RedisClient
 # 导入 BM25 搜索
-from retrieval.bm25_search import BM25Search
+from mysql_qa.retrieval.bm25_search import BM25Search
 # 导入日志
 from base import logger
 # 导入时间库

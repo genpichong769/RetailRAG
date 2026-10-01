@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-01T01:12:12.8767530+08:00",
+  "model": "qwen3.7-plus",
+  "mysql": "PASS",
+  "redis": "PASS",
+  "milvus": "PASS",
+  "minio": "PASS",
+  "etcd": "PASS",
+  "fastapi": "PASS",
+  "websocket": "PASS",
+  "browser_e2e": "PASS",
+  "details": {
+    "dependencies": "RETAILRAG_RUNTIME_DEPENDENCIES.json",
+    "api_and_websocket": "RETAILRAG_API_ONLINE_RESULTS.json",
+    "final_scenarios": "RETAILRAG_QWEN37_FINAL_ONLINE_SCENARIOS.json",
+    "browser": "RETAILRAG_QWEN37_BROWSER_E2E.json",
+    "covered_scenarios": [
+      "FAQ original",
+      "FAQ paraphrase",
+      "single-document RAG",
+      "multi-document complex RAG",
+      "version conflict",
+      "unanswerable",
+      "general query",
+      "multi-turn query rewrite",
+      "WebSocket streaming",
+      "browser E2E"
+    ],
+    "known_limitation": "The async phase5 acceptance client sent keepalive pings while the single Uvicorn worker was blocked in a synchronous 95.23-second retrieval. The business request completed and the no-ping 120/180-second WebSocket suites passed."
+  }
+}

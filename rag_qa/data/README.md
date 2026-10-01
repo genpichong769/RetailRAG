@@ -1,7 +1,7 @@
-# Knowledge-base data
+# Nova Retail 冻结知识库
 
-本目录用于存放本地知识库原文。原始课程资料可能包含私有或受版权保护的内容，因此不进入 Git。
+本目录保留 80 篇虚构的零售业务 Markdown 文档，覆盖 membership、promotion、after_sales、store_operation、product、equipment、policy、notice 八个领域。其中包含版本冲突与历史版本样本，属于正式评测依赖；不能仅按最新版本删除。
 
-系统当前支持 `txt`、`md`、`pdf`、`docx`、`ppt`、`pptx`、`jpg`、`png`。建议按 `<source>_data` 命名子目录，例如 `ai_data`；目录名会转换为 Milvus 中的 `source` 元数据。
+文档与 `RETAILRAG_SCALE_DATA_AUDIT.json` 中的 SHA-256 基线一致。请勿对冻结文档运行旧的生成脚本。新环境先启动 Milvus，再执行 `python scripts/init_milvus.py` 和 `python scripts/ingest_knowledge_base.py --replace`。
 
-准备数据后，可调用 `rag_qa.core.document_processor.process_documents` 完成父子分块，再通过 `rag_qa.core.vector_store.VectorStore.add_documents` 写入 Milvus。完整示例见项目根目录 README。
+这些内容是演示数据，不代表真实企业制度或承诺。

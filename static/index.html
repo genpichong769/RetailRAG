@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>传智教育EduRAG智慧问答系统</title>
+    <title>RetailRAG · Nova Retail 智能知识助手</title>
     <!-- 引入 Font Awesome 图标库 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- 引入 marked.js 用于解析 Markdown -->
@@ -337,7 +337,8 @@
 </head>
 <body>
     <header>
-        <h1>传智教育EduRAG智慧问答系统</h1>
+        <h1>RetailRAG · Nova Retail 智能知识助手</h1>
+        <p>连锁零售内部知识问答演示系统</p>
     </header>
 
     <div class="container">
@@ -364,17 +365,24 @@
                     <!-- 消息将动态添加到这里 -->
                     <div class="message system-message">
                         <div class="message-content">
-                            您好！我是智能问答助手，有什么我可以帮您的吗？
+                            您好！我是 Nova Retail 智能知识助手。这里使用虚构演示数据，不代表真实企业承诺。
                         </div>
+                    </div>
+                    <div style="padding: 8px 16px; color: #6c757d; font-size: 13px;">
+                        示例问题：
+                        <button type="button" onclick="chatInput.value='会员积分什么时候过期？'">会员积分</button>
+                        <button type="button" onclick="chatInput.value='促销订单部分退货怎么处理？'">促销退货</button>
+                        <button type="button" onclick="chatInput.value='闭店时现金和库存要检查什么？'">闭店检查</button>
+                        <button type="button" onclick="chatInput.value='POS 支付结果不明怎么办？'">POS 异常</button>
                     </div>
                 </div>
 
                 <div class="chat-input-container">
                     <div class="source-filter">
-                        <label for="sourceFilter">学科类别：</label>
+                        <label for="sourceFilter">知识类别：</label>
                         <select id="sourceFilter">
                             <option value="">全部</option>
-                            <!-- 学科类别选项将动态添加 -->
+                            <!-- 零售知识类别选项将动态添加 -->
                         </select>
                     </div>
                     <div class="input-group">
@@ -403,7 +411,7 @@
         const chatHistory = document.getElementById('chatHistory'); // 聊天历史容器
         const chatInput = document.getElementById('chatInput'); // 输入框
         const sendBtn = document.getElementById('sendBtn'); // 发送按钮
-        const sourceFilter = document.getElementById('sourceFilter'); // 学科过滤器
+        const sourceFilter = document.getElementById('sourceFilter'); // 知识类别过滤器
         const historyList = document.getElementById('historyList'); // 历史列表
         const sessionInfo = document.getElementById('sessionInfo'); // 会话信息
         const newSessionBtn = document.getElementById('newSessionBtn'); // 新会话按钮
@@ -412,13 +420,18 @@
 
         // API URL 前缀，根据部署环境调整
         const API_BASE_URL = ''; // 如果 API 和前端在同一域，可以留空
+        const CATEGORY_LABELS = {
+            membership: '会员制度', promotion: '促销活动', after_sales: '售后政策',
+            store_operation: '门店运营', product: '商品知识', equipment: '设备操作',
+            policy: '企业制度', notice: '内部通知'
+        };
 
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', async () => {
             // 创建新会话
             await createNewSession();
 
-            // 加载学科类别
+            // 加载零售知识类别
             await loadSources();
 
             // 事件监听器
@@ -463,13 +476,13 @@
             }
         }
 
-        // 加载学科类别
+        // 加载零售知识类别
         async function loadSources() {
             try {
                 const response = await fetch(`${API_BASE_URL}/api/sources`);
 
                 if (!response.ok) {
-                    throw new Error('获取学科类别失败');
+                    throw new Error('获取知识类别失败');
                 }
 
                 const data = await response.json();
@@ -477,16 +490,16 @@
                 // 清空现有选项
                 sourceFilter.innerHTML = '<option value="">全部</option>';
 
-                // 添加学科类别选项
+                // 添加知识类别选项
                 data.sources.forEach(source => {
                     const option = document.createElement('option');
                     option.value = source;
-                    option.textContent = source;
+                    option.textContent = (data.labels && data.labels[source]) || CATEGORY_LABELS[source] || source;
                     sourceFilter.appendChild(option);
                 });
 
             } catch (error) {
-                console.error('加载学科类别错误:', error);
+                console.error('加载知识类别错误:', error);
             }
         }
 
@@ -552,17 +565,8 @@
                 // 清空历史列表
                 historyList.innerHTML = '';
 
-                // 清空聊天历史
-                clearChatHistory();
-
-                // 添加欢迎消息
-                chatHistory.innerHTML = `
-                    <div class="message system-message">
-                        <div class="message-content">
-                            历史记录已清除，有什么我可以帮您的吗？
-                        </div>
-                    </div>
-                `;
+                // 清空聊天历史，并恢复空状态下的零售示例问题
+                clearChatHistory('历史记录已清除，有什么我可以帮您的吗？');
 
             } catch (error) {
                 console.error('清除历史记录错误:', error);
@@ -571,12 +575,19 @@
         }
 
         // 清空聊天历史
-        function clearChatHistory() {
+        function clearChatHistory(message = '您好！我是 Nova Retail 智能知识助手。这里使用虚构演示数据，不代表真实企业承诺。') {
             chatHistory.innerHTML = `
                 <div class="message system-message">
                     <div class="message-content">
-                        您好！我是智能问答助手，有什么我可以帮您的吗？
+                        ${message}
                     </div>
+                </div>
+                <div class="suggested-questions" style="padding: 8px 16px; color: #6c757d; font-size: 13px;">
+                    示例问题：
+                    <button type="button" onclick="chatInput.value='会员积分什么时候过期？'">会员积分</button>
+                    <button type="button" onclick="chatInput.value='促销订单部分退货怎么处理？'">促销退货</button>
+                    <button type="button" onclick="chatInput.value='闭店时现金和库存要检查什么？'">闭店检查</button>
+                    <button type="button" onclick="chatInput.value='POS 支付结果不明怎么办？'">POS 异常</button>
                 </div>
             `;
         }

@@ -1,0 +1,800 @@
+{"query": "请概括开源软件的要点。", "label": "general"}
+{"query": "Nova Retail 的冷藏商品验收怎么处理？", "label": "internal"}
+{"query": "关于银行利息有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍平均数和中位数。", "label": "general"}
+{"query": "值班时发生每日重点盘点需要找谁审批？", "label": "internal"}
+{"query": "Nova Retail 的价签与售价不一致怎么处理？", "label": "internal"}
+{"query": "如何理解有氧运动？", "label": "general"}
+{"query": "能用简单的话说明百分比计算吗？", "label": "general"}
+{"query": "请概括机器学习的要点。", "label": "general"}
+{"query": "请举例介绍城市公共交通。", "label": "general"}
+{"query": "请解释一下一元二次方程。", "label": "general"}
+{"query": "能用简单的话说明光合作用吗？", "label": "general"}
+{"query": "请举例介绍光合作用。", "label": "general"}
+{"query": "POS 或后台出现满减门槛时有什么 SOP？", "label": "internal"}
+{"query": "请举例介绍世界时区。", "label": "general"}
+{"query": "请概括天气预报的要点。", "label": "general"}
+{"query": "POS 或后台出现促销叠加顺序时有什么 SOP？", "label": "internal"}
+{"query": "门店遇到会员日权益应该走什么流程？", "label": "internal"}
+{"query": "请解释一下公共急救常识。", "label": "general"}
+{"query": "关于通货膨胀有哪些公开常识？", "label": "general"}
+{"query": "如何理解台风形成？", "label": "general"}
+{"query": "HTTP 状态码通常指什么？", "label": "general"}
+{"query": "如何理解保险的作用？", "label": "general"}
+{"query": "门店员工处理标签打印机卡纸要保留哪些凭证？", "label": "internal"}
+{"query": "请概括数据库索引的要点。", "label": "general"}
+{"query": "请概括旅行行李准备的要点。", "label": "general"}
+{"query": "POS 支付异常有哪些例外和升级条件？", "label": "internal"}
+{"query": "顾客问到内部知识冲突时员工怎么解释？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，盘点差异具体怎么做？", "label": "internal"}
+{"query": "请查询知识库里的会员降级规则。", "label": "internal"}
+{"query": "请查询知识库里的部分退款规则。", "label": "internal"}
+{"query": "个人预算通常指什么？", "label": "general"}
+{"query": "门店员工处理赠品退回要保留哪些凭证？", "label": "internal"}
+{"query": "数据库索引通常指什么？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，积分过期具体怎么做？", "label": "internal"}
+{"query": "内部规定里积分过期的口径是什么？", "label": "internal"}
+{"query": "临期商品处理有哪些例外和升级条件？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，每日重点盘点具体怎么做？", "label": "internal"}
+{"query": "请解释一下烹饪米饭。", "label": "general"}
+{"query": "什么是数据库索引？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，无小票退货具体怎么做？", "label": "internal"}
+{"query": "请举例介绍通货膨胀。", "label": "general"}
+{"query": "关于家用电器节能有哪些公开常识？", "label": "general"}
+{"query": "我想了解垃圾分类的基本原理。", "label": "general"}
+{"query": "Nova Retail 的标签打印机卡纸怎么处理？", "label": "internal"}
+{"query": "向量数据库通常指什么？", "label": "general"}
+{"query": "请查询知识库里的促销订单退款规则。", "label": "internal"}
+{"query": "关于开源软件有哪些公开常识？", "label": "general"}
+{"query": "请解释一下数据库索引。", "label": "general"}
+{"query": "请解释一下HTTP 状态码。", "label": "general"}
+{"query": "门店员工处理会员等级升级要保留哪些凭证？", "label": "internal"}
+{"query": "冷冻商品储存有哪些例外和升级条件？", "label": "internal"}
+{"query": "什么是汉字偏旁？", "label": "general"}
+{"query": "门店遇到新客券发放应该走什么流程？", "label": "internal"}
+{"query": "门店遇到临期商品处理应该走什么流程？", "label": "internal"}
+{"query": "门店遇到常规商品退货应该走什么流程？", "label": "internal"}
+{"query": "请解释一下天气预报。", "label": "general"}
+{"query": "关于天气预报有哪些公开常识？", "label": "general"}
+{"query": "什么是百分比计算？", "label": "general"}
+{"query": "门店员工处理冷柜温度异常要保留哪些凭证？", "label": "internal"}
+{"query": "门店遇到冷藏商品验收应该走什么流程？", "label": "internal"}
+{"query": "城市公共交通通常指什么？", "label": "general"}
+{"query": "请概括HTTP 状态码的要点。", "label": "general"}
+{"query": "内部规定里食品安全投诉的口径是什么？", "label": "internal"}
+{"query": "什么是城市公共交通？", "label": "general"}
+{"query": "POS 或后台出现闭店检查时有什么 SOP？", "label": "internal"}
+{"query": "顾客问到会员日权益时员工怎么解释？", "label": "internal"}
+{"query": "内部规定里质量问题换货的口径是什么？", "label": "internal"}
+{"query": "什么是低碳出行？", "label": "general"}
+{"query": "请查询知识库里的冷藏商品验收规则。", "label": "internal"}
+{"query": "POS 或后台出现新客券发放时有什么 SOP？", "label": "internal"}
+{"query": "门店员工处理冷藏商品验收要保留哪些凭证？", "label": "internal"}
+{"query": "如何理解咖啡冲泡？", "label": "general"}
+{"query": "能用简单的话说明概率的含义吗？", "label": "general"}
+{"query": "机器学习通常指什么？", "label": "general"}
+{"query": "顾客问到活动价签时员工怎么解释？", "label": "internal"}
+{"query": "值班时发生生日券补发需要找谁审批？", "label": "internal"}
+{"query": "请举例介绍食物营养。", "label": "general"}
+{"query": "盘点机同步失败有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店员工处理冷冻商品储存要保留哪些凭证？", "label": "internal"}
+{"query": "能用简单的话说明阅读方法吗？", "label": "general"}
+{"query": "顾客问到满减门槛时员工怎么解释？", "label": "internal"}
+{"query": "请查询知识库里的生日券补发规则。", "label": "internal"}
+{"query": "内部规定里临期商品处理的口径是什么？", "label": "internal"}
+{"query": "请概括食物营养的要点。", "label": "general"}
+{"query": "如何理解公开演讲？", "label": "general"}
+{"query": "如何理解牛顿第一定律？", "label": "general"}
+{"query": "如何理解HTTP 状态码？", "label": "general"}
+{"query": "我想了解平均数和中位数的基本原理。", "label": "general"}
+{"query": "给我科普一下城市公共交通。", "label": "general"}
+{"query": "门店员工处理会员账户合并要保留哪些凭证？", "label": "internal"}
+{"query": "请举例介绍银行利息。", "label": "general"}
+{"query": "什么是牛顿第一定律？", "label": "general"}
+{"query": "请举例介绍合同基本概念。", "label": "general"}
+{"query": "关于阅读方法有哪些公开常识？", "label": "general"}
+{"query": "请解释一下地图比例尺。", "label": "general"}
+{"query": "咖啡冲泡通常指什么？", "label": "general"}
+{"query": "请查询知识库里的无小票退货规则。", "label": "internal"}
+{"query": "赠品退回有哪些例外和升级条件？", "label": "internal"}
+{"query": "什么是合同基本概念？", "label": "general"}
+{"query": "请举例介绍阅读方法。", "label": "general"}
+{"query": "Nova Retail 的常规商品退货怎么处理？", "label": "internal"}
+{"query": "门店遇到每日重点盘点应该走什么流程？", "label": "internal"}
+{"query": "冷藏商品验收有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下一元二次方程。", "label": "general"}
+{"query": "请举例介绍向量数据库。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，POS 支付异常具体怎么做？", "label": "internal"}
+{"query": "能用简单的话说明开源软件吗？", "label": "general"}
+{"query": "内部规定里促销订单退款的口径是什么？", "label": "internal"}
+{"query": "门店遇到会员换手机号应该走什么流程？", "label": "internal"}
+{"query": "我想了解城市公共交通的基本原理。", "label": "general"}
+{"query": "Nova Retail 的赠品退回怎么处理？", "label": "internal"}
+{"query": "请概括睡眠规律的要点。", "label": "general"}
+{"query": "门店员工处理活动价签要保留哪些凭证？", "label": "internal"}
+{"query": "请解释一下概率的含义。", "label": "general"}
+{"query": "食品安全投诉有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下概率的含义。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，新客券发放具体怎么做？", "label": "internal"}
+{"query": "门店员工处理无小票退货要保留哪些凭证？", "label": "internal"}
+{"query": "如何理解低碳出行？", "label": "general"}
+{"query": "门店员工处理开店检查要保留哪些凭证？", "label": "internal"}
+{"query": "关于牛顿第一定律有哪些公开常识？", "label": "general"}
+{"query": "我想了解合同基本概念的基本原理。", "label": "general"}
+{"query": "请查询知识库里的生鲜售后规则。", "label": "internal"}
+{"query": "我想了解向量数据库的基本原理。", "label": "general"}
+{"query": "给我科普一下牛顿第一定律。", "label": "general"}
+{"query": "值班时发生盘点机同步失败需要找谁审批？", "label": "internal"}
+{"query": "POS 或后台出现会员等级升级时有什么 SOP？", "label": "internal"}
+{"query": "什么是地图比例尺？", "label": "general"}
+{"query": "内部规定里新客券发放的口径是什么？", "label": "internal"}
+{"query": "标签打印机卡纸有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店员工处理生日券补发要保留哪些凭证？", "label": "internal"}
+{"query": "请查询知识库里的会员等级升级规则。", "label": "internal"}
+{"query": "关于公开演讲有哪些公开常识？", "label": "general"}
+{"query": "会员账户合并有哪些例外和升级条件？", "label": "internal"}
+{"query": "POS 或后台出现部分退款时有什么 SOP？", "label": "internal"}
+{"query": "能用简单的话说明垃圾分类吗？", "label": "general"}
+{"query": "值班时发生退款到账异常需要找谁审批？", "label": "internal"}
+{"query": "POS 或后台出现冷柜温度异常时有什么 SOP？", "label": "internal"}
+{"query": "顾客问到人工调整积分时员工怎么解释？", "label": "internal"}
+{"query": "门店遇到闭店检查应该走什么流程？", "label": "internal"}
+{"query": "POS 或后台出现常规商品退货时有什么 SOP？", "label": "internal"}
+{"query": "请举例介绍机器学习。", "label": "general"}
+{"query": "Nova Retail 的生鲜售后怎么处理？", "label": "internal"}
+{"query": "什么是食物营养？", "label": "general"}
+{"query": "关于衣物清洗有哪些公开常识？", "label": "general"}
+{"query": "POS 或后台出现盘点差异时有什么 SOP？", "label": "internal"}
+{"query": "如何理解通货膨胀？", "label": "general"}
+{"query": "关于机器学习有哪些公开常识？", "label": "general"}
+{"query": "如何理解天气预报？", "label": "general"}
+{"query": "请举例介绍汉字偏旁。", "label": "general"}
+{"query": "什么是向量数据库？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，优惠券退回具体怎么做？", "label": "internal"}
+{"query": "顾客问到POS 支付异常时员工怎么解释？", "label": "internal"}
+{"query": "值班时发生会员换手机号需要找谁审批？", "label": "internal"}
+{"query": "如何理解水的沸点？", "label": "general"}
+{"query": "内部规定里会员等级升级的口径是什么？", "label": "internal"}
+{"query": "关于成语的含义有哪些公开常识？", "label": "general"}
+{"query": "请解释一下汉字偏旁。", "label": "general"}
+{"query": "给我科普一下烹饪米饭。", "label": "general"}
+{"query": "顾客问到会员降级时员工怎么解释？", "label": "internal"}
+{"query": "门店员工处理质量问题换货要保留哪些凭证？", "label": "internal"}
+{"query": "旅行行李准备通常指什么？", "label": "general"}
+{"query": "请举例介绍咖啡冲泡。", "label": "general"}
+{"query": "内部规定里内部知识冲突的口径是什么？", "label": "internal"}
+{"query": "门店员工处理闭店检查要保留哪些凭证？", "label": "internal"}
+{"query": "请举例介绍网络安全常识。", "label": "general"}
+{"query": "Nova Retail 的活动价签怎么处理？", "label": "internal"}
+{"query": "Nova Retail 的临期商品处理怎么处理？", "label": "internal"}
+{"query": "如何理解睡眠规律？", "label": "general"}
+{"query": "如何理解开源软件？", "label": "general"}
+{"query": "值班时发生无小票退货需要找谁审批？", "label": "internal"}
+{"query": "Nova Retail 的促销叠加顺序怎么处理？", "label": "internal"}
+{"query": "请解释一下睡眠规律。", "label": "general"}
+{"query": "POS 或后台出现赠品退回时有什么 SOP？", "label": "internal"}
+{"query": "什么是平均数和中位数？", "label": "general"}
+{"query": "门店遇到会员等级升级应该走什么流程？", "label": "internal"}
+{"query": "关于睡眠规律有哪些公开常识？", "label": "general"}
+{"query": "门店员工处理积分过期要保留哪些凭证？", "label": "internal"}
+{"query": "POS 或后台出现优惠券退回时有什么 SOP？", "label": "internal"}
+{"query": "如何理解网络安全常识？", "label": "general"}
+{"query": "顾客问到生日券补发时员工怎么解释？", "label": "internal"}
+{"query": "请概括世界时区的要点。", "label": "general"}
+{"query": "关于百分比计算有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍成语的含义。", "label": "general"}
+{"query": "我想了解光合作用的基本原理。", "label": "general"}
+{"query": "垃圾分类通常指什么？", "label": "general"}
+{"query": "值班时发生盘点差异需要找谁审批？", "label": "internal"}
+{"query": "能用简单的话说明个人预算吗？", "label": "general"}
+{"query": "门店员工处理人工调整积分要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的扫码枪故障怎么处理？", "label": "internal"}
+{"query": "内部规定里会员日权益的口径是什么？", "label": "internal"}
+{"query": "能用简单的话说明一元二次方程吗？", "label": "general"}
+{"query": "我想了解机器学习的基本原理。", "label": "general"}
+{"query": "我想了解HTTP 状态码的基本原理。", "label": "general"}
+{"query": "什么是光合作用？", "label": "general"}
+{"query": "如何理解一元二次方程？", "label": "general"}
+{"query": "POS 或后台出现无小票退货时有什么 SOP？", "label": "internal"}
+{"query": "给我科普一下咖啡冲泡。", "label": "general"}
+{"query": "能用简单的话说明城市公共交通吗？", "label": "general"}
+{"query": "请举例介绍台风形成。", "label": "general"}
+{"query": "值班时发生会员降级需要找谁审批？", "label": "internal"}
+{"query": "我想了解银行利息的基本原理。", "label": "general"}
+{"query": "阅读方法通常指什么？", "label": "general"}
+{"query": "给我科普一下通货膨胀。", "label": "general"}
+{"query": "请概括牛顿第一定律的要点。", "label": "general"}
+{"query": "概率的含义通常指什么？", "label": "general"}
+{"query": "内部规定里促销叠加顺序的口径是什么？", "label": "internal"}
+{"query": "能用简单的话说明食物营养吗？", "label": "general"}
+{"query": "什么是一元二次方程？", "label": "general"}
+{"query": "内部规定里开店检查的口径是什么？", "label": "internal"}
+{"query": "请解释一下网络安全常识。", "label": "general"}
+{"query": "请查询知识库里的每日重点盘点规则。", "label": "internal"}
+{"query": "内部规定里部分退款的口径是什么？", "label": "internal"}
+{"query": "如何理解百分比计算？", "label": "general"}
+{"query": "我想了解数据库索引的基本原理。", "label": "general"}
+{"query": "请解释一下低碳出行。", "label": "general"}
+{"query": "什么是衣物清洗？", "label": "general"}
+{"query": "一元二次方程通常指什么？", "label": "general"}
+{"query": "请举例介绍睡眠规律。", "label": "general"}
+{"query": "值班时发生新客券发放需要找谁审批？", "label": "internal"}
+{"query": "如何理解三角形面积？", "label": "general"}
+{"query": "门店遇到促销订单退款应该走什么流程？", "label": "internal"}
+{"query": "顾客问到冷冻商品储存时员工怎么解释？", "label": "internal"}
+{"query": "我想了解个人预算的基本原理。", "label": "general"}
+{"query": "如何理解地图比例尺？", "label": "general"}
+{"query": "值班时发生积分累计需要找谁审批？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，赠品退回具体怎么做？", "label": "internal"}
+{"query": "给我科普一下天气预报。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，冷藏商品验收具体怎么做？", "label": "internal"}
+{"query": "给我科普一下平均数和中位数。", "label": "general"}
+{"query": "我想了解低碳出行的基本原理。", "label": "general"}
+{"query": "我想了解开源软件的基本原理。", "label": "general"}
+{"query": "请查询知识库里的积分过期规则。", "label": "internal"}
+{"query": "请解释一下旅行行李准备。", "label": "general"}
+{"query": "能用简单的话说明汉字偏旁吗？", "label": "general"}
+{"query": "顾客问到积分过期时员工怎么解释？", "label": "internal"}
+{"query": "关于台风形成有哪些公开常识？", "label": "general"}
+{"query": "如何理解食物营养？", "label": "general"}
+{"query": "Nova Retail 的生日券补发怎么处理？", "label": "internal"}
+{"query": "POS 或后台出现积分累计时有什么 SOP？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，满减门槛具体怎么做？", "label": "internal"}
+{"query": "请概括通货膨胀的要点。", "label": "general"}
+{"query": "盘点差异有哪些例外和升级条件？", "label": "internal"}
+{"query": "什么是机器学习？", "label": "general"}
+{"query": "门店遇到扫码枪故障应该走什么流程？", "label": "internal"}
+{"query": "内部规定里积分累计的口径是什么？", "label": "internal"}
+{"query": "门店遇到POS 支付异常应该走什么流程？", "label": "internal"}
+{"query": "门店员工处理食品安全投诉要保留哪些凭证？", "label": "internal"}
+{"query": "顾客问到冷柜温度异常时员工怎么解释？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，会员换手机号具体怎么做？", "label": "internal"}
+{"query": "门店遇到质量问题换货应该走什么流程？", "label": "internal"}
+{"query": "什么是开源软件？", "label": "general"}
+{"query": "请举例介绍个人预算。", "label": "general"}
+{"query": "顾客问到盘点机同步失败时员工怎么解释？", "label": "internal"}
+{"query": "如何理解汉字偏旁？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，食品安全投诉具体怎么做？", "label": "internal"}
+{"query": "给我科普一下HTTP 状态码。", "label": "general"}
+{"query": "请查询知识库里的开店检查规则。", "label": "internal"}
+{"query": "关于网络安全常识有哪些公开常识？", "label": "general"}
+{"query": "值班时发生人工调整积分需要找谁审批？", "label": "internal"}
+{"query": "请解释一下家用电器节能。", "label": "general"}
+{"query": "请举例介绍HTTP 状态码。", "label": "general"}
+{"query": "如何理解个人预算？", "label": "general"}
+{"query": "顾客问到临期商品处理时员工怎么解释？", "label": "internal"}
+{"query": "我想了解世界时区的基本原理。", "label": "general"}
+{"query": "门店遇到标签打印机卡纸应该走什么流程？", "label": "internal"}
+{"query": "门店员工处理扫码枪故障要保留哪些凭证？", "label": "internal"}
+{"query": "内部规定里会员账户合并的口径是什么？", "label": "internal"}
+{"query": "关于个人预算有哪些公开常识？", "label": "general"}
+{"query": "顾客问到常规商品退货时员工怎么解释？", "label": "internal"}
+{"query": "POS 或后台出现会员日加码时有什么 SOP？", "label": "internal"}
+{"query": "如何理解概率的含义？", "label": "general"}
+{"query": "门店员工处理会员日权益要保留哪些凭证？", "label": "internal"}
+{"query": "顾客问到质量问题换货时员工怎么解释？", "label": "internal"}
+{"query": "Nova Retail 的会员等级升级怎么处理？", "label": "internal"}
+{"query": "顾客问到扫码枪故障时员工怎么解释？", "label": "internal"}
+{"query": "Nova Retail 的积分累计怎么处理？", "label": "internal"}
+{"query": "请概括平均数和中位数的要点。", "label": "general"}
+{"query": "值班时发生内部知识冲突需要找谁审批？", "label": "internal"}
+{"query": "内部规定里优惠券退回的口径是什么？", "label": "internal"}
+{"query": "门店遇到生鲜售后应该走什么流程？", "label": "internal"}
+{"query": "POS 或后台出现特殊商品售后时有什么 SOP？", "label": "internal"}
+{"query": "Nova Retail 的闭店检查怎么处理？", "label": "internal"}
+{"query": "关于水的沸点有哪些公开常识？", "label": "general"}
+{"query": "值班时发生促销叠加顺序需要找谁审批？", "label": "internal"}
+{"query": "Nova Retail 的POS 支付异常怎么处理？", "label": "internal"}
+{"query": "能用简单的话说明中国传统节日吗？", "label": "general"}
+{"query": "合同基本概念通常指什么？", "label": "general"}
+{"query": "POS 或后台出现现金长短款时有什么 SOP？", "label": "internal"}
+{"query": "内部规定里会员日加码的口径是什么？", "label": "internal"}
+{"query": "我想了解百分比计算的基本原理。", "label": "general"}
+{"query": "关于垃圾分类有哪些公开常识？", "label": "general"}
+{"query": "汉字偏旁通常指什么？", "label": "general"}
+{"query": "内部规定里满减门槛的口径是什么？", "label": "internal"}
+{"query": "光合作用通常指什么？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，常规商品退货具体怎么做？", "label": "internal"}
+{"query": "能用简单的话说明旅行行李准备吗？", "label": "general"}
+{"query": "有氧运动通常指什么？", "label": "general"}
+{"query": "请举例介绍公共急救常识。", "label": "general"}
+{"query": "什么是通货膨胀？", "label": "general"}
+{"query": "给我科普一下开源软件。", "label": "general"}
+{"query": "能用简单的话说明睡眠规律吗？", "label": "general"}
+{"query": "POS 或后台出现每日重点盘点时有什么 SOP？", "label": "internal"}
+{"query": "内部规定里价签与售价不一致的口径是什么？", "label": "internal"}
+{"query": "请解释一下通货膨胀。", "label": "general"}
+{"query": "世界时区通常指什么？", "label": "general"}
+{"query": "给我科普一下网络安全常识。", "label": "general"}
+{"query": "关于旅行行李准备有哪些公开常识？", "label": "general"}
+{"query": "内部规定里生鲜售后的口径是什么？", "label": "internal"}
+{"query": "我想了解睡眠规律的基本原理。", "label": "general"}
+{"query": "请概括向量数据库的要点。", "label": "general"}
+{"query": "请查询知识库里的现金长短款规则。", "label": "internal"}
+{"query": "扫码枪故障有哪些例外和升级条件？", "label": "internal"}
+{"query": "退款到账异常有哪些例外和升级条件？", "label": "internal"}
+{"query": "关于一元二次方程有哪些公开常识？", "label": "general"}
+{"query": "水的沸点通常指什么？", "label": "general"}
+{"query": "我想了解概率的含义的基本原理。", "label": "general"}
+{"query": "值班时发生现金长短款需要找谁审批？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，会员账户合并具体怎么做？", "label": "internal"}
+{"query": "POS 或后台出现冷冻商品储存时有什么 SOP？", "label": "internal"}
+{"query": "给我科普一下家用电器节能。", "label": "general"}
+{"query": "门店遇到积分过期应该走什么流程？", "label": "internal"}
+{"query": "POS 或后台出现内部知识冲突时有什么 SOP？", "label": "internal"}
+{"query": "请查询知识库里的价签与售价不一致规则。", "label": "internal"}
+{"query": "给我科普一下银行利息。", "label": "general"}
+{"query": "门店遇到会员降级应该走什么流程？", "label": "internal"}
+{"query": "门店员工处理促销叠加顺序要保留哪些凭证？", "label": "internal"}
+{"query": "请举例介绍地图比例尺。", "label": "general"}
+{"query": "公共急救常识通常指什么？", "label": "general"}
+{"query": "值班时发生冷藏商品验收需要找谁审批？", "label": "internal"}
+{"query": "Nova Retail 的新客券发放怎么处理？", "label": "internal"}
+{"query": "值班时发生积分过期需要找谁审批？", "label": "internal"}
+{"query": "能用简单的话说明衣物清洗吗？", "label": "general"}
+{"query": "请查询知识库里的新客券发放规则。", "label": "internal"}
+{"query": "Nova Retail 的冷冻商品储存怎么处理？", "label": "internal"}
+{"query": "顾客问到开店检查时员工怎么解释？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，特殊商品售后具体怎么做？", "label": "internal"}
+{"query": "Nova Retail 的满减门槛怎么处理？", "label": "internal"}
+{"query": "请概括水的沸点的要点。", "label": "general"}
+{"query": "活动价签有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下地图比例尺。", "label": "general"}
+{"query": "请概括一元二次方程的要点。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，生日券补发具体怎么做？", "label": "internal"}
+{"query": "烹饪米饭通常指什么？", "label": "general"}
+{"query": "成语的含义通常指什么？", "label": "general"}
+{"query": "关于向量数据库有哪些公开常识？", "label": "general"}
+{"query": "能用简单的话说明通货膨胀吗？", "label": "general"}
+{"query": "Nova Retail 的积分过期怎么处理？", "label": "internal"}
+{"query": "内部规定里常规商品退货的口径是什么？", "label": "internal"}
+{"query": "顾客问到生鲜售后时员工怎么解释？", "label": "internal"}
+{"query": "关于光合作用有哪些公开常识？", "label": "general"}
+{"query": "内部规定里冷冻商品储存的口径是什么？", "label": "internal"}
+{"query": "给我科普一下水的沸点。", "label": "general"}
+{"query": "什么是概率的含义？", "label": "general"}
+{"query": "给我科普一下旅行行李准备。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，开店检查具体怎么做？", "label": "internal"}
+{"query": "请解释一下机器学习。", "label": "general"}
+{"query": "值班时发生会员等级升级需要找谁审批？", "label": "internal"}
+{"query": "请解释一下向量数据库。", "label": "general"}
+{"query": "值班时发生常规商品退货需要找谁审批？", "label": "internal"}
+{"query": "门店员工处理盘点差异要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的现金长短款怎么处理？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，促销订单退款具体怎么做？", "label": "internal"}
+{"query": "什么是水的沸点？", "label": "general"}
+{"query": "三角形面积通常指什么？", "label": "general"}
+{"query": "给我科普一下世界时区。", "label": "general"}
+{"query": "能用简单的话说明银行利息吗？", "label": "general"}
+{"query": "能用简单的话说明台风形成吗？", "label": "general"}
+{"query": "能用简单的话说明家用电器节能吗？", "label": "general"}
+{"query": "门店遇到特殊商品售后应该走什么流程？", "label": "internal"}
+{"query": "什么是有氧运动？", "label": "general"}
+{"query": "我想了解地图比例尺的基本原理。", "label": "general"}
+{"query": "部分退款有哪些例外和升级条件？", "label": "internal"}
+{"query": "请查询知识库里的会员账户合并规则。", "label": "internal"}
+{"query": "门店遇到会员账户合并应该走什么流程？", "label": "internal"}
+{"query": "Nova Retail 的部分退款怎么处理？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，促销叠加顺序具体怎么做？", "label": "internal"}
+{"query": "门店员工处理现金长短款要保留哪些凭证？", "label": "internal"}
+{"query": "请查询知识库里的会员换手机号规则。", "label": "internal"}
+{"query": "POS 或后台出现POS 支付异常时有什么 SOP？", "label": "internal"}
+{"query": "门店员工处理促销订单退款要保留哪些凭证？", "label": "internal"}
+{"query": "如何理解中国传统节日？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，盘点机同步失败具体怎么做？", "label": "internal"}
+{"query": "能用简单的话说明低碳出行吗？", "label": "general"}
+{"query": "什么是三角形面积？", "label": "general"}
+{"query": "Nova Retail 的内部知识冲突怎么处理？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，临期商品处理具体怎么做？", "label": "internal"}
+{"query": "给我科普一下中国传统节日。", "label": "general"}
+{"query": "给我科普一下汉字偏旁。", "label": "general"}
+{"query": "值班时发生价签与售价不一致需要找谁审批？", "label": "internal"}
+{"query": "请概括有氧运动的要点。", "label": "general"}
+{"query": "请概括个人预算的要点。", "label": "general"}
+{"query": "顾客问到部分退款时员工怎么解释？", "label": "internal"}
+{"query": "值班时发生食品安全投诉需要找谁审批？", "label": "internal"}
+{"query": "我想了解牛顿第一定律的基本原理。", "label": "general"}
+{"query": "特殊商品售后有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店员工处理满减门槛要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的会员日权益怎么处理？", "label": "internal"}
+{"query": "POS 或后台出现盘点机同步失败时有什么 SOP？", "label": "internal"}
+{"query": "如何理解光合作用？", "label": "general"}
+{"query": "门店遇到人工调整积分应该走什么流程？", "label": "internal"}
+{"query": "顾客问到每日重点盘点时员工怎么解释？", "label": "internal"}
+{"query": "值班时发生开店检查需要找谁审批？", "label": "internal"}
+{"query": "POS 或后台出现生鲜售后时有什么 SOP？", "label": "internal"}
+{"query": "什么是烹饪米饭？", "label": "general"}
+{"query": "请解释一下银行利息。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，人工调整积分具体怎么做？", "label": "internal"}
+{"query": "顾客问到特殊商品售后时员工怎么解释？", "label": "internal"}
+{"query": "我想了解成语的含义的基本原理。", "label": "general"}
+{"query": "门店员工处理盘点机同步失败要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的退款到账异常怎么处理？", "label": "internal"}
+{"query": "顾客问到优惠券退回时员工怎么解释？", "label": "internal"}
+{"query": "POS 或后台出现扫码枪故障时有什么 SOP？", "label": "internal"}
+{"query": "值班时发生促销订单退款需要找谁审批？", "label": "internal"}
+{"query": "门店遇到促销叠加顺序应该走什么流程？", "label": "internal"}
+{"query": "关于咖啡冲泡有哪些公开常识？", "label": "general"}
+{"query": "我想了解三角形面积的基本原理。", "label": "general"}
+{"query": "什么是睡眠规律？", "label": "general"}
+{"query": "顾客问到闭店检查时员工怎么解释？", "label": "internal"}
+{"query": "关于概率的含义有哪些公开常识？", "label": "general"}
+{"query": "门店员工处理每日重点盘点要保留哪些凭证？", "label": "internal"}
+{"query": "值班时发生赠品退回需要找谁审批？", "label": "internal"}
+{"query": "POS 或后台出现人工调整积分时有什么 SOP？", "label": "internal"}
+{"query": "请查询知识库里的冷冻商品储存规则。", "label": "internal"}
+{"query": "内部规定里现金长短款的口径是什么？", "label": "internal"}
+{"query": "我想了解咖啡冲泡的基本原理。", "label": "general"}
+{"query": "请举例介绍数据库索引。", "label": "general"}
+{"query": "请概括家用电器节能的要点。", "label": "general"}
+{"query": "请查询知识库里的食品安全投诉规则。", "label": "internal"}
+{"query": "给我科普一下有氧运动。", "label": "general"}
+{"query": "请概括公开演讲的要点。", "label": "general"}
+{"query": "给我科普一下向量数据库。", "label": "general"}
+{"query": "天气预报通常指什么？", "label": "general"}
+{"query": "请查询知识库里的常规商品退货规则。", "label": "internal"}
+{"query": "顾客问到食品安全投诉时员工怎么解释？", "label": "internal"}
+{"query": "保险的作用通常指什么？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，冷柜温度异常具体怎么做？", "label": "internal"}
+{"query": "POS 或后台出现积分过期时有什么 SOP？", "label": "internal"}
+{"query": "积分过期有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下食物营养。", "label": "general"}
+{"query": "能用简单的话说明地图比例尺吗？", "label": "general"}
+{"query": "门店员工处理价签与售价不一致要保留哪些凭证？", "label": "internal"}
+{"query": "牛顿第一定律通常指什么？", "label": "general"}
+{"query": "顾客问到促销叠加顺序时员工怎么解释？", "label": "internal"}
+{"query": "请解释一下食物营养。", "label": "general"}
+{"query": "什么是个人预算？", "label": "general"}
+{"query": "请概括低碳出行的要点。", "label": "general"}
+{"query": "门店遇到活动价签应该走什么流程？", "label": "internal"}
+{"query": "请查询知识库里的会员日加码规则。", "label": "internal"}
+{"query": "顾客问到标签打印机卡纸时员工怎么解释？", "label": "internal"}
+{"query": "如何理解烹饪米饭？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，会员日加码具体怎么做？", "label": "internal"}
+{"query": "请查询知识库里的活动价签规则。", "label": "internal"}
+{"query": "质量问题换货有哪些例外和升级条件？", "label": "internal"}
+{"query": "能用简单的话说明烹饪米饭吗？", "label": "general"}
+{"query": "门店员工处理POS 支付异常要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的会员换手机号怎么处理？", "label": "internal"}
+{"query": "给我科普一下成语的含义。", "label": "general"}
+{"query": "如何理解向量数据库？", "label": "general"}
+{"query": "请概括网络安全常识的要点。", "label": "general"}
+{"query": "POS 或后台出现会员账户合并时有什么 SOP？", "label": "internal"}
+{"query": "请概括保险的作用的要点。", "label": "general"}
+{"query": "网络安全常识通常指什么？", "label": "general"}
+{"query": "能用简单的话说明向量数据库吗？", "label": "general"}
+{"query": "满减门槛有哪些例外和升级条件？", "label": "internal"}
+{"query": "请解释一下平均数和中位数。", "label": "general"}
+{"query": "给我科普一下个人预算。", "label": "general"}
+{"query": "睡眠规律通常指什么？", "label": "general"}
+{"query": "能用简单的话说明数据库索引吗？", "label": "general"}
+{"query": "给我科普一下垃圾分类。", "label": "general"}
+{"query": "能用简单的话说明平均数和中位数吗？", "label": "general"}
+{"query": "请查询知识库里的POS 支付异常规则。", "label": "internal"}
+{"query": "我想了解台风形成的基本原理。", "label": "general"}
+{"query": "请举例介绍公开演讲。", "label": "general"}
+{"query": "新客券发放有哪些例外和升级条件？", "label": "internal"}
+{"query": "值班时发生冷冻商品储存需要找谁审批？", "label": "internal"}
+{"query": "请概括中国传统节日的要点。", "label": "general"}
+{"query": "给我科普一下合同基本概念。", "label": "general"}
+{"query": "如何理解平均数和中位数？", "label": "general"}
+{"query": "现金长短款有哪些例外和升级条件？", "label": "internal"}
+{"query": "如何理解阅读方法？", "label": "general"}
+{"query": "门店员工处理会员换手机号要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的会员账户合并怎么处理？", "label": "internal"}
+{"query": "请概括三角形面积的要点。", "label": "general"}
+{"query": "如何理解机器学习？", "label": "general"}
+{"query": "给我科普一下台风形成。", "label": "general"}
+{"query": "关于三角形面积有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍三角形面积。", "label": "general"}
+{"query": "关于数据库索引有哪些公开常识？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，现金长短款具体怎么做？", "label": "internal"}
+{"query": "什么是网络安全常识？", "label": "general"}
+{"query": "内部规定里生日券补发的口径是什么？", "label": "internal"}
+{"query": "顾客问到积分累计时员工怎么解释？", "label": "internal"}
+{"query": "请概括概率的含义的要点。", "label": "general"}
+{"query": "请查询知识库里的临期商品处理规则。", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，标签打印机卡纸具体怎么做？", "label": "internal"}
+{"query": "请举例介绍家用电器节能。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，冷冻商品储存具体怎么做？", "label": "internal"}
+{"query": "内部规定里盘点差异的口径是什么？", "label": "internal"}
+{"query": "POS 或后台出现质量问题换货时有什么 SOP？", "label": "internal"}
+{"query": "请解释一下阅读方法。", "label": "general"}
+{"query": "能用简单的话说明世界时区吗？", "label": "general"}
+{"query": "内部规定里赠品退回的口径是什么？", "label": "internal"}
+{"query": "如何理解银行利息？", "label": "general"}
+{"query": "请举例介绍旅行行李准备。", "label": "general"}
+{"query": "Nova Retail 的质量问题换货怎么处理？", "label": "internal"}
+{"query": "关于公共急救常识有哪些公开常识？", "label": "general"}
+{"query": "如何理解旅行行李准备？", "label": "general"}
+{"query": "请解释一下公开演讲。", "label": "general"}
+{"query": "会员换手机号有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店员工处理退款到账异常要保留哪些凭证？", "label": "internal"}
+{"query": "Nova Retail 的开店检查怎么处理？", "label": "internal"}
+{"query": "顾客问到促销订单退款时员工怎么解释？", "label": "internal"}
+{"query": "顾客问到价签与售价不一致时员工怎么解释？", "label": "internal"}
+{"query": "POS 或后台出现会员日权益时有什么 SOP？", "label": "internal"}
+{"query": "什么是咖啡冲泡？", "label": "general"}
+{"query": "值班时发生优惠券退回需要找谁审批？", "label": "internal"}
+{"query": "门店员工处理特殊商品售后要保留哪些凭证？", "label": "internal"}
+{"query": "请查询知识库里的促销叠加顺序规则。", "label": "internal"}
+{"query": "值班时发生会员日权益需要找谁审批？", "label": "internal"}
+{"query": "值班时发生活动价签需要找谁审批？", "label": "internal"}
+{"query": "关于地图比例尺有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍一元二次方程。", "label": "general"}
+{"query": "请查询知识库里的扫码枪故障规则。", "label": "internal"}
+{"query": "请解释一下光合作用。", "label": "general"}
+{"query": "请解释一下成语的含义。", "label": "general"}
+{"query": "能用简单的话说明机器学习吗？", "label": "general"}
+{"query": "如何理解垃圾分类？", "label": "general"}
+{"query": "每日重点盘点有哪些例外和升级条件？", "label": "internal"}
+{"query": "请概括汉字偏旁的要点。", "label": "general"}
+{"query": "内部规定里盘点机同步失败的口径是什么？", "label": "internal"}
+{"query": "开店检查有哪些例外和升级条件？", "label": "internal"}
+{"query": "给我科普一下低碳出行。", "label": "general"}
+{"query": "什么是银行利息？", "label": "general"}
+{"query": "衣物清洗通常指什么？", "label": "general"}
+{"query": "关于有氧运动有哪些公开常识？", "label": "general"}
+{"query": "值班时发生扫码枪故障需要找谁审批？", "label": "internal"}
+{"query": "顾客问到冷藏商品验收时员工怎么解释？", "label": "internal"}
+{"query": "POS 或后台出现价签与售价不一致时有什么 SOP？", "label": "internal"}
+{"query": "能用简单的话说明网络安全常识吗？", "label": "general"}
+{"query": "请查询知识库里的特殊商品售后规则。", "label": "internal"}
+{"query": "能用简单的话说明HTTP 状态码吗？", "label": "general"}
+{"query": "门店遇到退款到账异常应该走什么流程？", "label": "internal"}
+{"query": "我想了解公共急救常识的基本原理。", "label": "general"}
+{"query": "POS 或后台出现标签打印机卡纸时有什么 SOP？", "label": "internal"}
+{"query": "Nova Retail 的盘点机同步失败怎么处理？", "label": "internal"}
+{"query": "顾客问到会员账户合并时员工怎么解释？", "label": "internal"}
+{"query": "请概括合同基本概念的要点。", "label": "general"}
+{"query": "我想了解食物营养的基本原理。", "label": "general"}
+{"query": "请解释一下个人预算。", "label": "general"}
+{"query": "请查询知识库里的赠品退回规则。", "label": "internal"}
+{"query": "POS 或后台出现促销订单退款时有什么 SOP？", "label": "internal"}
+{"query": "什么是HTTP 状态码？", "label": "general"}
+{"query": "我想了解烹饪米饭的基本原理。", "label": "general"}
+{"query": "如何理解衣物清洗？", "label": "general"}
+{"query": "请概括台风形成的要点。", "label": "general"}
+{"query": "如何理解家用电器节能？", "label": "general"}
+{"query": "如何理解数据库索引？", "label": "general"}
+{"query": "请概括城市公共交通的要点。", "label": "general"}
+{"query": "顾客问到现金长短款时员工怎么解释？", "label": "internal"}
+{"query": "请举例介绍衣物清洗。", "label": "general"}
+{"query": "顾客问到退款到账异常时员工怎么解释？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，价签与售价不一致具体怎么做？", "label": "internal"}
+{"query": "门店员工处理积分累计要保留哪些凭证？", "label": "internal"}
+{"query": "开源软件通常指什么？", "label": "general"}
+{"query": "POS 或后台出现临期商品处理时有什么 SOP？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，部分退款具体怎么做？", "label": "internal"}
+{"query": "值班时发生会员日加码需要找谁审批？", "label": "internal"}
+{"query": "我想了解天气预报的基本原理。", "label": "general"}
+{"query": "如何理解成语的含义？", "label": "general"}
+{"query": "门店遇到优惠券退回应该走什么流程？", "label": "internal"}
+{"query": "内部规定里标签打印机卡纸的口径是什么？", "label": "internal"}
+{"query": "请概括成语的含义的要点。", "label": "general"}
+{"query": "我想了解旅行行李准备的基本原理。", "label": "general"}
+{"query": "能用简单的话说明合同基本概念吗？", "label": "general"}
+{"query": "家用电器节能通常指什么？", "label": "general"}
+{"query": "POS 或后台出现退款到账异常时有什么 SOP？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，会员日权益具体怎么做？", "label": "internal"}
+{"query": "什么是公共急救常识？", "label": "general"}
+{"query": "门店遇到开店检查应该走什么流程？", "label": "internal"}
+{"query": "值班时发生特殊商品售后需要找谁审批？", "label": "internal"}
+{"query": "内部规定里人工调整积分的口径是什么？", "label": "internal"}
+{"query": "门店员工处理会员日加码要保留哪些凭证？", "label": "internal"}
+{"query": "门店员工处理部分退款要保留哪些凭证？", "label": "internal"}
+{"query": "请解释一下保险的作用。", "label": "general"}
+{"query": "请查询知识库里的冷柜温度异常规则。", "label": "internal"}
+{"query": "Nova Retail 的每日重点盘点怎么处理？", "label": "internal"}
+{"query": "如何理解合同基本概念？", "label": "general"}
+{"query": "请举例介绍水的沸点。", "label": "general"}
+{"query": "价签与售价不一致有哪些例外和升级条件？", "label": "internal"}
+{"query": "请解释一下衣物清洗。", "label": "general"}
+{"query": "请解释一下合同基本概念。", "label": "general"}
+{"query": "请解释一下水的沸点。", "label": "general"}
+{"query": "请解释一下百分比计算。", "label": "general"}
+{"query": "顾客问到赠品退回时员工怎么解释？", "label": "internal"}
+{"query": "常规商品退货有哪些例外和升级条件？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，质量问题换货具体怎么做？", "label": "internal"}
+{"query": "平均数和中位数通常指什么？", "label": "general"}
+{"query": "门店员工处理优惠券退回要保留哪些凭证？", "label": "internal"}
+{"query": "我想了解衣物清洗的基本原理。", "label": "general"}
+{"query": "公开演讲通常指什么？", "label": "general"}
+{"query": "能用简单的话说明成语的含义吗？", "label": "general"}
+{"query": "门店员工处理临期商品处理要保留哪些凭证？", "label": "internal"}
+{"query": "关于低碳出行有哪些公开常识？", "label": "general"}
+{"query": "给我科普一下睡眠规律。", "label": "general"}
+{"query": "请举例介绍有氧运动。", "label": "general"}
+{"query": "请解释一下城市公共交通。", "label": "general"}
+{"query": "顾客问到会员换手机号时员工怎么解释？", "label": "internal"}
+{"query": "能用简单的话说明三角形面积吗？", "label": "general"}
+{"query": "Nova Retail 的优惠券退回怎么处理？", "label": "internal"}
+{"query": "请查询知识库里的盘点差异规则。", "label": "internal"}
+{"query": "顾客问到会员等级升级时员工怎么解释？", "label": "internal"}
+{"query": "给我科普一下百分比计算。", "label": "general"}
+{"query": "值班时发生临期商品处理需要找谁审批？", "label": "internal"}
+{"query": "给我科普一下公共急救常识。", "label": "general"}
+{"query": "什么是垃圾分类？", "label": "general"}
+{"query": "通货膨胀通常指什么？", "label": "general"}
+{"query": "请解释一下台风形成。", "label": "general"}
+{"query": "什么是家用电器节能？", "label": "general"}
+{"query": "门店遇到内部知识冲突应该走什么流程？", "label": "internal"}
+{"query": "Nova Retail 的冷柜温度异常怎么处理？", "label": "internal"}
+{"query": "生日券补发有哪些例外和升级条件？", "label": "internal"}
+{"query": "我想了解一元二次方程的基本原理。", "label": "general"}
+{"query": "POS 或后台出现会员换手机号时有什么 SOP？", "label": "internal"}
+{"query": "请举例介绍百分比计算。", "label": "general"}
+{"query": "冷柜温度异常有哪些例外和升级条件？", "label": "internal"}
+{"query": "能用简单的话说明有氧运动吗？", "label": "general"}
+{"query": "促销叠加顺序有哪些例外和升级条件？", "label": "internal"}
+{"query": "门店遇到无小票退货应该走什么流程？", "label": "internal"}
+{"query": "请查询知识库里的内部知识冲突规则。", "label": "internal"}
+{"query": "门店遇到部分退款应该走什么流程？", "label": "internal"}
+{"query": "给我科普一下阅读方法。", "label": "general"}
+{"query": "请举例介绍低碳出行。", "label": "general"}
+{"query": "值班时发生闭店检查需要找谁审批？", "label": "internal"}
+{"query": "能用简单的话说明水的沸点吗？", "label": "general"}
+{"query": "关于食物营养有哪些公开常识？", "label": "general"}
+{"query": "请解释一下中国传统节日。", "label": "general"}
+{"query": "内部规定里POS 支付异常的口径是什么？", "label": "internal"}
+{"query": "请解释一下垃圾分类。", "label": "general"}
+{"query": "会员日权益有哪些例外和升级条件？", "label": "internal"}
+{"query": "POS 或后台出现会员降级时有什么 SOP？", "label": "internal"}
+{"query": "内部规定里扫码枪故障的口径是什么？", "label": "internal"}
+{"query": "关于保险的作用有哪些公开常识？", "label": "general"}
+{"query": "人工调整积分有哪些例外和升级条件？", "label": "internal"}
+{"query": "我想了解有氧运动的基本原理。", "label": "general"}
+{"query": "内部知识冲突有哪些例外和升级条件？", "label": "internal"}
+{"query": "顾客问到无小票退货时员工怎么解释？", "label": "internal"}
+{"query": "请查询知识库里的闭店检查规则。", "label": "internal"}
+{"query": "值班时发生满减门槛需要找谁审批？", "label": "internal"}
+{"query": "请举例介绍保险的作用。", "label": "general"}
+{"query": "生鲜售后有哪些例外和升级条件？", "label": "internal"}
+{"query": "请概括公共急救常识的要点。", "label": "general"}
+{"query": "Nova Retail 的特殊商品售后怎么处理？", "label": "internal"}
+{"query": "POS 或后台出现活动价签时有什么 SOP？", "label": "internal"}
+{"query": "积分累计有哪些例外和升级条件？", "label": "internal"}
+{"query": "内部规定里冷藏商品验收的口径是什么？", "label": "internal"}
+{"query": "我想了解阅读方法的基本原理。", "label": "general"}
+{"query": "请查询知识库里的会员日权益规则。", "label": "internal"}
+{"query": "给我科普一下数据库索引。", "label": "general"}
+{"query": "请概括光合作用的要点。", "label": "general"}
+{"query": "门店遇到赠品退回应该走什么流程？", "label": "internal"}
+{"query": "门店员工处理生鲜售后要保留哪些凭证？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，内部知识冲突具体怎么做？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，扫码枪故障具体怎么做？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，退款到账异常具体怎么做？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，积分累计具体怎么做？", "label": "internal"}
+{"query": "关于合同基本概念有哪些公开常识？", "label": "general"}
+{"query": "请举例介绍牛顿第一定律。", "label": "general"}
+{"query": "关于平均数和中位数有哪些公开常识？", "label": "general"}
+{"query": "会员日加码有哪些例外和升级条件？", "label": "internal"}
+{"query": "会员等级升级有哪些例外和升级条件？", "label": "internal"}
+{"query": "Nova Retail 的人工调整积分怎么处理？", "label": "internal"}
+{"query": "请解释一下开源软件。", "label": "general"}
+{"query": "请概括阅读方法的要点。", "label": "general"}
+{"query": "给我科普一下保险的作用。", "label": "general"}
+{"query": "Nova Retail 的盘点差异怎么处理？", "label": "internal"}
+{"query": "内部规定里活动价签的口径是什么？", "label": "internal"}
+{"query": "我想了解保险的作用的基本原理。", "label": "general"}
+{"query": "Nova Retail 的会员日加码怎么处理？", "label": "internal"}
+{"query": "值班时发生质量问题换货需要找谁审批？", "label": "internal"}
+{"query": "请举例介绍烹饪米饭。", "label": "general"}
+{"query": "请解释一下世界时区。", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，会员降级具体怎么做？", "label": "internal"}
+{"query": "门店遇到满减门槛应该走什么流程？", "label": "internal"}
+{"query": "关于HTTP 状态码有哪些公开常识？", "label": "general"}
+{"query": "什么是世界时区？", "label": "general"}
+{"query": "能用简单的话说明公开演讲吗？", "label": "general"}
+{"query": "请查询知识库里的标签打印机卡纸规则。", "label": "internal"}
+{"query": "给我科普一下光合作用。", "label": "general"}
+{"query": "门店遇到盘点机同步失败应该走什么流程？", "label": "internal"}
+{"query": "请查询知识库里的满减门槛规则。", "label": "internal"}
+{"query": "请举例介绍天气预报。", "label": "general"}
+{"query": "能用简单的话说明咖啡冲泡吗？", "label": "general"}
+{"query": "给我科普一下衣物清洗。", "label": "general"}
+{"query": "我想了解通货膨胀的基本原理。", "label": "general"}
+{"query": "关于城市公共交通有哪些公开常识？", "label": "general"}
+{"query": "顾客问到新客券发放时员工怎么解释？", "label": "internal"}
+{"query": "门店遇到冷柜温度异常应该走什么流程？", "label": "internal"}
+{"query": "门店员工处理内部知识冲突要保留哪些凭证？", "label": "internal"}
+{"query": "我想了解网络安全常识的基本原理。", "label": "general"}
+{"query": "优惠券退回有哪些例外和升级条件？", "label": "internal"}
+{"query": "内部规定里冷柜温度异常的口径是什么？", "label": "internal"}
+{"query": "低碳出行通常指什么？", "label": "general"}
+{"query": "门店遇到冷冻商品储存应该走什么流程？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，生鲜售后具体怎么做？", "label": "internal"}
+{"query": "请查询知识库里的积分累计规则。", "label": "internal"}
+{"query": "关于世界时区有哪些公开常识？", "label": "general"}
+{"query": "按照 Nova Retail 演示制度，会员等级升级具体怎么做？", "label": "internal"}
+{"query": "什么是公开演讲？", "label": "general"}
+{"query": "请查询知识库里的质量问题换货规则。", "label": "internal"}
+{"query": "POS 或后台出现冷藏商品验收时有什么 SOP？", "label": "internal"}
+{"query": "请查询知识库里的人工调整积分规则。", "label": "internal"}
+{"query": "如何理解城市公共交通？", "label": "general"}
+{"query": "请概括烹饪米饭的要点。", "label": "general"}
+{"query": "内部规定里每日重点盘点的口径是什么？", "label": "internal"}
+{"query": "请解释一下咖啡冲泡。", "label": "general"}
+{"query": "Nova Retail 的食品安全投诉怎么处理？", "label": "internal"}
+{"query": "我想了解水的沸点的基本原理。", "label": "general"}
+{"query": "门店员工处理会员降级要保留哪些凭证？", "label": "internal"}
+{"query": "请概括百分比计算的要点。", "label": "general"}
+{"query": "什么是台风形成？", "label": "general"}
+{"query": "请举例介绍中国传统节日。", "label": "general"}
+{"query": "Nova Retail 的促销订单退款怎么处理？", "label": "internal"}
+{"query": "门店员工处理新客券发放要保留哪些凭证？", "label": "internal"}
+{"query": "请查询知识库里的优惠券退回规则。", "label": "internal"}
+{"query": "给我科普一下公开演讲。", "label": "general"}
+{"query": "关于中国传统节日有哪些公开常识？", "label": "general"}
+{"query": "能用简单的话说明公共急救常识吗？", "label": "general"}
+{"query": "什么是旅行行李准备？", "label": "general"}
+{"query": "值班时发生标签打印机卡纸需要找谁审批？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，闭店检查具体怎么做？", "label": "internal"}
+{"query": "内部规定里特殊商品售后的口径是什么？", "label": "internal"}
+{"query": "请举例介绍垃圾分类。", "label": "general"}
+{"query": "顾客问到盘点差异时员工怎么解释？", "label": "internal"}
+{"query": "中国传统节日通常指什么？", "label": "general"}
+{"query": "门店员工处理常规商品退货要保留哪些凭证？", "label": "internal"}
+{"query": "值班时发生会员账户合并需要找谁审批？", "label": "internal"}
+{"query": "请概括垃圾分类的要点。", "label": "general"}
+{"query": "我想了解汉字偏旁的基本原理。", "label": "general"}
+{"query": "门店遇到生日券补发应该走什么流程？", "label": "internal"}
+{"query": "请举例介绍开源软件。", "label": "general"}
+{"query": "值班时发生部分退款需要找谁审批？", "label": "internal"}
+{"query": "促销订单退款有哪些例外和升级条件？", "label": "internal"}
+{"query": "内部规定里无小票退货的口径是什么？", "label": "internal"}
+{"query": "门店遇到会员日加码应该走什么流程？", "label": "internal"}
+{"query": "门店遇到现金长短款应该走什么流程？", "label": "internal"}
+{"query": "请查询知识库里的退款到账异常规则。", "label": "internal"}
+{"query": "食物营养通常指什么？", "label": "general"}
+{"query": "请查询知识库里的盘点机同步失败规则。", "label": "internal"}
+{"query": "请解释一下牛顿第一定律。", "label": "general"}
+{"query": "请概括衣物清洗的要点。", "label": "general"}
+{"query": "请概括银行利息的要点。", "label": "general"}
+{"query": "什么是保险的作用？", "label": "general"}
+{"query": "Nova Retail 的无小票退货怎么处理？", "label": "internal"}
+{"query": "按照 Nova Retail 演示制度，活动价签具体怎么做？", "label": "internal"}
+{"query": "什么是成语的含义？", "label": "general"}
+{"query": "什么是阅读方法？", "label": "general"}
+{"query": "如何理解世界时区？", "label": "general"}
+{"query": "内部规定里会员换手机号的口径是什么？", "label": "internal"}
+{"query": "能用简单的话说明牛顿第一定律吗？", "label": "general"}
+{"query": "门店遇到价签与售价不一致应该走什么流程？", "label": "internal"}
+{"query": "POS 或后台出现生日券补发时有什么 SOP？", "label": "internal"}
+{"query": "会员降级有哪些例外和升级条件？", "label": "internal"}
+{"query": "请解释一下三角形面积。", "label": "general"}
+{"query": "POS 或后台出现食品安全投诉时有什么 SOP？", "label": "internal"}
+{"query": "我想了解家用电器节能的基本原理。", "label": "general"}
+{"query": "内部规定里闭店检查的口径是什么？", "label": "internal"}
+{"query": "内部规定里退款到账异常的口径是什么？", "label": "internal"}
+{"query": "Nova Retail 的会员降级怎么处理？", "label": "internal"}
+{"query": "关于汉字偏旁有哪些公开常识？", "label": "general"}
+{"query": "值班时发生冷柜温度异常需要找谁审批？", "label": "internal"}
+{"query": "请举例介绍概率的含义。", "label": "general"}
+{"query": "给我科普一下三角形面积。", "label": "general"}
+{"query": "地图比例尺通常指什么？", "label": "general"}
+{"query": "内部规定里会员降级的口径是什么？", "label": "internal"}
+{"query": "什么是天气预报？", "label": "general"}
+{"query": "请解释一下有氧运动。", "label": "general"}
+{"query": "台风形成通常指什么？", "label": "general"}
+{"query": "我想了解公开演讲的基本原理。", "label": "general"}
+{"query": "如何理解公共急救常识？", "label": "general"}
+{"query": "门店遇到盘点差异应该走什么流程？", "label": "internal"}
+{"query": "顾客问到会员日加码时员工怎么解释？", "label": "internal"}
+{"query": "POS 或后台出现开店检查时有什么 SOP？", "label": "internal"}
+{"query": "银行利息通常指什么？", "label": "general"}
+{"query": "值班时发生生鲜售后需要找谁审批？", "label": "internal"}
+{"query": "无小票退货有哪些例外和升级条件？", "label": "internal"}
+{"query": "关于烹饪米饭有哪些公开常识？", "label": "general"}
+{"query": "门店遇到食品安全投诉应该走什么流程？", "label": "internal"}
+{"query": "能用简单的话说明天气预报吗？", "label": "general"}
+{"query": "闭店检查有哪些例外和升级条件？", "label": "internal"}
+{"query": "百分比计算通常指什么？", "label": "general"}
+{"query": "给我科普一下机器学习。", "label": "general"}
+{"query": "值班时发生POS 支付异常需要找谁审批？", "label": "internal"}
+{"query": "门店遇到积分累计应该走什么流程？", "label": "internal"}
+{"query": "什么是中国传统节日？", "label": "general"}
+{"query": "请概括地图比例尺的要点。", "label": "general"}
+{"query": "请概括咖啡冲泡的要点。", "label": "general"}
+{"query": "我想了解中国传统节日的基本原理。", "label": "general"}
+{"query": "能用简单的话说明保险的作用吗？", "label": "general"}

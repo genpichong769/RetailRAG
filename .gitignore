@@ -38,12 +38,17 @@ locust_*.html
 # Private/local knowledge bases and FAQ source data
 /rag_qa/data/*
 !/rag_qa/data/README.md
+!/rag_qa/data/*_data/
+!/rag_qa/data/*_data/*.md
 /mysql_qa/data/*
 !/mysql_qa/data/README.md
+!/mysql_qa/data/retail_faq.csv
 
 # Local model weights and training artifacts
 /rag_qa/models/*
 !/rag_qa/models/README.md
+!/rag_qa/models/retail-query-classifier/
+!/rag_qa/models/retail-query-classifier/*
 /rag_qa/core/bert_query_classifier/
 /rag_qa/core/bert_outputs/
 /rag_qa/core/bert_results/
@@ -54,6 +59,7 @@ locust_*.html
 *.ckpt
 *.bin
 *.safetensors
+!/rag_qa/models/retail-query-classifier/model.safetensors
 *.onnx
 *.onnx_data
 
@@ -68,9 +74,18 @@ locust_*.html
 *.sqlite3
 *.dump
 *.sql.gz
+/cache/
+/tmp/
+**/.cache/huggingface/
+**/.cache/modelscope/
+**/huggingface/hub/
+**/modelscope/hub/
+/docker/**/mysql.sock
 
 # Generated evaluation/performance artifacts
 /rag_qa/rag_assesment/ragas_evaluation_results.csv
+*_checkpoint.json
+*_resume.json
 
 # Notebook outputs with local paths and copied tokenizer artifacts
 /notebooks/bert_models.ipynb

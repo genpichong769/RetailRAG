@@ -1,0 +1,2768 @@
+{
+  "sample_count": 235,
+  "samples": [
+    {
+      "id": "single_001",
+      "question": "顾客买回家的生鲜食品出现质量问题，门店可以怎么处理？",
+      "ground_truth": "如果是因为质量、错发或运输温控异常导致的问题，门店可以受理，并根据授权完成退款或换货，同时创建质量事件记录。",
+      "reference_documents": [
+        "food_fresh"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_002",
+      "question": "顾客没有小票，怎么处理退换货？",
+      "ground_truth": "可凭会员手机号、支付流水末四位、交易日期和门店组合查找近90天电子订单；找到唯一原订单后按原售后政策处理。",
+      "reference_documents": [
+        "no_receipt"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_003",
+      "question": "顾客只退促销订单里的一件商品，退款金额怎么算？",
+      "ground_truth": "系统按该商品在原订单中分摊后的实付金额计算退款，不按吊牌价退。",
+      "reference_documents": [
+        "promo_partial_return"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_004",
+      "question": "顾客用多种方式付款后退货，退款怎么处理？",
+      "ground_truth": "混合支付按原支付构成分别退回，积分退到会员账户，电子支付由支付机构处理，现金部分按门店现金授权执行。",
+      "reference_documents": [
+        "refund_channels"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_005",
+      "question": "顾客买完东西七天内没拆封，能退吗？",
+      "ground_truth": "可以，非质量问题的常规商品在购买后7天内、未使用且包装附件完整时可申请退换。",
+      "reference_documents": [
+        "return_exchange"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_006",
+      "question": "顾客买了已开封的食品想无理由退货，能受理吗？",
+      "ground_truth": "已开封食品通常不支持无理由退货。",
+      "reference_documents": [
+        "special_goods"
+      ],
+      "category": "after_sales",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_007",
+      "question": "冷柜温度异常时，员工第一步应该做什么？",
+      "ground_truth": "立即停止补货并记录当前温度、发现时间和最近一次正常记录。",
+      "reference_documents": [
+        "cold_cabinet"
+      ],
+      "category": "equipment",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_008",
+      "question": "离线盘点时如果网络恢复了，应该怎么处理数据提交？",
+      "ground_truth": "恢复网络后只提交一次。",
+      "reference_documents": [
+        "inventory_terminal"
+      ],
+      "category": "equipment",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_009",
+      "question": "标签打印机卡纸了该怎么处理？",
+      "ground_truth": "先断电，然后按照走纸方向取出卡住的纸张，不能使用尖锐工具刮擦打印头。",
+      "reference_documents": [
+        "label_printer"
+      ],
+      "category": "equipment",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_010",
+      "question": "POS机出现故障时，员工第一步应该做什么？",
+      "ground_truth": "保存当前订单并记录错误码。",
+      "reference_documents": [
+        "pos_troubleshooting"
+      ],
+      "category": "equipment",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_011",
+      "question": "扫码枪扫不出条码该怎么处理？",
+      "ground_truth": "先用测试条码判断设备是否有输出，清洁镜窗并检查连接，然后重启POS外设服务；若仍未恢复，换备用设备并报修。",
+      "reference_documents": [
+        "scanner_troubleshooting"
+      ],
+      "category": "equipment",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_012",
+      "question": "顾客想换绑定手机号，但收不到原号码的验证码怎么办？",
+      "ground_truth": "无法验证原号时需转人工工单核验。",
+      "reference_documents": [
+        "account_registration"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_013",
+      "question": "门店员工在处理会员积分异常时，需要准备哪些材料才能发起人工调整？",
+      "ground_truth": "需要原交易凭证、原因代码和可追溯的审批记录。",
+      "reference_documents": [
+        "member_adjustment"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_014",
+      "question": "顾客想知道自己生日那个月能不能享受生日优惠，需要满足什么条件？",
+      "ground_truth": "生日权益在顾客登记生日月份发放，每个自然年一次，且生日信息需至少提前7天完成登记。",
+      "reference_documents": [
+        "member_day_birthday"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_015",
+      "question": "顾客怎么知道自己能不能升级成金卡会员？",
+      "ground_truth": "系统根据顾客过去连续12个月符合条件的实付金额判断，达到10000元即可在次日升级为金卡会员。",
+      "reference_documents": [
+        "member_levels"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_016",
+      "question": "金卡会员在2026年购物时，积分是怎么计算的？",
+      "ground_truth": "2026年1月1日起，金卡会员购买符合积分条件的商品时，按净实付每满1元累计1.5积分；不足1元部分不累计。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_017",
+      "question": "顾客买完东西后，积分什么时候能到账？",
+      "ground_truth": "积分通常在交易完成后24小时内到账。",
+      "reference_documents": [
+        "points_rules"
+      ],
+      "category": "membership",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_018",
+      "question": "顾客没有纸质小票，门店还能查到他的电子订单吗？",
+      "ground_truth": "可以，门店可按《无小票与订单查找处理》组合查询近90天电子订单，不再要求顾客必须出示纸质小票。",
+      "reference_documents": [
+        "after_sales_update"
+      ],
+      "category": "notice",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_019",
+      "question": "春季会员日活动期间，顾客怎样才能拿到满100减10的优惠券？",
+      "ground_truth": "当日会员完成符合条件的首笔订单后，系统会自动发放一张次月到期的满100减10券。",
+      "reference_documents": [
+        "spring_member_day"
+      ],
+      "category": "notice",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_020",
+      "question": "门店遇到顾客滑倒受伤的情况该怎么处理？",
+      "ground_truth": "应按三级事件立即升级，优先采取人员保护措施，并在30分钟内联系区域运营；若存在紧急危险，应先报警或联系急救。",
+      "reference_documents": [
+        "incident_escalation"
+      ],
+      "category": "policy",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_021",
+      "question": "当门店员工发现两份知识文档内容冲突时，应该怎么做？",
+      "ground_truth": "应暂停回答，记录问题、命中文档和业务影响，标记待核实并通知责任部门，待确认后再更新源文档并重新入库。",
+      "reference_documents": [
+        "knowledge_governance"
+      ],
+      "category": "policy",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_022",
+      "question": "员工在处理顾客订单时，可以查看哪些个人信息？",
+      "ground_truth": "只为当前服务目的查看必要信息，不复制完整手机号、支付号、验证码或身份证件。",
+      "reference_documents": [
+        "privacy_security"
+      ],
+      "category": "policy",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_023",
+      "question": "冷链商品到货后多久必须完成入库或上架？",
+      "ground_truth": "验收后20分钟内完成入库或上架。",
+      "reference_documents": [
+        "cold_chain"
+      ],
+      "category": "product",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_024",
+      "question": "如果发现货架上的价签价格和系统里不一样，员工应该怎么做？",
+      "ground_truth": "暂停相关陈列并由值班经理核验，不让顾客自行承担内部错误。",
+      "reference_documents": [
+        "display_price"
+      ],
+      "category": "product",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_025",
+      "question": "门店员工发现商品超过保质期后应该怎么做？",
+      "ground_truth": "立即隔离，不得销售、试吃、赠送或退回货架。",
+      "reference_documents": [
+        "expiry_loss"
+      ],
+      "category": "product",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_026",
+      "question": "冷藏商品验收时的温度范围是多少？",
+      "ground_truth": "冷藏商品验收温度为 0 至 4 摄氏度。",
+      "reference_documents": [
+        "receiving_inspection"
+      ],
+      "category": "product",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_027",
+      "question": "顾客整单取消后，优惠券还能退回吗？",
+      "ground_truth": "整单取消且券仍在有效期内时系统原路退回；部分退款或券已过期时通常不退券。",
+      "reference_documents": [
+        "coupon_rules"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_028",
+      "question": "顾客退货时，满减优惠怎么计算退款金额？",
+      "ground_truth": "退款以商品分摊后的实付金额为上限，优惠按参与商品活动价比例分摊到各行。",
+      "reference_documents": [
+        "full_reduction"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_029",
+      "question": "顾客退货时没把赠品带回来，该怎么处理？",
+      "ground_truth": "主商品全部退货时应同时退回完好赠品；无法退回时按订单显示的赠品结算价值从退款中扣减。",
+      "reference_documents": [
+        "gift_rules"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_030",
+      "question": "门店员工在会员日收银时应该如何操作？",
+      "ground_truth": "收银时先识别会员，再由系统自动计算折扣。",
+      "reference_documents": [
+        "member_day_campaign"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_031",
+      "question": "新顾客怎么才能拿到优惠券包？",
+      "ground_truth": "新客需完成本人手机号验证，系统会自动发放券包，有效期30天。",
+      "reference_documents": [
+        "new_customer_offer"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_032",
+      "question": "顾客结账时，系统按照什么顺序应用各种优惠？",
+      "ground_truth": "结算顺序为：商品活动价、订单满减、可用优惠券、会员积分抵扣。",
+      "reference_documents": [
+        "promotion_stacking"
+      ],
+      "category": "promotion",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_033",
+      "question": "收银交接时发现现金少了15元，应该怎么处理？",
+      "ground_truth": "由值班经理复核并记录，因为单班差异不超过20元。",
+      "reference_documents": [
+        "cash_handover"
+      ],
+      "category": "store_operation",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_034",
+      "question": "闭店时现金清点有什么具体要求？",
+      "ground_truth": "现金必须双人清点、封袋并记录差异。",
+      "reference_documents": [
+        "closing_checklist"
+      ],
+      "category": "store_operation",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "single_035",
+      "question": "门店员工遇到顾客投诉时，第一步应该做什么？",
+      "ground_truth": "倾听并复述顾客的诉求，确认事实。",
+      "reference_documents": [
+        "customer_complaint"
+      ],
+      "category": "store_operation",
+      "question_type": "single_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_001",
+      "question": "处理食品质量投诉时需要顾客提供哪些证据？",
+      "ground_truth": "需要顾客提供商品、批次、问题部位和储存情况的照片，并建议在发现问题后24小时内反馈。",
+      "reference_documents": [
+        "food_fresh"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_002",
+      "question": "用支付流水末四位能查到订单吗？",
+      "ground_truth": "可以，结合会员手机号、交易日期和门店，使用支付流水末四位可在售后查询页查找近90天的电子订单。",
+      "reference_documents": [
+        "no_receipt"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_003",
+      "question": "部分退货时，优惠券会退回吗？",
+      "ground_truth": "优惠券不因部分退货退回；只有整单取消且券仍有效时才按券规则原路退回。",
+      "reference_documents": [
+        "promo_partial_return"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_004",
+      "question": "退款时提到的‘原路返回’具体指什么？",
+      "ground_truth": "退款默认原路返回，即按照顾客原始支付方式和构成分别退回对应金额。",
+      "reference_documents": [
+        "refund_channels"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_005",
+      "question": "质量问题的商品超过30天还能退换吗？",
+      "ground_truth": "质量问题在购买后30天内受理，超出期间需转售后专员判断。",
+      "reference_documents": [
+        "return_exchange"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_006",
+      "question": "高价值电子商品退货时需要核验哪些信息？",
+      "ground_truth": "需核验序列号、附件和激活状态。",
+      "reference_documents": [
+        "special_goods"
+      ],
+      "category": "after_sales",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_007",
+      "question": "在处理冷柜温控异常时，为什么要对转移的商品进行分批次标记？",
+      "ground_truth": "为了避免与正常商品混放。",
+      "reference_documents": [
+        "cold_cabinet"
+      ],
+      "category": "equipment",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_008",
+      "question": "盘点终端同步异常时，需要记录哪些信息以便后续处理？",
+      "ground_truth": "需要记录错误码和未提交数量。",
+      "reference_documents": [
+        "inventory_terminal"
+      ],
+      "category": "equipment",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_009",
+      "question": "更换标签纸时需要注意什么规格问题？",
+      "ground_truth": "更换耗材前必须确认标签规格与当前打印任务一致。",
+      "reference_documents": [
+        "label_printer"
+      ],
+      "category": "equipment",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_010",
+      "question": "POS收银异常处理中提到的‘错误码’有什么作用？",
+      "ground_truth": "用于记录故障信息，是处理网络、登录、支付、日结等常见POS故障时必须先记录的内容。",
+      "reference_documents": [
+        "pos_troubleshooting"
+      ],
+      "category": "equipment",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_011",
+      "question": "遇到扫码枪串码问题时应遵循哪些核心规则？",
+      "ground_truth": "先区分是单个商品条码问题还是设备整体问题；清洁扫描窗、检查接口和输入模式后，可重新插拔设备一次；同一商品多次识别为错误编码时，停止销售该批商品并核对商品主数据。",
+      "reference_documents": [
+        "scanner_troubleshooting"
+      ],
+      "category": "equipment",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_012",
+      "question": "会员账户合并后，重复的优惠券怎么处理？",
+      "ground_truth": "同一券模板的重复券只保留有效期更晚的一张。",
+      "reference_documents": [
+        "account_registration"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_013",
+      "question": "如果一笔人工积分调整超过500分，应该由谁审批？",
+      "ground_truth": "超过500积分或涉及等级变更时，需升级至区域运营审批。",
+      "reference_documents": [
+        "member_adjustment"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_014",
+      "question": "会员日是哪一天？具体优惠怎么确定？",
+      "ground_truth": "常规会员日为每月8日；具体折扣、参与门店和排除商品以当期《会员日活动执行通知》为准。",
+      "reference_documents": [
+        "member_day_birthday"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_015",
+      "question": "哪些消费不计入会员等级金额？",
+      "ground_truth": "储值充值、运费、礼品卡购买和取消订单不计入等级金额。",
+      "reference_documents": [
+        "member_levels"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_016",
+      "question": "金卡会员的积分累计口径中，‘净实付’指的是什么？",
+      "ground_truth": "金卡会员按净实付每满1元累计1.5积分；不足1元部分不累计。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_017",
+      "question": "使用积分抵扣时，每单最多能用多少比例的积分？",
+      "ground_truth": "每单最多抵扣应付金额的20%。",
+      "reference_documents": [
+        "points_rules"
+      ],
+      "category": "membership",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_018",
+      "question": "高价值电子商品退换时需要核验哪些信息？",
+      "ground_truth": "须核对订单序列号、实物序列号和系统激活状态。",
+      "reference_documents": [
+        "after_sales_update"
+      ],
+      "category": "notice",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_019",
+      "question": "参与门店在春季会员日当天如何处理顾客未收到活动券的情况？",
+      "ground_truth": "记录订单号，10分钟后按活动工单处理。",
+      "reference_documents": [
+        "spring_member_day"
+      ],
+      "category": "notice",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "keyword_020",
+      "question": "什么情况下门店异常事件需要按三级事件处理？",
+      "ground_truth": "涉及人身安全、食品安全、重大资金、数据泄露、媒体关注或违法风险时按三级事件立即升级。",
+      "reference_documents": [
+        "incident_escalation"
+      ],
+      "category": "policy",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_001",
+      "question": "店里出了问题，值班经理自己能搞定吗？还是得往上报告？",
+      "ground_truth": "如果是一般异常，值班经理可以处理并留痕；但如果可能扩大影响，得30分钟内上报区域运营；要是涉及人身安全、食品安全等严重情况，必须马上升级为三级事件处理。",
+      "reference_documents": [
+        "incident_escalation"
+      ],
+      "category": "policy",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_002",
+      "question": "如果手头的资料跟公司制度对不上，一线员工该怎么处理？",
+      "ground_truth": "不能自己挑着用对自己有利的说法，得先停一停，把问题记下来，告诉负责的部门去确认清楚。",
+      "reference_documents": [
+        "knowledge_governance"
+      ],
+      "category": "policy",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_003",
+      "question": "要是发现不小心把顾客数据发错地方了，该咋办？",
+      "ground_truth": "发现误发、越权或账号异常立即停止操作并上报。",
+      "reference_documents": [
+        "privacy_security"
+      ],
+      "category": "policy",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_004",
+      "question": "刚送来的冷藏冷冻货，是不是可以先放店里过道等会儿再处理？",
+      "ground_truth": "不可以，暂存期间不得放置在常温通道，验收后20分钟内必须入库或上架。",
+      "reference_documents": [
+        "cold_chain"
+      ],
+      "category": "product",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_005",
+      "question": "搞促销的时候，门店员工要怎么处理价签才不会出问题？",
+      "ground_truth": "促销开始和结束时都要执行价签任务，活动结束后要及时撤下旧物料并回收。",
+      "reference_documents": [
+        "display_price"
+      ],
+      "category": "product",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_006",
+      "question": "如果商品快过期了，店里一般怎么处理？",
+      "ground_truth": "按品类任务提前扫描，系统会给出折价或下架建议，员工要把它们移到指定区域并换上合规的价签。",
+      "reference_documents": [
+        "expiry_loss"
+      ],
+      "category": "product",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_007",
+      "question": "我们门店员工在收货时发现冷冻品温度高于零下18度，能直接入库吗？",
+      "ground_truth": "不能，冷冻商品温度不高于零下18摄氏度才可验收，超温批次需隔离待判。",
+      "reference_documents": [
+        "receiving_inspection"
+      ],
+      "category": "product",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_008",
+      "question": "如果顾客退了一部分商品，之前用的优惠券能退回去吗？",
+      "ground_truth": "部分退款或券已过期时通常不退券。",
+      "reference_documents": [
+        "coupon_rules"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_009",
+      "question": "如果只退一部分商品，之前用的满减会不会被追回？",
+      "ground_truth": "部分退款后不重新追收整单已享受的满减。",
+      "reference_documents": [
+        "full_reduction"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_010",
+      "question": "结账的时候怎么确认赠品已经正确加进去了？",
+      "ground_truth": "结账前扫描赠品条码并核对零售价显示为零，并在小票上确认赠品行和领取状态。",
+      "reference_documents": [
+        "gift_rules"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_011",
+      "question": "如果顾客问今天是不是所有东西都能打九五折，该怎么回应？",
+      "ground_truth": "不是所有商品都参与，只有普通价商品且未标记“不参与会员折扣”的才享95折，具体以活动配置和门店任务单为准。",
+      "reference_documents": [
+        "member_day_campaign"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_012",
+      "question": "我第一次在店里买东西，能用新客优惠吗？得满足啥条件？",
+      "ground_truth": "只有首次完成手机号验证、且没有过合并账户记录的会员才算新客，才能享受新客优惠。",
+      "reference_documents": [
+        "new_customer_offer"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_013",
+      "question": "顾客想用积分和优惠券一起付款，该怎么算？",
+      "ground_truth": "先按商品活动价、订单满减、优惠券的顺序计算，最后用券后应付金额来确定积分能抵多少。",
+      "reference_documents": [
+        "promotion_stacking"
+      ],
+      "category": "promotion",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_014",
+      "question": "如果交班时点出来的钱跟系统对不上，而且差得挺多，是不是得马上找上级？",
+      "ground_truth": "是的，超过20元、连续出现差异或疑似舞弊的情况要立即上报区域运营。",
+      "reference_documents": [
+        "cash_handover"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_015",
+      "question": "关店的时候，哪些设备可以关，哪些得留着开？",
+      "ground_truth": "要关闭非必要电源，但必须保留冷链和安防设备运行，并确认消防通道无阻挡。",
+      "reference_documents": [
+        "closing_checklist"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_016",
+      "question": "如果顾客闹得比较凶，甚至有动手的可能，店员该咋办？",
+      "ground_truth": "优先报警和疏散，不以完成服务流程为前提。",
+      "reference_documents": [
+        "customer_complaint"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_017",
+      "question": "如果两个人盘同一个商品结果还是对不上，该怎么办？",
+      "ground_truth": "同一商品复盘仍有差异时，要记录在途、退货、破损和未入账调拨等情况。",
+      "reference_documents": [
+        "daily_inventory"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_018",
+      "question": "如果盘点时发现货不对板，是不是得先找人再数一遍？",
+      "ground_truth": "是的，应由不同人员完成二次计数。",
+      "reference_documents": [
+        "inventory_variance"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_019",
+      "question": "店里面做月度大盘点的时候，要是正好还在卖东西，得用什么方式来盘？",
+      "ground_truth": "必须使用系统动态盘点模式。",
+      "reference_documents": [
+        "monthly_inventory"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "paraphrase_020",
+      "question": "如果只有一个人到店，能正常开始营业吗？",
+      "ground_truth": "不能，单人开店属于排班异常，应联系值班经理。",
+      "reference_documents": [
+        "opening_checklist"
+      ],
+      "category": "store_operation",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_001",
+      "question": "顾客因更换手机号导致积分未累计，申请人工补积并合并旧账户，应如何处理？",
+      "ground_truth": "需先验证原手机号和新手机号，若无法验证原号则转人工工单核验；同时创建会员调整工单上传原交易凭证，并发起账户合并工单。合并后保留较高等级，积分余额相加；若补积超过500分或涉及等级变更，需升级区域运营审批，整体处理目标为3个工作日。",
+      "reference_documents": [
+        "member_adjustment",
+        "account_registration"
+      ],
+      "category": "membership",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_002",
+      "question": "顾客反映两个账户重复注册且其中一个账户有积分漏积，能否一并处理？",
+      "ground_truth": "可以一并处理，但需分别操作：首先确认两个账户无冻结、欠款或待处理退款，方可发起账户合并工单，合并后保留较高等级、积分相加；对于漏积问题，需核验原交易凭证，在服务台创建积分调整工单，若单次补积不超过500分由值班经理复核，否则需区域运营审批。两项操作均需在3个工作日内完成。",
+      "reference_documents": [
+        "member_adjustment",
+        "account_registration"
+      ],
+      "category": "membership",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_003",
+      "question": "顾客使用新客券后整单取消，该券能否退回？如果能，退回后是否还能与其他促销叠加使用？",
+      "ground_truth": "若整单取消且新客券仍在有效期内，系统会原路退回该券；根据促销叠加规则，同一订单最多使用一张订单券，是否可与其他促销叠加需以券面‘可叠加’标识为准。",
+      "reference_documents": [
+        "coupon_rules",
+        "promotion_stacking"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_004",
+      "question": "顾客在结算时想同时使用新客券和参与满减活动，系统如何计算优惠顺序？若之后部分退款，新客券会如何处理？",
+      "ground_truth": "系统按商品活动价、订单满减、可用优惠券的顺序计算优惠；若发生部分退款，即使新客券仍在有效期内，通常也不予退回。",
+      "reference_documents": [
+        "coupon_rules",
+        "promotion_stacking"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_005",
+      "question": "顾客使用一张订单优惠券并参与满减活动，结算时满减门槛如何计算？",
+      "ground_truth": "满减门槛按商品活动价合计判断，并在商品活动价、订单满减、可用优惠券、会员积分抵扣的顺序中，于订单满减阶段计算；优惠券在满减之后应用。",
+      "reference_documents": [
+        "promotion_stacking",
+        "full_reduction"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_006",
+      "question": "若顾客部分退货，已享受的满减优惠和使用的积分如何处理？",
+      "ground_truth": "部分退款后不重新追收整单已享受的满减，退款以商品分摊后的实付金额为上限；积分按券后应付金额计算抵扣上限，但资料未说明积分在退款中的具体退回规则，仅明确满减不追收。",
+      "reference_documents": [
+        "promotion_stacking",
+        "full_reduction"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_007",
+      "question": "顾客对使用了优惠券并获得赠品的订单申请部分退货，应如何处理退款、优惠券和赠品？",
+      "ground_truth": "退款按退货商品分摊后的实付金额计算，优惠券不因部分退货退回；若赠品与退货主商品关联且未全部退货，则无需退回赠品，但需核对关联关系。",
+      "reference_documents": [
+        "promo_partial_return",
+        "gift_rules"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_008",
+      "question": "如果顾客退货时无法退回已领取的赠品，且该订单还使用了积分抵扣，系统应如何处理退款和积分返还？",
+      "ground_truth": "无法退回赠品时，按订单显示的赠品结算价值从退款中扣减；已抵扣积分按退货商品分摊比例返还，返还积分沿用原批次到期日，已过期部分不恢复。",
+      "reference_documents": [
+        "promo_partial_return",
+        "gift_rules"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_009",
+      "question": "顾客购买了一件未开封的贴身用品，三天后因尺码不合适要求无理由退货，门店应如何处理？",
+      "ground_truth": "该商品属于特殊商品，根据规定不支持无理由退货，即使未开封且在7天内，也不能按常规商品退换货政策处理。",
+      "reference_documents": [
+        "return_exchange",
+        "special_goods"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_010",
+      "question": "顾客持有一台已激活的高价值电子商品，称存在屏幕亮点问题并要求退货，门店是否可以受理？",
+      "ground_truth": "虽然已激活的数字商品通常不支持无理由退货，但若存在质量问题，仍应依法受理；门店需核验序列号、附件和激活状态，并按质量问题在30天内处理。",
+      "reference_documents": [
+        "return_exchange",
+        "special_goods"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_011",
+      "question": "顾客没有小票，但记得用手机支付购买了一台高价值电子商品，门店应如何处理其退换货请求？",
+      "ground_truth": "门店可凭会员手机号、支付流水末四位、交易日期和门店组合查询近90天电子订单；找到唯一订单后，须核对订单序列号、实物序列号和系统激活状态，再按原售后政策处理。",
+      "reference_documents": [
+        "no_receipt",
+        "after_sales_update"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_012",
+      "question": "当顾客无法提供纸质小票且仅能口述交易信息时，门店能否直接退款？若不能，应如何操作？",
+      "ground_truth": "不能凭口述直接退款。门店应先询问交易日期、门店、金额和支付方式，在售后查询页组合检索；若无法唯一定位订单，需登记联系方式并转人工核查。",
+      "reference_documents": [
+        "no_receipt",
+        "after_sales_update"
+      ],
+      "category": "after_sales",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_013",
+      "question": "门店闭店时发现现金差异超过20元，应如何处理？",
+      "ground_truth": "根据《门店闭店检查清单》，发现现金重大差异须在离店前上报；同时依据《收银交接与现金差异处理》，超过20元的差异应立即升级至区域运营，并由值班经理复核，不得由员工私下垫付或冲抵。",
+      "reference_documents": [
+        "closing_checklist",
+        "cash_handover"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_014",
+      "question": "闭店日结过程中若出现支付系统未结算导致的账面差异，是否计入现金长短款？",
+      "ground_truth": "不计入。根据《收银交接与现金差异处理》，支付系统未结算造成的账面差异应单独标记，不计为现金长短款；同时《门店闭店检查清单》要求保留错误码，不得重复提交造成账务重复。",
+      "reference_documents": [
+        "closing_checklist",
+        "cash_handover"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_015",
+      "question": "Nova Retail门店在开店和闭店时，分别需要多少名员工参与关键操作？",
+      "ground_truth": "开店时至少需要两人共同完成重点区域检查；闭店盘点时，第一人进行盲盘，第二人对差异商品复盘。",
+      "reference_documents": [
+        "opening_checklist",
+        "daily_inventory"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_016",
+      "question": "Nova Retail门店员工在发现商品数量异常时，应如何处理以确保合规？",
+      "ground_truth": "不得直接修改系统数量使账实一致；若同一商品复盘仍有差异，需记录在途、退货、破损和未入账调拨，并提交差异原因交值班经理确认。",
+      "reference_documents": [
+        "opening_checklist",
+        "daily_inventory"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_017",
+      "question": "门店员工在每日闭店前发现某高价值商品实物与系统数量不符，复盘后仍存在差异，应如何处理？",
+      "ground_truth": "应记录在途、退货、破损和未入账调拨等差异原因，提交值班经理确认；若单SKU差异价值超过200元或总差异超1000元，需升级区域运营复核，并按《门店盘点差异处理》规定核对全链路单据、上传证据。",
+      "reference_documents": [
+        "daily_inventory",
+        "inventory_variance"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_018",
+      "question": "门店盘点中发现疑似因系统异常导致的库存差异，且涉及金额较大，是否可以直接修改系统数量以保持账实一致？",
+      "ground_truth": "不可以。不得为使账实一致而直接修改数量，也不得未经审批手工平账；应锁定相关库存，由不同人员二次计数，核对收货、调拨、销售等全链路单据，若属系统异常且达到上报门槛，须提交区域运营审批或按事件上报。",
+      "reference_documents": [
+        "daily_inventory",
+        "inventory_variance"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_019",
+      "question": "门店在月度全盘期间若需进行销售，应如何处理盘点模式与设备同步问题？",
+      "ground_truth": "必须使用系统动态盘点模式，并在登录盘点终端后先核对门店、任务编号和设备时间，恢复网络后仅提交一次离线数据。",
+      "reference_documents": [
+        "monthly_inventory",
+        "inventory_terminal"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_020",
+      "question": "盘点过程中如遇设备同步异常且存在未决单据，员工应遵循哪些关键步骤以确保盘点结果有效？",
+      "ground_truth": "需先记录错误码和未提交数量，停止重复提交；同时完成未决单据核销，差异复盘后由店长确认提交，不得使用离线表格替代系统记录。",
+      "reference_documents": [
+        "monthly_inventory",
+        "inventory_terminal"
+      ],
+      "category": "store_operation",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_021",
+      "question": "冷藏商品到货验收时发现温度为5摄氏度，应如何处理？",
+      "ground_truth": "该批次商品因超温须隔离待判，不得直接上架，并按《冷藏冷冻商品收货与储存》规定停止补货、记录超温时长，由值班经理评估是否报损。",
+      "reference_documents": [
+        "cold_chain",
+        "receiving_inspection"
+      ],
+      "category": "product",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_022",
+      "question": "冷冻商品验收合格后，应在多长时间内完成入库或上架？暂存时有何限制？",
+      "ground_truth": "验收后20分钟内必须完成入库或上架，暂存期间不得放置在常温通道。",
+      "reference_documents": [
+        "cold_chain",
+        "receiving_inspection"
+      ],
+      "category": "product",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_023",
+      "question": "冷柜温度超限时，员工应如何处理商品转移和后续报损决策？",
+      "ground_truth": "发现温度超限后立即停止补货，记录当前温度、发现时间和最近一次正常记录，并将商品转移到符合温区的备用设备，分批次标记避免混放；若无法确认超温时长或商品安全性，须保持隔离，由值班经理和质量支持决定是否放行或报损。",
+      "reference_documents": [
+        "cold_cabinet",
+        "cold_chain"
+      ],
+      "category": "equipment",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_024",
+      "question": "冷藏冷冻商品在收货后遇到冷柜异常，应遵循哪些关键操作步骤以确保冷链合规？",
+      "ground_truth": "验收后20分钟内必须完成入库或上架，不得暂存于常温通道；若冷柜温度超限，应停止补货、记录超时时长并转移商品至符合温区的备用设备，是否报损由值班经理评估，且不得凭触感或气味判断商品安全性。",
+      "reference_documents": [
+        "cold_cabinet",
+        "cold_chain"
+      ],
+      "category": "equipment",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_025",
+      "question": "门店在促销活动开始时遇到标签打印机卡纸，应如何处理以确保商品陈列合规？",
+      "ground_truth": "先断电并按走纸方向取出卡纸，不使用尖锐工具刮擦打印头；随后确认标签规格与当前任务一致，打印测试页并扫码核验；若仍异常则停用报修。同时，因促销价签未能及时打印，应暂停相关陈列或使用批准的备用流程，确保商品、货位标签和POS售价一致。",
+      "reference_documents": [
+        "display_price",
+        "label_printer"
+      ],
+      "category": "product",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_026",
+      "question": "当价签打印任务因设备故障导致价格错误，且已有顾客准备购买该商品，员工应采取哪些措施？",
+      "ground_truth": "先取消错误的打印任务并核对模板，不得重复张贴错误标签；发现价签与系统价格不一致时暂停相关陈列，并由值班经理核验，不让顾客自行承担内部错误。如现场情况无法覆盖，应保留设备错误码等必要信息并联系值班经理。",
+      "reference_documents": [
+        "display_price",
+        "label_printer"
+      ],
+      "category": "product",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_027",
+      "question": "顾客在POS机支付时页面卡住，随后要求退款，但不确定是否已扣款，应如何处理？",
+      "ground_truth": "先记录错误码和发生步骤，不凭顾客扣款截图重复退款；应查询原交易状态确认是否实际扣款，若需退款则按原支付方式退回，并提供退款流水号，不承诺银行到账时点。",
+      "reference_documents": [
+        "pos_troubleshooting",
+        "refund_channels"
+      ],
+      "category": "equipment",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_028",
+      "question": "门店多台POS机同时无法完成日结，且部分顾客此前支付状态不明，该如何应对？",
+      "ground_truth": "多机故障时应判断是否为网络或中心服务问题并升级处理；对支付结果不明的订单，先保存订单并查询原交易状态，不得重复扣款或退款，必要时联系值班经理并提工单。",
+      "reference_documents": [
+        "pos_troubleshooting",
+        "refund_channels"
+      ],
+      "category": "equipment",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_029",
+      "question": "门店员工发现顾客数据可能被泄露时，应如何处理并上报？",
+      "ground_truth": "员工应立即停止操作，不等待确认损失后再报告，并按三级事件立即升级；上报内容需包括时间、地点、人员、订单或设备、影响范围、证据及已采取的措施，同时优先采取止损和人员保护措施。",
+      "reference_documents": [
+        "privacy_security",
+        "incident_escalation"
+      ],
+      "category": "policy",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_030",
+      "question": "在处理涉及顾客个人信息的异常事件时，员工应遵循哪些信息使用和上报原则？",
+      "ground_truth": "员工只为当前服务目的查看必要信息，对工单附件脱敏，完成服务后关闭页面并销毁临时材料；若事件涉及数据泄露等风险，须按三级事件立即升级，并保留脱敏后的必要证据如订单或错误码。",
+      "reference_documents": [
+        "privacy_security",
+        "incident_escalation"
+      ],
+      "category": "policy",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_031",
+      "question": "春季会员日活动中，如果顾客对优惠叠加规则有疑问，应依据哪些资料进行解答？",
+      "ground_truth": "应同时依据《春季会员日加码通知》中关于‘常规95折、排除商品和优惠叠加顺序仍按基础制度执行’的规定，以及《内部知识维护与冲突处理规范》中‘基础制度由业务负责人维护，限时内部通知只在写明的日期、门店和对象范围内覆盖基础制度’的原则进行解答。",
+      "reference_documents": [
+        "knowledge_governance",
+        "spring_member_day"
+      ],
+      "category": "policy",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_032",
+      "question": "若门店员工发现《春季会员日加码通知》与基础会员制度存在规则冲突，应如何处理？",
+      "ground_truth": "根据《内部知识维护与冲突处理规范》，同层级文档冲突时不应自行选择有利口径，应暂停回答，记录问题、命中文档和业务影响，标记待核实并通知责任部门；而《春季会员日加码通知》作为限时内部通知，仅在指定日期、门店和对象范围内覆盖基础制度。",
+      "reference_documents": [
+        "knowledge_governance",
+        "spring_member_day"
+      ],
+      "category": "policy",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_033",
+      "question": "3月8日当天，某顾客在参与春季加码活动的门店完成首笔会员订单，他能获得什么额外权益？",
+      "ground_truth": "当日会员完成符合条件的首笔订单后可获一张次月到期的满100减10券，以系统发放为准。",
+      "reference_documents": [
+        "member_day_campaign",
+        "spring_member_day"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_034",
+      "question": "如果门店同时适用《会员日活动执行通知》和《春季会员日加码通知》，会员日折扣与春季加码优惠如何叠加？",
+      "ground_truth": "常规95折、排除商品和优惠叠加顺序仍按基础制度执行，春季加码仅增加首单发券权益，不改变原有折扣计算规则。",
+      "reference_documents": [
+        "member_day_campaign",
+        "spring_member_day"
+      ],
+      "category": "promotion",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "multi_035",
+      "question": "顾客反馈购买的临期食品在保质期内出现质量问题，门店应如何处理？",
+      "ground_truth": "门店应先隔离同批次在售商品并通知值班经理，记录订单、批次及问题证据（如照片），在确认属于质量、错发或运输温控异常的情况下，按授权完成退款或换货，并创建质量事件记录；同时，若商品已过保质期则不得销售或退回货架，需立即隔离并报损。",
+      "reference_documents": [
+        "expiry_loss",
+        "food_fresh"
+      ],
+      "category": "product",
+      "question_type": "multi_document",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_001",
+      "question": "现在金卡会员每消费一元累计多少积分？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_002",
+      "question": "当前生效的金卡积分倍率是多少？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_003",
+      "question": "2026 年金卡消费积分怎么计算？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_004",
+      "question": "请按最新制度说明金卡的积分累计比例。",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_005",
+      "question": "金卡用户今天消费 100 元基础可积多少分？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_006",
+      "question": "最新金卡积分口径是一元一分还是一点五分？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_007",
+      "question": "现行规则下金卡会员的基础积分倍数是多少？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_008",
+      "question": "目前门店应按什么比例给金卡会员记积分？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_009",
+      "question": "旧的一元一积分是否还是金卡现行标准？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_010",
+      "question": "金卡积分新规生效后消费金额怎样换算？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_011",
+      "question": "现在给金卡顾客补录积分应采用哪个倍率？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_012",
+      "question": "按当前版本，金卡消费 20 元的基础积分是多少？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_013",
+      "question": "金卡的最新积分累计政策何时开始生效？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_014",
+      "question": "2025 年的金卡积分标准现在还能用吗？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_015",
+      "question": "新版本金卡积分规则的有效期从哪天开始？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_016",
+      "question": "门店系统当前应配置的金卡积分系数是多少？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_017",
+      "question": "请说明已经生效的金卡消费积分规则。",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_018",
+      "question": "会员问金卡现在一元能积几分，应如何回答？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_019",
+      "question": "当前有效版本对金卡基础积分有什么调整？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "version_020",
+      "question": "比较旧规则后，现行金卡积分倍率变成了多少？",
+      "ground_truth": "当前生效的 2.0 版规则自 2026-01-01 起执行：金卡会员基础消费每 1 元累计 1.5 积分；2025 年 1.0 版已被替代。",
+      "reference_documents": [
+        "member_points_version_v2_2026"
+      ],
+      "category": "membership",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer"
+    },
+    {
+      "id": "scale_single_document_191",
+      "question": "别家店售出的商品在我店退了，先记到哪个库位？",
+      "ground_truth": "跨店退货商品先进入接待店售后待检库位，检验通过再按调拨流程归库。",
+      "reference_documents": [
+        "cross_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_192",
+      "question": "客人跨店换同款，本店缺货能保证隔壁一定有吗？",
+      "ground_truth": "接待店只能确认本店可售库存，不能承诺原店或其他门店库存。",
+      "reference_documents": [
+        "cross_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_193",
+      "question": "平台上第三方卖家的订单，附近 Nova 门店能直接退款吗？",
+      "ground_truth": "仅标记支持门店售后的 Nova 自营线上订单可在支持门店受理，第三方商家订单转原平台。",
+      "reference_documents": [
+        "online_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_194",
+      "question": "网上买的去店里退，带售后码还得打印小票吗？",
+      "ground_truth": "需本人订单售后码和商品，核验唯一原单后受理；不要求打印纸质小票。",
+      "reference_documents": [
+        "online_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_195",
+      "question": "网购不想要了，去店里退能自动拿回原来的运费吗？",
+      "ground_truth": "非质量原因退货不自动退原配送费；质量或错发订单由售后工单审核配送费。",
+      "reference_documents": [
+        "online_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_196",
+      "question": "手机支付的线上单，门店办售后能给现金吗？",
+      "ground_truth": "线上订单门店受理后仍按原支付渠道退款，不直接转成现金。",
+      "reference_documents": [
+        "online_store_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_197",
+      "question": "买的固定三件套只想退杯子，其他两件留着可以吗？",
+      "ground_truth": "固定套装非质量退货须整套退回，不接受仅退其中一件。",
+      "reference_documents": [
+        "bundle_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_198",
+      "question": "套装就一个盘子坏了，必须把好的也一起换掉吗？",
+      "ground_truth": "单件质量问题优先受理该件维修或同款换货，无法单件处理时升级整套方案。",
+      "reference_documents": [
+        "bundle_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_199",
+      "question": "自由选的凑单商品，只退一件是不是可以照分摊金额退？",
+      "ground_truth": "订单标记自由凑单的组合允许单件退货，按该行分摊实付退款。",
+      "reference_documents": [
+        "bundle_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_200",
+      "question": "退回来的套装少了配件，还能直接当整套完好退款吗？",
+      "ground_truth": "附件缺失时先登记缺件并由售后判定，不直接按完整套装全额退款。",
+      "reference_documents": [
+        "bundle_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_201",
+      "question": "快递纸箱压了但里面完好，能直接按产品质量事故办吗？",
+      "ground_truth": "仅运输外箱破损、商品及销售包装完好时记录物流反馈，不自动认定商品质量不合格。",
+      "reference_documents": [
+        "packaging_damage"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_202",
+      "question": "袋装食品封口裂开，重新封上再卖可以吗？",
+      "ground_truth": "食品密封包装破损应隔离并走食品质量处理，不重新封口销售。",
+      "reference_documents": [
+        "packaging_damage"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_203",
+      "question": "是店里发错货，寄回去普通运费还要顾客付吗？",
+      "ground_truth": "经核实为 Nova 错发的退回标准运费由 Nova 承担，加急费用需单独审核。",
+      "reference_documents": [
+        "packaging_damage"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_204",
+      "question": "收到少一件，提售后需要准备哪些材料？",
+      "ground_truth": "记录原订单、商品清单、缺失件名称及现有包装照片，由售后核查出库记录。",
+      "reference_documents": [
+        "packaging_damage"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_205",
+      "question": "购物发票弄丢了，就肯定办不了退货了吗？",
+      "ground_truth": "发票遗失不直接取消退货资格；能唯一定位交易后依商品售后条件受理。",
+      "reference_documents": [
+        "invoice_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_206",
+      "question": "让店里重发电子票，会不会变成两张都能报销？",
+      "ground_truth": "重发是再次发送原电子发票文件，不重复开具第二张有效发票。",
+      "reference_documents": [
+        "invoice_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_207",
+      "question": "开过票的单子只退一件，票据金额要怎么跟着处理？",
+      "ground_truth": "部分退货按实际退货金额申请红冲或调整，剩余有效金额由开票系统确认。",
+      "reference_documents": [
+        "invoice_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_208",
+      "question": "公司名字写错，收银能直接改 PDF 再发我吗？",
+      "ground_truth": "由开票服务岗核验后按红冲重开流程处理，收银员不直接编辑已开票文件。",
+      "reference_documents": [
+        "invoice_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_209",
+      "question": "打折买的普通水杯没用过，五天后就不能退了吗？",
+      "ground_truth": "普通非食品特价商品未标记特殊例外且符合常规条件时仍可申请 7 天无理由退换。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_single_document_210",
+      "question": "特卖衣服告知过线头，后来发现拉链坏了还能提质量售后吗？",
+      "ground_truth": "购买前已清晰明示并确认的同一瑕疵不直接作为新质量问题，其他未告知缺陷仍应受理。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "single_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_211",
+      "question": "快到期的打折饼干还没过期，不想吃能无理由退吗？",
+      "ground_truth": "临期食品仍按食品规则，不因临期折扣而新增无理由退货资格。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_212",
+      "question": "结账后发现买到昨天已过期的食品，门店只退钱就行吗？",
+      "ground_truth": "立即停止同批次销售并隔离，记录原单和批次，提交食品安全事件并受理售后。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_213",
+      "question": "召回那批货的盒子丢了，门店能因此不收吗？",
+      "ground_truth": "召回按有效召回范围核验，不仅因缺少外包装拒绝受理。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_214",
+      "question": "清仓时五十买的现在卖八十，退的时候能拿八十吗？",
+      "ground_truth": "清仓商品退款上限为原订单该行实付金额，不因恢复原价而增加退款。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_215",
+      "question": "瑕疵品售出时只写一句特价不退，算完成告知了吗？",
+      "ground_truth": "瑕疵特卖须保留具体瑕疵告知与顾客确认记录，不能仅写笼统特价不退。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_216",
+      "question": "临期饼干不卖只送，把日期贴住行不行？",
+      "ground_truth": "不得遮盖原生产日期或保质期后作为赠品，赠品同样执行食品质量核验。",
+      "reference_documents": [
+        "clearance_return"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_217",
+      "question": "早班只有一个收银在场，先自己签备用金确认行不行？",
+      "ground_truth": "备用金开封清点须经办人与复核人共同签字，不能单人完成。",
+      "reference_documents": [
+        "opening_cash"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_218",
+      "question": "早上领的钱袋编号和昨晚登记不同，还能先开袋找零吗？",
+      "ground_truth": "封袋号不符时暂停启用该袋，保留封签并请值班经理核查。",
+      "reference_documents": [
+        "opening_cash"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_219",
+      "question": "备用金少一点，先拿昨天营业款补齐可以吗？",
+      "ground_truth": "备用金与营业款分别登记，不把营业款补入未核验的备用金差额。",
+      "reference_documents": [
+        "opening_cash"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_keyword_exact_220",
+      "question": "收工装钱袋之前，除了数钱还要对哪些单？",
+      "ground_truth": "封袋前核对 POS 日结、现金退款单和交接记录，差异先登记再升级。",
+      "reference_documents": [
+        "closing_cash"
+      ],
+      "category": "mixed",
+      "question_type": "keyword_exact",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_221",
+      "question": "晚班太忙，现金袋明早让同事补签可以吧？",
+      "ground_truth": "封袋须当班双人签名并记录封袋时间，不事后代签或补签。",
+      "reference_documents": [
+        "closing_cash"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_222",
+      "question": "封好的营业款临时要重新打开，谁见证、要留什么记录？",
+      "ground_truth": "重新开封须值班经理见证，记录旧新封袋号和原因，并再次双人清点。",
+      "reference_documents": [
+        "closing_cash"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_223",
+      "question": "隔壁急要货，能先送过去晚上补调拨单吗？",
+      "ground_truth": "调拨必须先生成并批准调拨单，再按单拣货复核，不先发货后补单。",
+      "reference_documents": [
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_224",
+      "question": "调拨是我拣的，我能顺手把复核也签了吗？",
+      "ground_truth": "非原拣货人复核 SKU、批次和数量并签名，不能拣货人自复核。",
+      "reference_documents": [
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_225",
+      "question": "货正在店与店之间运输，接收店能先拿那数量卖吗？",
+      "ground_truth": "已出库在途调拨不计入收货店可售库存，验收确认后才可用。",
+      "reference_documents": [
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_226",
+      "question": "两家店只隔一条街，冷冻货能普通小车拉过去吗？",
+      "ground_truth": "冷链调拨必须使用满足标签温区的运输条件，不因距离近改用无控温运输。",
+      "reference_documents": [
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_227",
+      "question": "调拨单十箱只到了九箱，系统先按十箱收可以吗？",
+      "ground_truth": "按实收数量登记差异并通知发出店复核，不按单据数量强行收齐。",
+      "reference_documents": [
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_228",
+      "question": "调来的货破了几件，先摆上架等对方确认行吗？",
+      "ground_truth": "到货损坏商品进入待检隔离库位，拍照关联调拨单后交值班经理判定。",
+      "reference_documents": [
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_229",
+      "question": "调拨比单上多一箱，算本店赚到直接卖掉吗？",
+      "ground_truth": "多到商品单独隔离，核清来源并补齐审核单据后才转可售。",
+      "reference_documents": [
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_230",
+      "question": "我收的调拨差异单，最后审批也让我签可以吗？",
+      "ground_truth": "调拨收货经办人不能同时作为该笔差异的最终审批人。",
+      "reference_documents": [
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_231",
+      "question": "客人亮出一张提货码图片就能把货拿走吗？",
+      "ground_truth": "先在系统核验自提码有效且未核销，再核对订单商品，不仅凭截图交货。",
+      "reference_documents": [
+        "online_pickup"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_232",
+      "question": "预约取货迟到了，员工能直接点已取货结单吗？",
+      "ground_truth": "超过预约时段先核对订单有效状态并联系顾客，不自动改成已完成。",
+      "reference_documents": [
+        "online_pickup"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_233",
+      "question": "顾客还没来，冷藏自提那袋能先放普通取货架吗？",
+      "ground_truth": "冷藏自提商品待提期间保持标签温区，不放常温自提架。",
+      "reference_documents": [
+        "online_pickup"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_234",
+      "question": "自提少一件，先把整单点完成再补货可不可以？",
+      "ground_truth": "发现少件暂停整单交付核销，核清差异后按订单异常流程处理。",
+      "reference_documents": [
+        "online_pickup"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_235",
+      "question": "突然断电，隔几分钟打开冷柜摸一摸温度好不好？",
+      "ground_truth": "停电后减少冷柜开门，记录停电时点及柜温，按温控异常流程判定商品。",
+      "reference_documents": [
+        "emergency_power"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_236",
+      "question": "刷卡机停电，写下顾客卡号晚点补扣行吗？",
+      "ground_truth": "禁止抄录完整银行卡号或敏感验证信息，无法安全结算时暂停交易。",
+      "reference_documents": [
+        "emergency_power"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_237",
+      "question": "电来了是不是马上把所有收银和冷柜商品都恢复销售？",
+      "ground_truth": "先核验供电设备、支付状态和冷链商品状态，确认安全后分区恢复。",
+      "reference_documents": [
+        "emergency_power"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_238",
+      "question": "同名商品有好几个批次，召回时全下架还是对批次？",
+      "ground_truth": "按有效通知列出的 SKU、批次及日期范围核验隔离，不能仅凭相似品名扩大或缩小范围。",
+      "reference_documents": [
+        "recall_isolation"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_239",
+      "question": "召回货本店不能卖，调给另一家卖行不行？",
+      "ground_truth": "召回隔离商品禁止销售、赠送或调拨为可售库存。",
+      "reference_documents": [
+        "recall_isolation"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_semantic_paraphrase_240",
+      "question": "召回统计要分哪几种数量，能只报剩余库存吗？",
+      "ground_truth": "记录在库隔离数、已售可追踪数和已回收数，三类数量分别登记。",
+      "reference_documents": [
+        "recall_isolation"
+      ],
+      "category": "mixed",
+      "question_type": "semantic_paraphrase",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_241",
+      "question": "经理觉得没事了，就能把召回隔离的货摆回来吗？",
+      "ground_truth": "仅收到召回责任部门明确解除指令并完成批次核验后可解除隔离。",
+      "reference_documents": [
+        "recall_isolation"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_242",
+      "question": "网站老图没写花生，实物写了，给顾客介绍听哪个？",
+      "ground_truth": "以当前实物包装的配料及过敏原标示为准，不以旧商品图片替代。",
+      "reference_documents": [
+        "allergen_label"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_243",
+      "question": "标签没看见过敏原，店员能保证过敏顾客一定安全吃吗？",
+      "ground_truth": "不能作出绝不致敏承诺；标签信息不明确时联系商品支持核查。",
+      "reference_documents": [
+        "allergen_label"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_244",
+      "question": "原味和巧克力味一个牌子，过敏原说明能直接用同一份吗？",
+      "ground_truth": "不同口味按各自 SKU 的实物标签核验，不照搬同品牌其他口味。",
+      "reference_documents": [
+        "allergen_label"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_245",
+      "question": "袋子日期磨花了，按同箱其他袋补写再上架行吗？",
+      "ground_truth": "生产日期或保质期无法辨认的食品先隔离核验，不自行补写日期后销售。",
+      "reference_documents": [
+        "shelf_life"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_246",
+      "question": "贴了新的临期价签，能把到期日也顺延吗？",
+      "ground_truth": "临期折扣不改变实物保质期，折扣标签不得遮盖原日期。",
+      "reference_documents": [
+        "shelf_life"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_247",
+      "question": "大包装还没到期，但开封后建议三天内吃完，按哪个期限？",
+      "ground_truth": "开封商品遵循标签开封后保存要求与原到期日中先到者。",
+      "reference_documents": [
+        "shelf_life"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_248",
+      "question": "电子商品机器号和盒子号不一样，能先卖后查吗？",
+      "ground_truth": "实物与包装序列号不一致时暂停销售并核验来源，不手工覆盖记录。",
+      "reference_documents": [
+        "serial_trace"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_249",
+      "question": "柜台展示过的机器重新封盒就可以当全新卖吗？",
+      "ground_truth": "展示样机须明确标记展示状态并经授权定价，不能以未拆封全新商品销售。",
+      "reference_documents": [
+        "serial_trace"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_250",
+      "question": "机器恢复出厂以后，可以说是从没激活过的吗？",
+      "ground_truth": "激活状态须如实告知并记录，不能重置界面后宣称从未激活。",
+      "reference_documents": [
+        "serial_trace"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_251",
+      "question": "这型号没有附件清单，照隔壁型号凑一套算完整吗？",
+      "ground_truth": "通过该 SKU 的有效主数据或商品支持核验附件清单，不参照相似型号猜测。",
+      "reference_documents": [
+        "serial_trace"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_252",
+      "question": "礼品卡还剩几块钱，收银能找成硬币给我吗？",
+      "ground_truth": "礼品卡余额不提现、不兑换找零，按卡面适用范围消费。",
+      "reference_documents": [
+        "giftcard_product"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_253",
+      "question": "买卡钱扣了但激活失败，先把卡给客人带走行吗？",
+      "ground_truth": "需核验付款成功及卡激活成功后交付，激活异常先挂起交易。",
+      "reference_documents": [
+        "giftcard_product"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_254",
+      "question": "报礼品卡故障，把背面卡密全拍进工作群方便查吗？",
+      "ground_truth": "不得在工作群、工单公开字段或照片中暴露完整卡密。",
+      "reference_documents": [
+        "giftcard_product"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_255",
+      "question": "卡裂了读不出来，顾客说里面有五百就能补五百吗？",
+      "ground_truth": "损坏卡先核验卡号、购买凭证与余额记录，经服务工单审核后处理，不现场凭口述补值。",
+      "reference_documents": [
+        "giftcard_product"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_266",
+      "question": "金卡顾客生日月在普通非活动日买了符合条件的商品，券后净实付100元，基础与生日活动积分合计多少？",
+      "ground_truth": "金卡基础每元1.5分，生日月按金卡基础的2倍，100元合计300分。",
+      "reference_documents": [
+        "member_points_version_v2_2026",
+        "birthday_points"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_267",
+      "question": "银卡和金卡都在生日月买100元符合积分条件商品，不参加其他倍数活动，两个人的积分各多少？",
+      "ground_truth": "银卡基础100分且生日月不加倍；金卡基础150分，生日月2倍后300分。",
+      "reference_documents": [
+        "points_rules",
+        "silver_benefits",
+        "member_points_version_v2_2026",
+        "birthday_points"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_268",
+      "question": "金卡在生日月遇上会员日，又有新人券和生日券，能同时用两张订单券并把积分活动倍数连乘吗？",
+      "ground_truth": "两张订单券只能选一张；生日月和其他积分活动倍数取高不累乘，金卡基础积分按现行口径。",
+      "reference_documents": [
+        "birthday_coupon",
+        "birthday_points",
+        "member_points_version_v2_2026"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_269",
+      "question": "顾客昨晚A店买了满减商品，今天去B直营店退一件，订单用了生日券；受理资格、退多少钱和返券分别如何判断？",
+      "ground_truth": "联查门店可跨店受理且期限仍从原购买日算；按原单分摊实付退款，不追收整单满减，部分退货通常不返券。",
+      "reference_documents": [
+        "cross_store_return",
+        "full_reduction",
+        "coupon_rules"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_270",
+      "question": "一张满减单只退一行，剩余金额低于门槛，是否追扣优惠，生日订单券又能否重用？",
+      "ground_truth": "不重新追收整单已享满减；该行按分摊实付退；部分退款不返券。",
+      "reference_documents": [
+        "full_reduction",
+        "coupon_rules"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_271",
+      "question": "固定三件套中一件质量坏了，同时当时领过赠品；单件问题处理和最后整单退时赠品应怎样分开判断？",
+      "ground_truth": "单件质量问题优先维修或同款换货，不能处理再升级整套方案；主商品全退须退赠品，无法退回按订单赠品价值扣减。",
+      "reference_documents": [
+        "bundle_return",
+        "gift_rules"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_272",
+      "question": "线上自营单有门店售后标识，顾客到店退货要求拿现金，门店能受理吗、钱怎么退？",
+      "ground_truth": "支持门店可核验售后码和原单受理；退款仍按原支付渠道，不改现金。",
+      "reference_documents": [
+        "online_store_return",
+        "refund_channels"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_273",
+      "question": "冷藏自提商品还没来取，门店突然停电，能否放到普通架并频繁开柜检查？",
+      "ground_truth": "待提保持标签温区，不放常温架；停电减少开柜，记录时间温度并按温控异常判定。",
+      "reference_documents": [
+        "online_pickup",
+        "emergency_power"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_274",
+      "question": "调拨的冷冻货比单据少一箱且温度异常，能按单收齐立即开卖吗？",
+      "ground_truth": "按实收登记数量差异；冷冻验收不高于零下18度或更严格标签要求，超温隔离待判不能直接上架。",
+      "reference_documents": [
+        "transfer_receipt",
+        "cold_chain"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_275",
+      "question": "调拨收货员既发现短少又想自己批掉差异，商品已经在途，接收店能提前卖吗？",
+      "ground_truth": "收货经办不能最终审批自身差异；在途商品未验收不计接收店可售库存。",
+      "reference_documents": [
+        "transfer_receipt",
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_276",
+      "question": "小票没出且POS刚断网，客人拿出扣款截图催着走，能否重收一次或者凭图放行？",
+      "ground_truth": "未打印不等于付款失败；查询原交易状态，不能重复扣款，也不能仅凭截图放行。",
+      "reference_documents": [
+        "receipt_printer",
+        "pos_network"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_277",
+      "question": "价签机出白纸，而另一台小票机也不出字，排查重点一样吗，能互换耗材吗？",
+      "ground_truth": "价签查标签纸和碳带匹配方向；小票查热敏纸方向类型；两类设备不能因尺寸相近混用耗材。",
+      "reference_documents": [
+        "label_blank",
+        "receipt_printer"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_278",
+      "question": "冷柜屏幕正常但校验表超温，同批食品已有顾客反馈不适，设备和售后两边分别先做什么？",
+      "ground_truth": "按实测超温隔离商品并联系设备支持；对顾客建议就医、保留商品包装，立即按食品安全事件升级。",
+      "reference_documents": [
+        "cold_sensor",
+        "food_fresh"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_279",
+      "question": "买到临期食品后又发现密封裂口，顾客说不想吃了；应按无理由还是质量处理？",
+      "ground_truth": "临期食品无无理由退货资格；密封破损属于质量风险应隔离并走食品质量处理。",
+      "reference_documents": [
+        "clearance_return",
+        "packaging_damage"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_280",
+      "question": "召回电子商品包装丢了，实物序列号又和原单对不上，可以直接说无包装不退吗？",
+      "ground_truth": "不能仅因无包装拒召回受理；同时须核对订单和实物序列号、激活状态，异常升级核查。",
+      "reference_documents": [
+        "clearance_return",
+        "after_sales_update"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_281",
+      "question": "客人没有发票也没有小票，但知道交易日期和支付流水末四位，是否就不能退？",
+      "ground_truth": "发票遗失不直接失去资格；用会员、日期、门店和流水末四位组合定位近90天唯一原单后按商品条件受理。",
+      "reference_documents": [
+        "invoice_return",
+        "no_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_282",
+      "question": "部分退货的满减订单已开公司发票，退钱是否按原标价，发票要不要同步调整？",
+      "ground_truth": "按该行分摊后实付退；部分退货按退货金额红冲或调整发票。",
+      "reference_documents": [
+        "promo_partial_return",
+        "invoice_return"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_283",
+      "question": "关店封钱袋后发现需要再开袋，同时现金相差25元，怎么留痕、是否升级？",
+      "ground_truth": "值班经理见证重新开袋，记录旧新袋号及原因并双人清点；单班差异超过20元升级区域运营。",
+      "reference_documents": [
+        "closing_cash",
+        "cash_handover"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_284",
+      "question": "开店钱袋编号对不上，同事提议拿昨夜营业款补差并稍后个人垫平，能这样处理吗？",
+      "ground_truth": "封袋号不符暂停启用并核查；备用金与营业款分记，禁止个人垫平现金差异。",
+      "reference_documents": [
+        "opening_cash",
+        "cash_handover"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_285",
+      "question": "2026年9月8日B002一笔普通参与商品200元，使用满100减20生日券，不用积分，按秋季试点折扣和结算顺序应付多少？",
+      "ground_truth": "B002在试点范围，200元九折180元，再用生日订单券减20元，应付160元。",
+      "reference_documents": [
+        "autumn_member_day",
+        "birthday_coupon",
+        "promotion_stacking"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_286",
+      "question": "A001九月八号买秒杀商品，看到夏季旧通知说秒杀98折，还能再用秋季会员折扣吗？",
+      "ground_truth": "夏季通知已过期；秒杀排除会员日折扣，秋季试点也沿用该排除。",
+      "reference_documents": [
+        "flash_sale",
+        "autumn_member_day"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_287",
+      "question": "金卡月底降成银卡，先前确认的当月导购还能去吗，下个月免运有几次？",
+      "ground_truth": "降级前确认的当月导购保留，不能新增金卡名额；银卡每自然月标准免运1次。",
+      "reference_documents": [
+        "gold_service",
+        "silver_benefits"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_288",
+      "question": "顾客要求额外补偿，员工想把银行卡完整信息放工单并先用自己钱垫付，哪些操作不妥？",
+      "ground_truth": "完整卡号不得上传，仅留必要末四位；超授权补偿不可口头承诺，个人垫付不能保证报销。",
+      "reference_documents": [
+        "incident_records",
+        "approval_boundary"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_289",
+      "question": "临期食品过了日期但库存很多，能遮住日期做赠品，或把召回批次调到另一店消化吗？",
+      "ground_truth": "过期不得销售赠送；临期赠品不可遮日期；召回隔离商品不能调为可售库存。",
+      "reference_documents": [
+        "expiry_loss",
+        "clearance_return",
+        "recall_isolation"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_multi_document_290",
+      "question": "门店看到已废止的调拨规定允许自己审批，又收到仅补充收货条款的新通知，能理解成整套制度重置吗？",
+      "ground_truth": "废止版本不适用于当前；补充通知只修改明确条款；当前调拨收货经办与最终审批必须分离。",
+      "reference_documents": [
+        "notice_scope",
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "multi_document",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_291",
+      "question": "今天是2026年9月29日，自提迟到3小时，旧通知说6小时才提醒，现在到底该不该首提醒？",
+      "ground_truth": "当前2小时首次提醒，旧6小时口径已替代。",
+      "reference_documents": [
+        "pickup_notice_current"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_292",
+      "question": "自提今天超时刚好2小时，旧流程写6小时，门店该选哪个门槛？",
+      "ground_truth": "采用2026年9月生效的2小时门槛。",
+      "reference_documents": [
+        "pickup_notice_current"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_293",
+      "question": "A001打算把8月旧稿的92折延续到9月会员日，可以吗？",
+      "ground_truth": "不可以，9月有效秋季通知为9折。",
+      "reference_documents": [
+        "autumn_member_day"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_294",
+      "question": "旧秋季试点只有A001，2026年10月8日B002普通商品有没有试点折扣？",
+      "ground_truth": "B002已列入当前试点，普通参与商品9折。",
+      "reference_documents": [
+        "autumn_member_day"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_295",
+      "question": "2026年9月29日看到active的冬季88折通知，能提前给顾客结算吗？",
+      "ground_truth": "不能，冬季通知尚未生效，当前不采用未来88折。",
+      "reference_documents": [
+        "notice_scope"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_296",
+      "question": "现在九月生日券过期了，能用六月暴雨通知给我再延3天吗？",
+      "ground_truth": "不能，六月临时授权已到期，生日券过期不延期。",
+      "reference_documents": [
+        "birthday_coupon"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_297",
+      "question": "九月八号A001秒杀能沿用七八月的98折特例吗？",
+      "ground_truth": "不能，夏季特例已过期，执行秒杀不叠会员折扣。",
+      "reference_documents": [
+        "flash_sale"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_298",
+      "question": "调拨差异旧档说收货人能审批，现在我收的单还可以自己批吗？",
+      "ground_truth": "不能，当前经办与最终审批分离。",
+      "reference_documents": [
+        "transfer_receipt"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_299",
+      "question": "2026年11月8日C003能用只列A001和B002的秋季9折吗？",
+      "ground_truth": "不能，C003未列试点，继续常规会员日95折。",
+      "reference_documents": [
+        "autumn_member_day",
+        "member_day_campaign"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_version_conflict_300",
+      "question": "2026年12月8日B002还能沿用9月至11月秋季9折吗？",
+      "ground_truth": "秋季有效期结束，B002又不在冬季A001范围，不得沿用秋季9折，常规规则仍适用。",
+      "reference_documents": [
+        "autumn_member_day",
+        "member_day_campaign"
+      ],
+      "category": "mixed",
+      "question_type": "version_conflict",
+      "expected_behavior": "answer",
+      "cohort": "expanded"
+    },
+    {
+      "id": "scale_hard_confusion_326",
+      "question": "银卡标准免运每月几次，并查一下我13800000001账户今天还剩几次？",
+      "ground_truth": "规则为每月1次；没有实时账户记录，不能声称查到了个人剩余次数。",
+      "reference_documents": [
+        "silver_benefits"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "partial_answer",
+      "cohort": "expanded",
+      "partial_unanswerable": true
+    },
+    {
+      "id": "scale_hard_confusion_327",
+      "question": "我知道金卡可以约导购，告诉我每月次数以及明天B002具体给我安排的员工姓名。",
+      "ground_truth": "每月2次每次最长30分钟；现有知识无实时排班，不能编造员工姓名。",
+      "reference_documents": [
+        "gold_service"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "partial_answer",
+      "cohort": "expanded",
+      "partial_unanswerable": true
+    },
+    {
+      "id": "scale_hard_confusion_328",
+      "question": "生日券一般何时过期，订单NR202609290099里那张是不是已经退回我账户？",
+      "ground_truth": "生日当月最后一天23:59到期；无法查询指定订单返券实时状态。",
+      "reference_documents": [
+        "birthday_coupon"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "partial_answer",
+      "cohort": "expanded",
+      "partial_unanswerable": true
+    },
+    {
+      "id": "scale_hard_confusion_329",
+      "question": "冷柜实测超温应该先怎么办，顺便告诉我A001冷柜C3此刻实际温度。",
+      "ground_truth": "隔离受影响商品并联系支持；没有传感器实时数据，不能报具体当前温度。",
+      "reference_documents": [
+        "cold_sensor"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "partial_answer",
+      "cohort": "expanded",
+      "partial_unanswerable": true
+    },
+    {
+      "id": "scale_hard_confusion_330",
+      "question": "调拨在途货能算可售吗，再告诉我现在TX998车到了哪条路？",
+      "ground_truth": "在途不计收货店可售；无实时物流定位，不编造道路位置。",
+      "reference_documents": [
+        "transfer_dispatch"
+      ],
+      "category": "mixed",
+      "question_type": "hard_confusion",
+      "expected_behavior": "partial_answer",
+      "cohort": "expanded",
+      "partial_unanswerable": true
+    }
+  ]
+}
