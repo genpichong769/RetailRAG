@@ -88,6 +88,27 @@ locust_*.html
 *_checkpoint.json
 *_resume.json
 
+# Local-only frozen experiments and historical delivery artifacts
+/RETAILRAG_*.json
+!/RETAILRAG_PHASE6_EVIDENCE_GATE_CONFIG.json
+/RETAILRAG_*_REPORT.md
+/RETAILRAG_QWEN37_FINAL_FAILURES.md
+/docs/history/
+/docker/milvus_redis/docker-compose.yml
+/docker/mysql/docker-compose.yml
+/static/src/
+/scripts/build_*_evaluation_set.py
+/scripts/diagnose_qwen_connection.py
+/scripts/evaluate_*.py
+!/scripts/evaluate_retail_classifier.py
+/scripts/judge_scale_refusal.py
+/scripts/phase*.py
+/scripts/probe_runtime_dependencies.py
+/scripts/qwen37_*.py
+/scripts/scale_*.py
+/scripts/smoke_migration.py
+/scripts/verify_frozen_assets.py
+
 # Notebook outputs with local paths and copied tokenizer artifacts
 /notebooks/bert_models.ipynb
 /notebooks/demo_models.ipynb

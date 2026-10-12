@@ -61,7 +61,7 @@ RetailRAG 将结构化 FAQ 与 Retrieval-Augmented Generation 组合为分层问
 
 ## 项目评测与效果
 
-正式结果来自冻结文件 [RETAILRAG_QWEN37_FINAL_METRICS.json](RETAILRAG_QWEN37_FINAL_METRICS.json) 与 [RETAILRAG_QWEN37_FINAL_EVALUATION_REPORT.md](RETAILRAG_QWEN37_FINAL_EVALUATION_REPORT.md)，统一使用 `qwen3.7-plus`，最终结论为 **GOOD_WITH_LIMITATIONS**。
+正式结果来自冻结文件 [RETAILRAG_QWEN37_FINAL_METRICS.json](docs/evaluation/RETAILRAG_QWEN37_FINAL_METRICS.json) 与 [RETAILRAG_QWEN37_FINAL_EVALUATION_REPORT.md](docs/evaluation/RETAILRAG_QWEN37_FINAL_EVALUATION_REPORT.md)，统一使用 `qwen3.7-plus`，最终结论为 **GOOD_WITH_LIMITATIONS**。
 
 | 数据规模 | 数量 | 数据规模 | 数量 |
 |---|---:|---|---:|
@@ -105,14 +105,13 @@ RetailRAG/
 │  ├─ text_splitters/                  # 中文与 Markdown 分块
 │  ├─ classify_data/                   # Retail 查询分类数据集
 │  └─ models/retail-query-classifier/  # BERT 分类器（权重使用 Git LFS）
-├─ scripts/                            # 初始化、入库、评测与验证脚本
+├─ scripts/                            # 初始化、入库、分类器与公开验证脚本
 ├─ static/                             # 演示 Web UI
-├─ docker/                             # MySQL / Milvus / Redis 持久化目录配置
 ├─ docs/
 │  ├─ assets/diagrams/                 # README 图表与可编辑 SVG 源文件
-│  └─ history/                         # 精选历史实验报告
+│  └─ evaluation/                      # 正式评测报告与汇总指标
 ├─ docker-compose.yml                  # 本地基础设施编排
-└─ RETAILRAG_QWEN37_FINAL_*            # qwen3.7-plus 冻结评测交付物
+└─ RETAILRAG_PHASE6_EVIDENCE_GATE_CONFIG.json  # 运行期 Evidence Gate 配置
 ```
 
 ## 快速启动
@@ -128,8 +127,8 @@ RetailRAG/
 ### 2. 获取项目并安装依赖
 
 ```powershell
-git clone https://github.com/genpichong769/EduRAG-Intelligent-QA-System.git
-Set-Location EduRAG-Intelligent-QA-System
+git clone https://github.com/genpichong769/RetailRAG.git
+Set-Location RetailRAG
 git lfs install
 git lfs pull
 
@@ -183,22 +182,30 @@ python -m uvicorn app:app --host 127.0.0.1 --port 8003
 
 ## 当前验证情况与已知限制
 
-冻结交付物记录的工程验证结果如下；本次 README 优化没有重新调用付费模型，也没有改写冻结结果。
+正式报告记录的冻结实验结果如下；本次仓库整理没有重新调用付费模型，也没有改写冻结结果。
 
 - FAQ 原问、FAQ 改写、单文档 RAG、多文档 RAG、版本冲突、无答案拒答、通用问题和多轮 Query Rewrite 场景已验证。
 - MySQL、Redis、Milvus、MinIO、etcd、FastAPI、WebSocket 与浏览器端到端检查均记录为 `PASS`。
-- 84 个冻结输入文件的 SHA-256 基线检查为 `PASS`；正式模型为 `qwen3.7-plus`。
+- 完整本地归档曾通过 84 个冻结输入文件的 SHA-256 基线检查；正式模型为 `qwen3.7-plus`。
 - 当前是本地工程原型，不是经过生产环境验收的系统，`GET /health` 也只是进程级检查。
 - 多文档检索仍是主要限制：Multi-document All Recall@3 为 67.74%，对应 Full RAG 多文档 Strict Accuracy 为 63.33%。
 - 单 Uvicorn Worker 内仍包含同步、CPU 密集的检索/重排过程；长请求可能延迟并发健康检查与 WebSocket keepalive，不应据此宣称生产并发能力。
 - Generation 80 与 Full RAG 350 均使用同一模型参与生成和裁判，评测可能偏乐观。
+
+公开仓库提供不调用大模型的轻量校验：
+
+```powershell
+python scripts/verify_public_release.py
+```
+
+该脚本检查公开必需文件、200 条 FAQ、80 篇知识文档、分类器资产与 Git LFS 配置，并校验正式指标/报告的 SHA-256 和关键数值。逐题原始输出已从公开分支移出，因此该脚本不代表对 480 / 235 / 80 / 350 条样本的独立重算或对完整 84 文件基线的复验。
 
 ## 数据与安全边界
 
 - FAQ、知识文档、企业名称和业务规则均为模拟数据。
 - `.env`、运行日志、Docker 数据卷和上游模型缓存不会进入 Git。
 - 正式分类器权重由 Git LFS 管理；BGE-M3 与 BGE Reranker 权重不随仓库分发。
-- 冻结评测文件用于结果复核，不应在日常开发中覆盖或重新生成。
+- 公开仓库仅保留正式汇总指标与评测报告；逐题输出、阶段报告与旧版实验脚本保留在本地归档中。
 
 ---
 

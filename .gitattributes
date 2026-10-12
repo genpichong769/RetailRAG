@@ -9,6 +9,7 @@
 *.csv -text whitespace=cr-at-eol
 rag_qa/data/*_data/*.md -text whitespace=cr-at-eol
 RETAILRAG_QWEN37_FINAL_*.md -text whitespace=cr-at-eol,-blank-at-eol
+docs/evaluation/RETAILRAG_QWEN37_FINAL_*.md -text whitespace=cr-at-eol,-blank-at-eol
 rag_qa/models/retail-query-classifier/* -text whitespace=cr-at-eol
 scripts/qwen37_build_final_deliverables.py whitespace=-blank-at-eol
 base/query_analysis.py whitespace=-blank-at-eof
