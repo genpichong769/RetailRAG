@@ -45,6 +45,7 @@ locust_*.html
 !/mysql_qa/data/retail_faq.csv
 
 # Local model weights and training artifacts
+/RetailRAG_models/
 /rag_qa/models/*
 !/rag_qa/models/README.md
 !/rag_qa/models/retail-query-classifier/
